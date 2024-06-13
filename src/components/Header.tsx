@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAppSelector } from '../hooks/hooks';
 
 // mui components
 import AppBar from '@mui/material/AppBar';
@@ -22,6 +23,8 @@ type Props = {};
 
 function Header({}: Props) {
   const [profileEl, setProfileEl] = useState<null | HTMLElement>(null);
+
+  const { cartItems } = useAppSelector((store) => store.cart);
 
   const handleOnProfileClick = (event: React.MouseEvent<HTMLElement>) => {
     setProfileEl(event.currentTarget);
@@ -55,7 +58,11 @@ function Header({}: Props) {
               <FavoriteBorder />
             </IconButton>
             <IconButton size='large' color='inherit'>
-              <Badge badgeContent={0} color='error' showZero={true}>
+              <Badge
+                badgeContent={cartItems.length}
+                color='error'
+                showZero={true}
+              >
                 <ShoppingBagOutlinedIcon />
               </Badge>
             </IconButton>
