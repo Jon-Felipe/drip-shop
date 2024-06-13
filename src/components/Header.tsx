@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../hooks/hooks';
 
 // mui components
@@ -57,7 +58,12 @@ function Header({}: Props) {
             <IconButton size='large' color='inherit'>
               <FavoriteBorder />
             </IconButton>
-            <IconButton size='large' color='inherit'>
+            <IconButton
+              size='large'
+              color='inherit'
+              component={Link}
+              to='/cart'
+            >
               <Badge
                 badgeContent={cartItems.length}
                 color='error'
