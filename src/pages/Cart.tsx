@@ -1,4 +1,5 @@
-import { useAppSelector } from '../hooks/hooks';
+import { removeFromCart } from '../slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 // mui components
 import Grid from '@mui/material/Grid';
@@ -14,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart() {
+  const dispatch = useAppDispatch();
   const { cartItems } = useAppSelector((store) => store.cart);
 
   if (cartItems.length === 0) {
@@ -89,7 +91,12 @@ function Cart() {
                       {(cartItem.product.price! * cartItem.quantity).toFixed(2)}
                     </TableCell>
                     <TableCell align='right'>
-                      <IconButton color='error'>
+                      <IconButton
+                        color='error'
+                        onClick={() =>
+                          dispatch(removeFromCart(cartItem.product.id!))
+                        }
+                      >
                         <DeleteIcon />
                       </IconButton>
                     </TableCell>
