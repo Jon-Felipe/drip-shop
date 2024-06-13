@@ -12,3 +12,9 @@ export interface IProduct {
     material: string;
   };
 }
+
+export interface ICart {
+  product: Partial<IProduct>;
+  color: string;
+  quantity: number;
+}
