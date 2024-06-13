@@ -29,7 +29,7 @@ function Cart() {
   }
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       {/* cart items */}
       <Grid item xs={12} sm={8} component='section'>
         <TableContainer>
@@ -109,7 +109,31 @@ function Cart() {
       </Grid>
       {/* cart summary */}
       <Grid item xs={12} sm={4} component='section'>
-        cart summary
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell colSpan={2} sx={{ fontWeight: 'bold' }}>
+                  Cart Totals
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Subtotal</TableCell>
+                <TableCell align='right'>$35.00</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Shipping Fee</TableCell>
+                <TableCell align='right'>Free</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Total</TableCell>
+                <TableCell align='right'>$35.00</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
     </Grid>
   );
