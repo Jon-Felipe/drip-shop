@@ -18,8 +18,22 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<ICart>) => {
-      state.cartItems = [...state.cartItems, action.payload];
+    addToCart: (state, { payload }: PayloadAction<ICart>) => {
+      const itemExists = state.cartItems.find(
+        (item) => item.product.id?.toString() === payload.product.id?.toString()
+      );
+
+      if (!itemExists) {
+        state.cartItems = [...state.cartItems, payload];
+      } else {
+        state.cartItems = state.cartItems.map((item) => {
+          if (item.product.id?.toString() === payload.product.id?.toString()) {
+            return { ...item, quantity: item.quantity + payload.quantity };
+          } else {
+            return item;
+          }
+        });
+      }
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
