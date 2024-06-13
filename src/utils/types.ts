@@ -15,6 +15,6 @@ export interface IProduct {
 
 export interface ICart {
   product: Partial<IProduct>;
-  color: string;
+  size: string;
   quantity: number;
 }

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../hooks/hooks';
+import { addToCart } from '../slices/cartSlice';
 
 // mui components
 import Grid from '@mui/material/Grid';
@@ -14,13 +16,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // extras
 import { dummy_products } from '../utils/constants';
+import { ICart } from '../utils/types';
 
 function SingleProduct() {
   const [size, setSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(0);
+
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
-  const product = dummy_products.find(
+  const foundProduct = dummy_products.find(
     (product) => product.id.toString() === id
   );
 
@@ -38,13 +43,27 @@ function SingleProduct() {
     }
   }
 
+  function handleAddToCart() {
+    const cartObj: ICart = {
+      product: {
+        id: foundProduct?.id,
+        title: foundProduct?.title,
+        image: foundProduct?.image,
+      },
+      size,
+      quantity,
+    };
+    dispatch(addToCart(cartObj));
+    alert('item added to cart');
+  }
+
   return (
     <Grid container spacing={4}>
       {/* image gallery */}
       <Grid item xs={12} sm={5} component='section'>
         <img
           src='../images/mens_shirt.jpg'
-          alt={product?.title}
+          alt={foundProduct?.title}
           style={{ width: '100%', objectFit: 'cover' }}
         />
       </Grid>
@@ -52,15 +71,15 @@ function SingleProduct() {
       <Grid item xs={12} sm={7} component='section'>
         {/* product title */}
         <Typography component='h3' variant='h5' gutterBottom>
-          {product?.title}
+          {foundProduct?.title}
         </Typography>
         {/* product brand */}
         <Typography component='p' sx={{ color: '#888', marginBottom: '20px' }}>
-          {product?.productDetails.brand}
+          {foundProduct?.productDetails.brand}
         </Typography>
         {/* product price */}
         <Typography component='p' variant='h4'>
-          ${product?.price.toFixed(2)}
+          ${foundProduct?.price.toFixed(2)}
         </Typography>
         {/* product size */}
         <Box>
@@ -73,7 +92,7 @@ function SingleProduct() {
             Select a size
           </Typography>
           <Box sx={{ display: 'flex', columnGap: '20px' }}>
-            {product?.availableSizes.map((s, index) => {
+            {foundProduct?.availableSizes.map((s, index) => {
               return (
                 <Box
                   key={index}
@@ -140,6 +159,7 @@ function SingleProduct() {
             color='error'
             startIcon={<ShoppingCartOutlinedIcon />}
             sx={{ width: '100%', fontSize: { xs: '12px', sm: '14px' } }}
+            onClick={handleAddToCart}
           >
             Add to cart
           </Button>
@@ -158,18 +178,18 @@ function SingleProduct() {
           <Typography component='h6' sx={{ color: '#888', fontSize: '16px' }}>
             Product Details
           </Typography>
-          {product?.productDetails.description && (
+          {foundProduct?.productDetails.description && (
             <Typography
               component='p'
               sx={{ color: '#888', marginTop: '5px', fontSize: '14px' }}
             >
-              {product.productDetails.description}
+              {foundProduct.productDetails.description}
             </Typography>
           )}
-          {product?.productDetails?.extraInfo &&
-            product?.productDetails?.extraInfo?.length > 0 && (
+          {foundProduct?.productDetails?.extraInfo &&
+            foundProduct?.productDetails?.extraInfo?.length > 0 && (
               <ul>
-                {product.productDetails.extraInfo.map((item, index) => {
+                {foundProduct.productDetails.extraInfo.map((item, index) => {
                   return (
                     <li key={index} style={{ color: '#888' }}>
                       <Typography
@@ -195,7 +215,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {product?.productDetails?.color}
+                {foundProduct?.productDetails?.color}
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -206,7 +226,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {product?.productDetails?.color}
+                {foundProduct?.productDetails?.color}
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -217,7 +237,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {product?.productDetails?.brand}
+                {foundProduct?.productDetails?.brand}
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -228,7 +248,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {product?.productDetails?.material}
+                {foundProduct?.productDetails?.material}
               </Typography>
             </Grid>
           </Grid>
