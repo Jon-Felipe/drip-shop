@@ -28,9 +28,9 @@ function Header({}: Props) {
   };
 
   return (
-    <AppBar elevation={0} color='inherit'>
+    <AppBar position='static' elevation={0} color='inherit'>
       <Container maxWidth='lg'>
-        <Toolbar disableGutters>
+        <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex' }}>
             <Typography
               variant='h6'

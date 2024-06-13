@@ -1,12 +1,18 @@
+import { Outlet } from 'react-router-dom';
+
+// mui componet
+import Box from '@mui/material/Box';
+
+// components
 import Header from './components/Header';
 
 function App() {
   return (
     <>
       <Header />
-      <main>
-        <h1>Hello world!</h1>
-      </main>
+      <Box maxWidth='lg' margin='auto' marginTop={4}>
+        <Outlet />
+      </Box>
     </>
   );
 }
