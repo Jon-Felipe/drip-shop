@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/hooks';
 import { addToCart } from '../slices/cartSlice';
 
@@ -23,6 +23,7 @@ function SingleProduct() {
   const [quantity, setQuantity] = useState<number>(0);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const foundProduct = dummy_products.find(
@@ -54,7 +55,7 @@ function SingleProduct() {
       quantity,
     };
     dispatch(addToCart(cartObj));
-    alert('item added to cart');
+    navigate('/cart');
   }
 
   return (
