@@ -39,9 +39,14 @@ function Header({}: Props) {
             <Typography
               variant='h6'
               noWrap
-              component='a'
-              fontWeight={600}
-              marginRight={4}
+              component={Link}
+              to='/'
+              sx={{
+                textDecoration: 'none',
+                fontWeight: 'bold',
+                marginRight: 4,
+                color: '#000',
+              }}
             >
               Drip Shop
             </Typography>
