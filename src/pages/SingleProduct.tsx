@@ -50,6 +50,7 @@ function SingleProduct() {
         id: foundProduct?.id,
         title: foundProduct?.title,
         image: foundProduct?.image,
+        price: foundProduct?.price,
       },
       size,
       quantity,
