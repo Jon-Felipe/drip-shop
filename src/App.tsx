@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <Box maxWidth='lg' margin='auto' marginTop={4}>
+      <Box maxWidth='lg' margin='auto' marginTop={4} component='main'>
         <Outlet />
       </Box>
     </>
