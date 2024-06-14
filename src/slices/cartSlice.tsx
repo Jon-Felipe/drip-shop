@@ -36,7 +36,7 @@ export const cartSlice = createSlice({
       }
 
       state.total = state.cartItems.reduce((acc, curr) => {
-        return acc + curr.product.price! * curr.quantity;
+        return acc + curr.product.price * curr.quantity;
       }, 0);
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
@@ -45,7 +45,7 @@ export const cartSlice = createSlice({
       );
 
       state.total = state.cartItems.reduce((acc, curr) => {
-        return acc + curr.product.price! * curr.quantity;
+        return acc + curr.product.price * curr.quantity;
       }, 0);
     },
   },

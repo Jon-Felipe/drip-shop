@@ -14,7 +14,7 @@ export interface IProduct {
 }
 
 export interface ICart {
-  product: Partial<IProduct>;
+  product: Pick<IProduct, 'id' | 'title' | 'price' | 'image'>;
   size: string;
   quantity: number;
 }

@@ -87,14 +87,13 @@ function Cart() {
                     </TableCell>
                     <TableCell align='right'>{cartItem.quantity}</TableCell>
                     <TableCell align='right'>
-                      $
-                      {(cartItem.product.price! * cartItem.quantity).toFixed(2)}
+                      ${(cartItem.product.price * cartItem.quantity).toFixed(2)}
                     </TableCell>
                     <TableCell align='right'>
                       <IconButton
                         color='error'
                         onClick={() =>
-                          dispatch(removeFromCart(cartItem.product.id!))
+                          dispatch(removeFromCart(cartItem.product.id))
                         }
                       >
                         <DeleteIcon />
