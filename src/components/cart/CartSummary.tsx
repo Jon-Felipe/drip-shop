@@ -7,10 +7,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 type Props = {
+  shippingFee: number;
   total: number;
 };
 
-function CartSummary({ total }: Props) {
+function CartSummary({ shippingFee, total }: Props) {
   return (
     <TableContainer>
       <Table>
@@ -28,11 +29,11 @@ function CartSummary({ total }: Props) {
           </TableRow>
           <TableRow>
             <TableCell>Shipping Fee</TableCell>
-            <TableCell align='right'>Free</TableCell>
+            <TableCell align='right'>${shippingFee}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Total</TableCell>
-            <TableCell align='right'>${total}</TableCell>
+            <TableCell align='right'>${total + shippingFee}</TableCell>
           </TableRow>
         </TableBody>
       </Table>

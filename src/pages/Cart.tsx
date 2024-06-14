@@ -10,7 +10,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 function Cart() {
-  const { cartItems, total } = useAppSelector((store) => store.cart);
+  const { cartItems, shippingFee, total } = useAppSelector(
+    (store) => store.cart
+  );
 
   if (cartItems.length === 0) {
     return (
@@ -36,7 +38,7 @@ function Cart() {
         </Grid>
         {/* cart summary */}
         <Grid item xs={12} sm={4} component='section'>
-          <CartSummary total={total} />
+          <CartSummary shippingFee={shippingFee} total={total} />
         </Grid>
       </Grid>
     </>

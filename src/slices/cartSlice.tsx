@@ -7,11 +7,13 @@ import { ICart } from '../utils/types';
 export interface ICartState {
   cartItems: ICart[];
   total: number;
+  shippingFee: number;
 }
 
 const initialState: ICartState = {
   cartItems: [],
   total: 0,
+  shippingFee: 100,
 };
 
 export const cartSlice = createSlice({
