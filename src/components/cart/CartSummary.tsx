@@ -34,8 +34,10 @@ function CartSummary({ shippingFee, total }: Props) {
             </TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Total</TableCell>
-            <TableCell align='right'>${total + shippingFee}</TableCell>
+            <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
+            <TableCell align='right' sx={{ fontWeight: 'bold' }}>
+              ${total + shippingFee}
+            </TableCell>
           </TableRow>
         </TableBody>
       </Table>
