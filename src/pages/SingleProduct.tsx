@@ -47,10 +47,10 @@ function SingleProduct() {
   function handleAddToCart() {
     const cartObj: ICart = {
       product: {
-        id: foundProduct?.id,
-        title: foundProduct?.title,
-        image: foundProduct?.image,
-        price: foundProduct?.price,
+        id: foundProduct?.id || '',
+        title: foundProduct?.title || '',
+        image: foundProduct?.image || '',
+        price: foundProduct?.price || 0,
       },
       size,
       quantity,
