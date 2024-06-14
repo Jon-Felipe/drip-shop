@@ -40,6 +40,8 @@ export const cartSlice = createSlice({
       state.total = state.cartItems.reduce((acc, curr) => {
         return acc + curr.product.price * curr.quantity;
       }, 0);
+
+      state.shippingFee = state.total > 1000 ? 0 : 100;
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
@@ -49,6 +51,8 @@ export const cartSlice = createSlice({
       state.total = state.cartItems.reduce((acc, curr) => {
         return acc + curr.product.price * curr.quantity;
       }, 0);
+
+      state.shippingFee = state.total > 1000 ? 0 : 100;
     },
   },
 });

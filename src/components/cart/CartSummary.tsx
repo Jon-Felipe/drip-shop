@@ -29,7 +29,9 @@ function CartSummary({ shippingFee, total }: Props) {
           </TableRow>
           <TableRow>
             <TableCell>Shipping Fee</TableCell>
-            <TableCell align='right'>${shippingFee}</TableCell>
+            <TableCell align='right'>
+              {shippingFee === 0 ? 'Free' : `$${shippingFee}`}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Total</TableCell>
