@@ -32,15 +32,12 @@ function CartItems({ cartItems }: Props) {
             <TableRow>
               <TableCell sx={{ fontWeight: 'bold' }}>Product</TableCell>
               <TableCell align='right' sx={{ fontWeight: 'bold' }}>
-                Price
-              </TableCell>
-              <TableCell align='right' sx={{ fontWeight: 'bold' }}>
                 Quantity
               </TableCell>
               <TableCell align='right' sx={{ fontWeight: 'bold' }}>
                 Total
               </TableCell>
-              <TableCell align='right' sx={{ fontWeight: 'bold' }}></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -70,10 +67,16 @@ function CartItems({ cartItems }: Props) {
                       />
                       <Box>
                         <Typography>{cartItem.product.title}</Typography>
+                        <Typography
+                          component='p'
+                          variant='caption'
+                          sx={{ textTransform: 'uppercase' }}
+                        >
+                          Size: {cartItem.size}
+                        </Typography>
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell align='right'>${cartItem.product.price}</TableCell>
                   <TableCell align='right'>{cartItem.quantity}</TableCell>
                   <TableCell align='right'>
                     ${(cartItem.product.price * cartItem.quantity).toFixed(2)}
