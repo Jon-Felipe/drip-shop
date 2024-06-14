@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart() {
   const dispatch = useAppDispatch();
-  const { cartItems } = useAppSelector((store) => store.cart);
+  const { cartItems, total } = useAppSelector((store) => store.cart);
 
   if (cartItems.length === 0) {
     return (
@@ -121,7 +121,7 @@ function Cart() {
             <TableBody>
               <TableRow>
                 <TableCell>Subtotal</TableCell>
-                <TableCell align='right'>$35.00</TableCell>
+                <TableCell align='right'>${total}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>Shipping Fee</TableCell>
@@ -129,7 +129,7 @@ function Cart() {
               </TableRow>
               <TableRow>
                 <TableCell>Total</TableCell>
-                <TableCell align='right'>$35.00</TableCell>
+                <TableCell align='right'>${total}</TableCell>
               </TableRow>
             </TableBody>
           </Table>

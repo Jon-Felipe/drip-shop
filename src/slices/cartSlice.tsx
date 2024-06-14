@@ -34,11 +34,19 @@ export const cartSlice = createSlice({
           }
         });
       }
+
+      state.total = state.cartItems.reduce((acc, curr) => {
+        return acc + curr.product.price! * curr.quantity;
+      }, 0);
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.product.id !== action.payload
       );
+
+      state.total = state.cartItems.reduce((acc, curr) => {
+        return acc + curr.product.price! * curr.quantity;
+      }, 0);
     },
   },
 });
