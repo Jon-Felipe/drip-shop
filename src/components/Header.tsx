@@ -17,7 +17,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
-const pages = ['Mens', 'Women', 'Kids'];
+const pages = ['Mens', 'Women', 'Kids', 'Beauty'];
 const settings = ['Profile', 'Account', 'Logout'];
 
 type Props = {};
