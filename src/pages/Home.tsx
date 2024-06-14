@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 
+// components
+import DepartmentLinkCard from '../components/home/DepartmentLinkCard';
+
 // mui components
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -17,44 +20,7 @@ function Home() {
   return (
     <>
       {/* departments */}
-      <Grid container spacing={{ xs: 2, md: 3 }}>
-        <Grid item xs={6} md={3}>
-          <Box component={Link} to='/'>
-            <Box
-              component='img'
-              src='../images/department_women.jpg'
-              sx={{ width: '100%', objectFit: 'cover' }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={6} md={3}>
-          <Box component={Link} to='/'>
-            <Box
-              component='img'
-              src='../images/department_men.jpg'
-              sx={{ width: '100%', objectFit: 'cover' }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={6} md={3}>
-          <Box component={Link} to='/'>
-            <Box
-              component='img'
-              src='../images/department_kids.jpg'
-              sx={{ width: '100%', objectFit: 'cover' }}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={6} md={3}>
-          <Box component={Link} to='/'>
-            <Box
-              component='img'
-              src='../images/department_beauty.jpg'
-              sx={{ width: '100%', objectFit: 'cover' }}
-            />
-          </Box>
-        </Grid>
-      </Grid>
+      <DepartmentLinkCard />
 
       {/* feature products */}
       <Grid container spacing={3} marginTop={5}>
