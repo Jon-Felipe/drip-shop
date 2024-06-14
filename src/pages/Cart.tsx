@@ -23,12 +23,23 @@ function Cart() {
   }
 
   return (
-    <Grid container spacing={4}>
-      {/* cart items */}
-      <CartItems cartItems={cartItems} />
-      {/* cart summary */}
-      <CartSummary total={total} />
-    </Grid>
+    <>
+      <Box marginBottom={6}>
+        <Typography component='h3' variant='h5' align='center'>
+          Shopping Cart
+        </Typography>
+      </Box>
+      <Grid container spacing={4}>
+        {/* cart items */}
+        <Grid item xs={12} sm={8} component='section'>
+          <CartItems cartItems={cartItems} />
+        </Grid>
+        {/* cart summary */}
+        <Grid item xs={12} sm={4} component='section'>
+          <CartSummary total={total} />
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
