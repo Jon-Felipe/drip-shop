@@ -17,7 +17,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
-const pages = ['Mens', 'Women', 'Kids', 'Beauty'];
+const pages = ['Men', 'Women', 'Kids', 'Beauty'];
 const settings = ['Profile', 'Account', 'Logout'];
 
 type Props = {};
@@ -52,7 +52,12 @@ function Header({}: Props) {
             </Typography>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Button key={page} color='inherit' sx={{ display: 'block' }}>
+                <Button
+                  key={page}
+                  color='inherit'
+                  component={Link}
+                  to={`/department/${page.toLowerCase()}`}
+                >
                   {page}
                 </Button>
               ))}
