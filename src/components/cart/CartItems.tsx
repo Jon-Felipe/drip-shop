@@ -70,9 +70,16 @@ function CartItems({ cartItems }: Props) {
                       <Typography
                         component='p'
                         variant='subtitle2'
-                        sx={{ textTransform: 'capitalize', color: '#888' }}
+                        sx={{ textTransform: 'uppercase', color: '#888' }}
                       >
                         Size: {cartItem.size}
+                      </Typography>
+                      <Typography
+                        component='p'
+                        variant='subtitle2'
+                        sx={{ textTransform: 'capitalize', color: '#888' }}
+                      >
+                        Colour: {cartItem.colour}
                       </Typography>
                     </Box>
                   </Box>
