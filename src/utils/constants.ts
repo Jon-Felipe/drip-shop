@@ -1,4 +1,4 @@
-import { IProduct } from './types';
+import { IDepartment, IProduct } from './types';
 
 export const dummy_products: IProduct[] = [
   {
@@ -15,7 +15,8 @@ export const dummy_products: IProduct[] = [
       brand: 'Cotton On',
       material: '100% Cotton',
     },
-    department: 'men',
+    // department: 'men',
+    departmentId: 'dep1',
   },
   {
     id: '2',
@@ -34,7 +35,8 @@ export const dummy_products: IProduct[] = [
       brand: 'Cotton On',
       material: '78% Modal or Polynosic, 22% Polyester.',
     },
-    department: 'women',
+    // department: 'women',
+    departmentId: 'dep2',
   },
   {
     id: '3',
@@ -54,7 +56,8 @@ export const dummy_products: IProduct[] = [
       brand: 'JEEP',
       material: '100% Cotton',
     },
-    department: 'men',
+    // department: 'men',
+    departmentId: 'dep1',
   },
   {
     id: '4',
@@ -74,7 +77,8 @@ export const dummy_products: IProduct[] = [
       brand: 'CALVIN KLEIN',
       material: '96% Cotton, 4% Elastane',
     },
-    department: 'women',
+    // department: 'women',
+    departmentId: 'dep2',
   },
   {
     id: '5',
@@ -90,7 +94,8 @@ export const dummy_products: IProduct[] = [
       brand: 'H&M',
       material: '100% Cotton',
     },
-    department: 'men',
+    // department: 'men',
+    departmentId: 'dep1',
   },
   {
     id: '6',
@@ -106,6 +111,24 @@ export const dummy_products: IProduct[] = [
       brand: 'H&M',
       material: '100% Cotton',
     },
-    department: 'women',
+    // department: 'women',
+    departmentId: 'dep2',
+  },
+];
+
+export const dummy_departments: IDepartment[] = [
+  {
+    id: 'dep1',
+    title: "Browse all men's products",
+    description:
+      'Stay on top of your game with designer brands like G-Star RAW, Adidas Originals, and more. There’s an item for every occasion, from the office to the great outdoors, not to mention basics for the everyday grind.',
+    tag: 'men',
+  },
+  {
+    id: 'dep2',
+    title: "Browse all women's products",
+    description:
+      'Find yourself saying, “I have nothing to wear,” no longer with our range of women’s tops. Off-the-shoulder, lace, and crop tops are just a few of the styles in our selection of top brands like Missguided and Nike.',
+    tag: 'women',
   },
 ];
