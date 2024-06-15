@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 // mui components
@@ -16,6 +17,8 @@ import ProductCard from '../components/ProductCard';
 type Props = {};
 
 function Department({}: Props) {
+  const [sort, setSort] = useState<string>('');
+
   const { department } = useParams();
 
   const foundDepartment = dummy_departments.find(
@@ -60,8 +63,14 @@ function Department({}: Props) {
         </Typography>
         <Box sx={{ minWidth: 200 }}>
           <FormControl fullWidth>
-            <InputLabel id='sort-label'>Newest</InputLabel>
-            <Select labelId='sort-label' id='sort' label='Newest'>
+            <InputLabel id='sort-label'>Sort</InputLabel>
+            <Select
+              labelId='sort-label'
+              id='sort'
+              label='sort'
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+            >
               <MenuItem value='newest'>Newest</MenuItem>
               <MenuItem value='top-rated'>Top Rated</MenuItem>
               <MenuItem value='price-high'>Price Low to High</MenuItem>
