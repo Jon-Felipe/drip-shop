@@ -20,6 +20,7 @@ import { ICart } from '../utils/types';
 
 function SingleProduct() {
   const [size, setSize] = useState<string>('');
+  const [colour, setColour] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(0);
 
   const dispatch = useAppDispatch();
@@ -129,17 +130,22 @@ function SingleProduct() {
             Select a colour
           </Typography>
           <Box display='flex' alignItems='center' columnGap={2} marginTop={2}>
-            {foundProduct?.productDetails.colors.map((colour, index) => {
+            {foundProduct?.productDetails.colors.map((c, index) => {
               return (
                 <Box
                   key={index}
                   sx={{
-                    width: '20px',
-                    height: '20px',
-                    border: '1px solid #cac7c7',
+                    width: `${colour === c ? '35px' : '25px'}`,
+                    height: `${colour === c ? '35px' : '25px'}`,
+                    border: `${
+                      colour === c ? '2px solid #000' : '1px solid #cac7c7'
+                    }`,
                     borderRadius: '100%',
-                    backgroundColor: colour,
+                    backgroundColor: c,
+                    cursor: 'pointer',
                   }}
+                  component='button'
+                  onClick={() => setColour(c)}
                 />
               );
             })}
