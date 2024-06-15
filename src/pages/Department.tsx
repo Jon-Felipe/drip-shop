@@ -30,6 +30,7 @@ function Department({}: Props) {
           variant='h5'
           align='center'
           fontWeight='bold'
+          textTransform='capitalize'
         >
           {foundDepartment?.title}
         </Typography>
