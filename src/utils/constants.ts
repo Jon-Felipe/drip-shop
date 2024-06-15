@@ -2,7 +2,7 @@ import { IProduct } from './types';
 
 export const dummy_products: IProduct[] = [
   {
-    id: 1,
+    id: '1',
     title: 'Easy T-shirt',
     image: '',
     price: 229,
@@ -15,9 +15,10 @@ export const dummy_products: IProduct[] = [
       brand: 'Cotton On',
       material: '100% Cotton',
     },
+    department: 'men',
   },
   {
-    id: 2,
+    id: '2',
     title: 'Gabby off The Shoulder Long Sleeve Top',
     image: '',
     price: 349,
@@ -33,9 +34,10 @@ export const dummy_products: IProduct[] = [
       brand: 'Cotton On',
       material: '78% Modal or Polynosic, 22% Polyester.',
     },
+    department: 'women',
   },
   {
-    id: 3,
+    id: '3',
     title: 'Long sleeve workshirt',
     image: '',
     price: 699,
@@ -52,9 +54,10 @@ export const dummy_products: IProduct[] = [
       brand: 'JEEP',
       material: '100% Cotton',
     },
+    department: 'men',
   },
   {
-    id: 4,
+    id: '4',
     title: 'Woven label v-neck long sleeve',
     image: '',
     price: 1599,
@@ -71,9 +74,10 @@ export const dummy_products: IProduct[] = [
       brand: 'CALVIN KLEIN',
       material: '96% Cotton, 4% Elastane',
     },
+    department: 'women',
   },
   {
-    id: 5,
+    id: '5',
     title: 'Relaxed fit cotton joggers',
     image: '',
     price: 429,
@@ -86,9 +90,10 @@ export const dummy_products: IProduct[] = [
       brand: 'H&M',
       material: '100% Cotton',
     },
+    department: 'men',
   },
   {
-    id: 6,
+    id: '6',
     title: 'Twill cargo trousers',
     image: '',
     price: 379,
@@ -101,5 +106,6 @@ export const dummy_products: IProduct[] = [
       brand: 'H&M',
       material: '100% Cotton',
     },
+    department: 'women',
   },
 ];

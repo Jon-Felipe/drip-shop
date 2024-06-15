@@ -11,6 +11,7 @@ export interface IProduct {
     brand: string;
     material: string;
   };
+  department: string;
 }
 
 export interface ICart {
