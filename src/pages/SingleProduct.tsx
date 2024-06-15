@@ -123,6 +123,28 @@ function SingleProduct() {
             })}
           </Box>
         </Box>
+        {/* product colours*/}
+        <Box marginTop={2}>
+          <Typography component='p' variant='h6'>
+            Select a colour
+          </Typography>
+          <Box display='flex' alignItems='center' columnGap={2} marginTop={2}>
+            {foundProduct?.productDetails.colors.map((colour, index) => {
+              return (
+                <Box
+                  key={index}
+                  sx={{
+                    width: '20px',
+                    height: '20px',
+                    border: '1px solid #cac7c7',
+                    borderRadius: '100%',
+                    backgroundColor: colour,
+                  }}
+                />
+              );
+            })}
+          </Box>
+        </Box>
         {/* product quantity */}
         <Box sx={{ display: 'flex', alignItems: 'center', margin: '25px 0' }}>
           <Typography component='p' variant='h6'>
@@ -211,24 +233,13 @@ function SingleProduct() {
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                Color
+                Colors
               </Typography>
               <Typography
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {foundProduct?.productDetails?.color}
-              </Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                Color
-              </Typography>
-              <Typography
-                component='p'
-                sx={{ color: '#888', fontSize: '14px' }}
-              >
-                {foundProduct?.productDetails?.color}
+                {foundProduct?.productDetails?.colors.join(', ')}
               </Typography>
             </Grid>
             <Grid item xs={6}>
