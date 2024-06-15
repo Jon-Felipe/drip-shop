@@ -7,7 +7,7 @@ export interface IProduct {
   productDetails: {
     description?: string;
     extraInfo?: string[];
-    color: string;
+    colors: string[];
     brand: string;
     material: string;
   };
