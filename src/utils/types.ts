@@ -24,5 +24,6 @@ export interface IDepartment {
 export interface ICart {
   product: Pick<IProduct, 'id' | 'title' | 'price' | 'image'>;
   size: string;
+  colour: string;
   quantity: number;
 }

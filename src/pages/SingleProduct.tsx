@@ -54,6 +54,7 @@ function SingleProduct() {
         price: foundProduct?.price || 0,
       },
       size,
+      colour,
       quantity,
     };
     dispatch(addToCart(cartObj));
