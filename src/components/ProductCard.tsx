@@ -21,7 +21,7 @@ function ProductCard({ product }: Props) {
     <Card
       elevation={0}
       component={Link}
-      to={`products/${product.id}`}
+      to={`/products/${product.id}`}
       sx={{ textDecoration: 'none' }}
     >
       <CardMedia
