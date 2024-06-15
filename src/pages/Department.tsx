@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 // extras
 import { dummy_departments, dummy_products } from '../utils/constants';
@@ -43,7 +47,31 @@ function Department({}: Props) {
           {foundDepartment?.description}
         </Typography>
       </Box>
-      <Grid container spacing={3} marginTop={5}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginTop: '40px',
+        }}
+      >
+        <Typography component='p' sx={{ fontWeight: 'bold' }}>
+          {foundProducts.length} items found
+        </Typography>
+        <Box sx={{ minWidth: 200 }}>
+          <FormControl fullWidth>
+            <InputLabel id='sort-label'>Newest</InputLabel>
+            <Select labelId='sort-label' id='sort' label='Newest'>
+              <MenuItem value='newest'>Newest</MenuItem>
+              <MenuItem value='top-rated'>Top Rated</MenuItem>
+              <MenuItem value='price-high'>Price Low to High</MenuItem>
+              <MenuItem value='price-low'>Price High to Low</MenuItem>
+              <MenuItem value='discount'>Discount</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+      <Grid container spacing={3} marginTop='5px' component='section'>
         {foundProducts.map((product, index) => {
           return (
             <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
