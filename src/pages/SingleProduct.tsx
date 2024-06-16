@@ -134,27 +134,31 @@ function SingleProduct() {
           </Box>
         </Box>
         {/* product quantity */}
-        <Box sx={{ display: 'flex', alignItems: 'center', margin: '25px 0' }}>
-          <Typography component='p' variant='h6'>
-            Quantity
-          </Typography>
+        {size.size && (
           <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              columnGap: '40px',
-              marginLeft: '100px',
-            }}
+            sx={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}
           >
-            <IconButton onClick={() => handleOnToggleQuantity('decrease')}>
-              <RemoveIcon />
-            </IconButton>
-            <Typography component='p'>{quantity}</Typography>
-            <IconButton onClick={() => handleOnToggleQuantity('increase')}>
-              <AddIcon />
-            </IconButton>
+            <Typography component='p' variant='h6'>
+              Quantity
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                columnGap: '40px',
+                marginLeft: '100px',
+              }}
+            >
+              <IconButton onClick={() => handleOnToggleQuantity('decrease')}>
+                <RemoveIcon />
+              </IconButton>
+              <Typography component='p'>{quantity}</Typography>
+              <IconButton onClick={() => handleOnToggleQuantity('increase')}>
+                <AddIcon />
+              </IconButton>
+            </Box>
           </Box>
-        </Box>
+        )}
         {/* action buttons */}
         <Box
           component='div'
@@ -163,6 +167,7 @@ function SingleProduct() {
             maxWidth: '500px',
             display: 'flex',
             columnGap: '20px',
+            marginTop: '20px',
           }}
         >
           <Button
