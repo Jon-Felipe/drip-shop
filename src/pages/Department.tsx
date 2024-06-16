@@ -57,6 +57,7 @@ function Department({}: Props) {
           justifyContent: 'space-between',
           marginTop: '40px',
         }}
+        component='section'
       >
         <Typography component='p' sx={{ fontWeight: 'bold' }}>
           {foundProducts.length} items found
@@ -83,7 +84,15 @@ function Department({}: Props) {
       <Grid container spacing={3} marginTop='5px' component='section'>
         {foundProducts.map((product, index) => {
           return (
-            <Grid key={index} item xs={12} sm={6} md={4} lg={2}>
+            <Grid
+              key={index}
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              component='article'
+            >
               <ProductCard product={product} />
             </Grid>
           );

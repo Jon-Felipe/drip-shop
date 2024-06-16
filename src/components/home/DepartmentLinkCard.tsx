@@ -15,10 +15,10 @@ type Props = {};
 
 function DepartmentLinkCard({}: Props) {
   return (
-    <Grid container spacing={{ xs: 2, md: 3 }}>
+    <Grid container spacing={{ xs: 2, md: 3 }} component='section'>
       {departmentLinks.map((department, index) => {
         return (
-          <Grid key={index} item xs={6} md={3}>
+          <Grid key={index} item xs={6} md={3} component='article'>
             <Box component={Link} to={`/department/${department.link}`}>
               <Box
                 component='img'
