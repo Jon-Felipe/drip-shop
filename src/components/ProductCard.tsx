@@ -36,14 +36,14 @@ function ProductCard({ product }: Props) {
           noWrap
           sx={{ fontWeight: 'bold', fontSize: '14px' }}
         >
-          {product.title} - {product.productDetails.color}
+          {product.title}
         </Typography>
         <Typography
           component='p'
           variant='body2'
           sx={{ color: '#888', fontSize: '12px' }}
         >
-          By {product.productDetails.brand}
+          By {product.brand}
         </Typography>
         <Box
           component='div'

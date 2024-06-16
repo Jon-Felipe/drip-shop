@@ -19,9 +19,11 @@ import { dummy_products } from '../utils/constants';
 import { ICart } from '../utils/types';
 
 function SingleProduct() {
-  const [size, setSize] = useState<string>('');
-  const [colour, setColour] = useState<string>('');
-  const [quantity, setQuantity] = useState<number>(0);
+  const [size, setSize] = useState<{ size: string; countInStock: number }>({
+    size: '',
+    countInStock: 0,
+  });
+  const [quantity, setQuantity] = useState<number>(1);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -33,11 +35,15 @@ function SingleProduct() {
 
   function handleOnToggleQuantity(value: string) {
     if (value === 'increase') {
-      setQuantity(quantity + 1);
+      if (quantity === size.countInStock) {
+        setQuantity(size.countInStock);
+      } else {
+        setQuantity(quantity + 1);
+      }
     } else if (value === 'decrease') {
       setQuantity((prevState) => {
-        if (prevState === 0) {
-          return 0;
+        if (prevState === 1) {
+          return 1;
         } else {
           return prevState - 1;
         }
@@ -52,9 +58,9 @@ function SingleProduct() {
         title: foundProduct?.title || '',
         image: foundProduct?.image || '',
         price: foundProduct?.price || 0,
+        colour: foundProduct?.colour || '',
       },
-      size,
-      colour,
+      size: size.size,
       quantity,
     };
     dispatch(addToCart(cartObj));
@@ -79,7 +85,7 @@ function SingleProduct() {
         </Typography>
         {/* product brand */}
         <Typography component='p' sx={{ color: '#888', marginBottom: '20px' }}>
-          {foundProduct?.productDetails.brand}
+          {foundProduct?.brand}
         </Typography>
         {/* product price */}
         <Typography component='p' variant='h4'>
@@ -96,16 +102,18 @@ function SingleProduct() {
             Select a size
           </Typography>
           <Box sx={{ display: 'flex', columnGap: '20px' }}>
-            {foundProduct?.availableSizes.map((s, index) => {
+            {foundProduct?.inventory.sizes.map((s, index) => {
               return (
                 <Box
                   key={index}
                   component='div'
                   onClick={() => setSize(s)}
                   sx={{
-                    border: `2px solid ${size === s ? '#f58723' : '#d9d9d9'}`,
+                    border: `2px solid ${
+                      size.size === s.size ? '#f58723' : '#d9d9d9'
+                    }`,
                     borderRadius: '28px',
-                    color: `${size === s ? '#f58723' : '#000'}`,
+                    color: `${size.size === s.size ? '#f58723' : '#000'}`,
                     boxSizing: 'border-box',
                     display: 'inline-flex',
                     flexShrink: 0,
@@ -118,36 +126,9 @@ function SingleProduct() {
                   }}
                 >
                   <Typography component='p' sx={{ textTransform: 'uppercase' }}>
-                    {s}
+                    {s.size}
                   </Typography>
                 </Box>
-              );
-            })}
-          </Box>
-        </Box>
-        {/* product colours*/}
-        <Box marginTop={2}>
-          <Typography component='p' variant='h6'>
-            Select a colour
-          </Typography>
-          <Box display='flex' alignItems='center' columnGap={2} marginTop={2}>
-            {foundProduct?.productDetails.colors.map((c, index) => {
-              return (
-                <Box
-                  key={index}
-                  sx={{
-                    width: `${colour === c ? '35px' : '25px'}`,
-                    height: `${colour === c ? '35px' : '25px'}`,
-                    border: `${
-                      colour === c ? '2px solid #000' : '1px solid #cac7c7'
-                    }`,
-                    borderRadius: '100%',
-                    backgroundColor: c,
-                    cursor: 'pointer',
-                  }}
-                  component='button'
-                  onClick={() => setColour(c)}
-                />
               );
             })}
           </Box>
@@ -209,44 +190,47 @@ function SingleProduct() {
           <Typography component='h6' sx={{ color: '#888', fontSize: '16px' }}>
             Product Details
           </Typography>
-          {foundProduct?.productDetails.description && (
+          {foundProduct?.description && (
             <Typography
               component='p'
               sx={{ color: '#888', marginTop: '5px', fontSize: '14px' }}
             >
-              {foundProduct.productDetails.description}
+              {foundProduct.description}
             </Typography>
           )}
-          {foundProduct?.productDetails?.extraInfo &&
-            foundProduct?.productDetails?.extraInfo?.length > 0 && (
-              <ul>
-                {foundProduct.productDetails.extraInfo.map((item, index) => {
-                  return (
-                    <li key={index} style={{ color: '#888' }}>
-                      <Typography
-                        component='p'
-                        sx={{
-                          margin: '5px 0',
-                          fontSize: '14px',
-                        }}
-                      >
-                        {item}
-                      </Typography>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+          {foundProduct?.extraInfo && foundProduct?.extraInfo?.length > 0 && (
+            <ul>
+              {foundProduct.extraInfo.map((item, index) => {
+                return (
+                  <li key={index} style={{ color: '#888' }}>
+                    <Typography
+                      component='p'
+                      sx={{
+                        margin: '5px 0',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {item}
+                    </Typography>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <Typography sx={{ fontSize: '16px', fontWeight: 'bold' }}>
-                Colors
+                Colour
               </Typography>
               <Typography
                 component='p'
-                sx={{ color: '#888', fontSize: '14px' }}
+                sx={{
+                  color: '#888',
+                  fontSize: '14px',
+                  textTransform: 'capitalize',
+                }}
               >
-                {foundProduct?.productDetails?.colors.join(', ')}
+                {foundProduct?.colour}
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -257,7 +241,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {foundProduct?.productDetails?.brand}
+                {foundProduct?.brand}
               </Typography>
             </Grid>
             <Grid item xs={6}>
@@ -268,7 +252,7 @@ function SingleProduct() {
                 component='p'
                 sx={{ color: '#888', fontSize: '14px' }}
               >
-                {foundProduct?.productDetails?.material}
+                {foundProduct?.material}
               </Typography>
             </Grid>
           </Grid>

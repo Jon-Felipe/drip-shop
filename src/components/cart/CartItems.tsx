@@ -64,8 +64,11 @@ function CartItems({ cartItems }: Props) {
                       }}
                     />
                     <Box>
-                      <Typography component='h4' sx={{ fontWeight: 'bold' }}>
-                        {cartItem.product.title}
+                      <Typography
+                        component='h4'
+                        sx={{ fontWeight: 'bold', textTransform: 'capitalize' }}
+                      >
+                        {cartItem.product.title} - {cartItem.product.colour}
                       </Typography>
                       <Typography
                         component='p'
@@ -73,13 +76,6 @@ function CartItems({ cartItems }: Props) {
                         sx={{ textTransform: 'uppercase', color: '#888' }}
                       >
                         Size: {cartItem.size}
-                      </Typography>
-                      <Typography
-                        component='p'
-                        variant='subtitle2'
-                        sx={{ textTransform: 'capitalize', color: '#888' }}
-                      >
-                        Colour: {cartItem.colour}
                       </Typography>
                     </Box>
                   </Box>
