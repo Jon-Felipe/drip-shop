@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { useAppSelector } from '../hooks/hooks';
 
 // mui components
@@ -7,29 +7,30 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+// import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 
 const pages = ['Men', 'Women', 'Kids', 'Beauty'];
-const settings = ['Profile', 'Account', 'Logout'];
+// const settings = ['Profile', 'Account', 'Logout'];
 
 type Props = {};
 
 function Header({}: Props) {
-  const [profileEl, setProfileEl] = useState<null | HTMLElement>(null);
+  // const [profileEl, setProfileEl] = useState<null | HTMLElement>(null);
 
   const { cartItems } = useAppSelector((store) => store.cart);
 
-  const handleOnProfileClick = (event: React.MouseEvent<HTMLElement>) => {
-    setProfileEl(event.currentTarget);
-  };
+  // const handleOnProfileClick = (event: React.MouseEvent<HTMLElement>) => {
+  //   setProfileEl(event.currentTarget);
+  // };
 
   return (
     <AppBar position='static' elevation={0} color='inherit'>
@@ -39,7 +40,7 @@ function Header({}: Props) {
             <Typography
               variant='h6'
               noWrap
-              component={Link}
+              component={RouterLink}
               to='/'
               sx={{
                 textDecoration: 'none',
@@ -55,7 +56,7 @@ function Header({}: Props) {
                 <Button
                   key={page}
                   color='inherit'
-                  component={Link}
+                  component={RouterLink}
                   to={`/department/${page.toLowerCase()}`}
                 >
                   {page}
@@ -64,14 +65,20 @@ function Header({}: Props) {
             </Box>
           </Box>
 
-          <Box sx={{ flexGrow: 0, display: 'flex' }}>
+          <Box
+            sx={{
+              flexGrow: 0,
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
             <IconButton size='large' color='inherit'>
               <FavoriteBorder />
             </IconButton>
             <IconButton
               size='large'
               color='inherit'
-              component={Link}
+              component={RouterLink}
               to='/cart'
             >
               <Badge
@@ -82,7 +89,18 @@ function Header({}: Props) {
                 <ShoppingBagOutlinedIcon />
               </Badge>
             </IconButton>
-            <IconButton
+            <Box marginLeft='15px'>
+              <Link
+                component={RouterLink}
+                to='/login'
+                underline='none'
+                variant='body1'
+                color='inherit'
+              >
+                Login
+              </Link>
+            </Box>
+            {/* <IconButton
               size='large'
               color='inherit'
               onClick={handleOnProfileClick}
@@ -110,7 +128,7 @@ function Header({}: Props) {
                   <Typography textAlign='center'>{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
         </Toolbar>
       </Container>
