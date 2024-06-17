@@ -9,7 +9,7 @@ const departmentLinks = [
 
 function DepartmentLinkCard() {
   return (
-    <section className='grid grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-4'>
+    <section className='grid grid-cols-2 lg:grid-cols-4 grid-rows-2 lg:grid-rows-none gap-4'>
       {departmentLinks.map((department) => (
         <article key={department.id}>
           <Link to={`/department/${department.link}`}>
