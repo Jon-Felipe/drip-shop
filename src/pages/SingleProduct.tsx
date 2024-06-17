@@ -13,6 +13,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Rating from '@mui/material/Rating';
 
 // extras
 import { dummy_products } from '../utils/constants';
@@ -84,9 +85,18 @@ function SingleProduct() {
           {foundProduct?.title}
         </Typography>
         {/* product brand */}
-        <Typography component='p' sx={{ color: '#888', marginBottom: '20px' }}>
+        <Typography component='p' sx={{ color: '#888' }}>
           {foundProduct?.brand}
         </Typography>
+        {/* product rating */}
+        <Box marginY={1}>
+          <Rating
+            value={foundProduct?.averageRating}
+            precision={0.5}
+            readOnly
+            size='small'
+          />
+        </Box>
         {/* product price */}
         <Typography component='p' variant='h4'>
           ${foundProduct?.price.toFixed(2)}
