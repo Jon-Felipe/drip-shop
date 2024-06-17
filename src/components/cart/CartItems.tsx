@@ -14,7 +14,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
   cartItems: ICart[];
@@ -29,16 +29,10 @@ function CartItems({ cartItems }: Props) {
         <TableHead>
           <TableRow>
             <TableCell sx={{ fontWeight: 'bold' }}>Product</TableCell>
-            <TableCell align='right' sx={{ fontWeight: 'bold' }}>
-              Price
-            </TableCell>
-            <TableCell align='right' sx={{ fontWeight: 'bold' }}>
-              Quantity
-            </TableCell>
-            <TableCell align='right' sx={{ fontWeight: 'bold' }}>
-              Total
-            </TableCell>
-            <TableCell></TableCell>
+            <TableCell sx={{ fontWeight: 'bold' }}>Price</TableCell>
+            <TableCell sx={{ fontWeight: 'bold' }}>Quantity</TableCell>
+            <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
+            <TableCell sx={{ fontWeight: 'bold' }}>Remove</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,8 +50,8 @@ function CartItems({ cartItems }: Props) {
                     <Box
                       component='img'
                       src='../../images/mens_shirt.jpg'
-                      maxWidth={150}
-                      maxHeight={150}
+                      maxWidth={80}
+                      maxHeight={80}
                       sx={{
                         display: { xs: 'none', md: 'inline-block' },
                         objectFit: 'cover',
@@ -80,19 +74,18 @@ function CartItems({ cartItems }: Props) {
                     </Box>
                   </Box>
                 </TableCell>
-                <TableCell align='right'>${cartItem.product.price}</TableCell>
-                <TableCell align='right'>{cartItem.quantity}</TableCell>
-                <TableCell align='right'>
+                <TableCell>${cartItem.product.price}</TableCell>
+                <TableCell>{cartItem.quantity}</TableCell>
+                <TableCell>
                   ${(cartItem.product.price * cartItem.quantity).toFixed(2)}
                 </TableCell>
-                <TableCell align='right'>
+                <TableCell>
                   <IconButton
-                    color='error'
                     onClick={() =>
                       dispatch(removeFromCart(cartItem.product.id))
                     }
                   >
-                    <DeleteIcon />
+                    <CloseIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>
