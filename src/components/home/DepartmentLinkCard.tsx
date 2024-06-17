@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
 
-// mui components
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-
 const departmentLinks = [
   { id: 1, image: '../images/department_women.jpg', link: 'women' },
   { id: 2, image: '../images/department_men.jpg', link: 'men' },
@@ -11,25 +7,17 @@ const departmentLinks = [
   { id: 4, image: '../images/department_beauty.jpg', link: 'beauty' },
 ];
 
-type Props = {};
-
-function DepartmentLinkCard({}: Props) {
+function DepartmentLinkCard() {
   return (
-    <Grid container spacing={{ xs: 2, md: 3 }} component='section'>
-      {departmentLinks.map((department, index) => {
-        return (
-          <Grid key={index} item xs={6} md={3} component='article'>
-            <Box component={Link} to={`/department/${department.link}`}>
-              <Box
-                component='img'
-                src={department.image}
-                sx={{ width: '100%', objectFit: 'cover' }}
-              />
-            </Box>
-          </Grid>
-        );
-      })}
-    </Grid>
+    <section className='flex items-center gap-x-4'>
+      {departmentLinks.map((department) => (
+        <article key={department.id}>
+          <Link to={`/department/${department.link}`}>
+            <img src={department.image} alt={department.link} />
+          </Link>
+        </article>
+      ))}
+    </section>
   );
 }
 
