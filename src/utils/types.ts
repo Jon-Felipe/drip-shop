@@ -1,13 +1,15 @@
 export interface IProduct {
   id: string;
   title: string;
-  description?: string;
-  extraInfo?: string[];
+  description?: string | undefined;
+  extraInfo?: string[] | undefined;
   image: string;
   price: number;
   colour: string;
   brand: string;
   material: string;
+  reviews?: string[] | undefined;
+  averageRating?: number | undefined;
   departmentId: string;
   inventory: {
     sizes: { size: string; countInStock: number }[];

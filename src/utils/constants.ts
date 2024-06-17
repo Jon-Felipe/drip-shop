@@ -12,6 +12,7 @@ export const dummy_products: IProduct[] = [
     colour: 'red',
     brand: 'Cotton On',
     material: '100% Cotton',
+    averageRating: 3.5,
     departmentId: 'dep1',
     inventory: {
       sizes: [
@@ -35,6 +36,7 @@ export const dummy_products: IProduct[] = [
     colour: 'white',
     brand: 'Cotton On',
     material: '78% Modal or Polynosic, 22% Polyester.',
+    averageRating: 1,
     departmentId: 'dep2',
     inventory: {
       sizes: [
@@ -59,6 +61,7 @@ export const dummy_products: IProduct[] = [
     colour: 'black',
     brand: 'JEEP',
     material: '100% Cotton',
+    averageRating: 3.5,
     departmentId: 'dep1',
     inventory: {
       sizes: [
@@ -83,6 +86,7 @@ export const dummy_products: IProduct[] = [
     colour: 'yellow',
     brand: 'CALVIN KLEIN',
     material: '96% Cotton, 4% Elastane',
+    averageRating: 2,
     departmentId: 'dep2',
     inventory: {
       sizes: [
@@ -103,6 +107,7 @@ export const dummy_products: IProduct[] = [
     colour: 'green',
     brand: 'H&M',
     material: '100% Cotton',
+    averageRating: 4.6,
     departmentId: 'dep1',
     inventory: {
       sizes: [
@@ -123,6 +128,7 @@ export const dummy_products: IProduct[] = [
     colour: 'blue',
     brand: 'H&M',
     material: '100% Cotton',
+    averageRating: 2.8,
     departmentId: 'dep2',
     inventory: {
       sizes: [
