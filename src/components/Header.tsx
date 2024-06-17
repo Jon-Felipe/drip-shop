@@ -1,138 +1,46 @@
-// import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { useAppSelector } from '../hooks/hooks';
+import { Link } from 'react-router-dom';
+import { MdOutlineSearch, MdMenu, MdFavorite } from 'react-icons/md';
 
-// mui components
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-// import Menu from '@mui/material/Menu';
-// import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
-// import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-
-const pages = ['Men', 'Women', 'Kids', 'Beauty'];
-// const settings = ['Profile', 'Account', 'Logout'];
-
-type Props = {};
-
-function Header({}: Props) {
-  // const [profileEl, setProfileEl] = useState<null | HTMLElement>(null);
-
-  const { cartItems } = useAppSelector((store) => store.cart);
-
-  // const handleOnProfileClick = (event: React.MouseEvent<HTMLElement>) => {
-  //   setProfileEl(event.currentTarget);
-  // };
-
+function Header() {
   return (
-    <AppBar position='static' elevation={0} color='inherit'>
-      <Container maxWidth='lg'>
-        <Toolbar>
-          <Box sx={{ flexGrow: 1, display: 'flex' }}>
-            <Typography
-              variant='h6'
-              noWrap
-              component={RouterLink}
-              to='/'
-              sx={{
-                textDecoration: 'none',
-                fontWeight: 'bold',
-                marginRight: 4,
-                color: '#000',
-              }}
-            >
-              Drip Shop
-            </Typography>
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  color='inherit'
-                  component={RouterLink}
-                  to={`/department/${page.toLowerCase()}`}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              flexGrow: 0,
-              display: 'flex',
-              alignItems: 'center',
-            }}
+    <header className=' bg-neutral-700'>
+      <div className='flex items-center justify-between px-4 lg:px-6 py-2 lg:py-4 max-w-screen-xl mx-auto'>
+        <div className='flex lg:hidden items-center gap-x-2'>
+          <MdMenu className='w-7 h-7 text-white' />
+          <MdOutlineSearch className='w-7 h-7 text-white' />
+        </div>
+        <nav className='hidden lg:flex lg:items-center lg:gap-x-4'>
+          <Link to='/' className='text-white text-xs'>
+            SHOP
+          </Link>
+          <Link to='/' className='text-white text-xs'>
+            BLOG
+          </Link>
+        </nav>
+        <nav className='inline-block lg:hidden'>
+          <Link to='/' className='text-neutral-400 uppercase'>
+            DripShop
+          </Link>
+        </nav>
+        <nav className='flex items-center justify-between gap-x-4'>
+          <Link to='/login' className='flex items-center gap-x-2 '>
+            <span className='hidden xl:inline-block text-xs font-semibold text-white'>
+              Wishlist
+            </span>
+            <MdFavorite className='w-5 h-5 text-neutral-500' />
+          </Link>
+          <Link to='/login' className='text-xs font-semibold text-white'>
+            Login
+          </Link>
+          <Link
+            to='/login'
+            className='text-xs font-light lg:font-semibold text-white'
           >
-            <IconButton size='large' color='inherit'>
-              <FavoriteBorder />
-            </IconButton>
-            <IconButton
-              size='large'
-              color='inherit'
-              component={RouterLink}
-              to='/cart'
-            >
-              <Badge
-                badgeContent={cartItems.length}
-                color='error'
-                showZero={true}
-              >
-                <ShoppingBagOutlinedIcon />
-              </Badge>
-            </IconButton>
-            <Box marginLeft='15px'>
-              <Link
-                component={RouterLink}
-                to='/login'
-                underline='none'
-                variant='body1'
-                color='inherit'
-              >
-                Login
-              </Link>
-            </Box>
-            {/* <IconButton
-              size='large'
-              color='inherit'
-              onClick={handleOnProfileClick}
-            >
-              <PersonOutlineOutlinedIcon />
-            </IconButton>
-            <Menu
-              sx={{ mt: '45px' }}
-              id='menu-appbar'
-              anchorEl={profileEl}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(profileEl)}
-              onClose={() => setProfileEl(null)}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            Sign Up
+          </Link>
+        </nav>
+      </div>
+    </header>
   );
 }
 
