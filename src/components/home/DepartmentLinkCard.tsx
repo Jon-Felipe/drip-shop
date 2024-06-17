@@ -9,11 +9,15 @@ const departmentLinks = [
 
 function DepartmentLinkCard() {
   return (
-    <section className='flex items-center gap-x-4'>
+    <section className='grid grid-cols-2 lg:grid-cols-4 grid-rows-2 gap-4'>
       {departmentLinks.map((department) => (
         <article key={department.id}>
           <Link to={`/department/${department.link}`}>
-            <img src={department.image} alt={department.link} />
+            <img
+              src={department.image}
+              alt={department.link}
+              className='w-full h-full object-cover'
+            />
           </Link>
         </article>
       ))}

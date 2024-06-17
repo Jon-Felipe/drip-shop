@@ -1,9 +1,5 @@
 import { Outlet } from 'react-router-dom';
 
-// mui componet
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-
 // components
 import Header from './components/Header';
 import Navbar from './components/Navbar';
@@ -13,11 +9,9 @@ function App() {
     <>
       <Header />
       <Navbar />
-      <Box marginTop={4} component='main'>
-        <Container maxWidth='lg'>
-          <Outlet />
-        </Container>
-      </Box>
+      <main className='max-w-screen-xl mx-auto mt-10 px-4 lg:px-6'>
+        <Outlet />
+      </main>
     </>
   );
 }
