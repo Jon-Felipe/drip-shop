@@ -24,7 +24,7 @@ function CartItems({ cartItems }: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <TableContainer>
+    <TableContainer component='section'>
       <Table sx={{ minWidth: 650 }} aria-label='simple table'>
         <TableHead>
           <TableRow>

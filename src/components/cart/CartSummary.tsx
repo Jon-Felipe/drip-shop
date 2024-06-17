@@ -1,10 +1,8 @@
 // mui components
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
 
 type Props = {
   shippingFee: number;
@@ -13,35 +11,61 @@ type Props = {
 
 function CartSummary({ shippingFee, total }: Props) {
   return (
-    <TableContainer>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell colSpan={2} sx={{ fontWeight: 'bold' }}>
-              Cart Totals
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Subtotal</TableCell>
-            <TableCell align='right'>${total}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Shipping Fee</TableCell>
-            <TableCell align='right'>
-              {shippingFee === 0 ? 'Free' : `$${shippingFee}`}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
-            <TableCell align='right' sx={{ fontWeight: 'bold' }}>
-              ${total + shippingFee}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box component='article'>
+      <Typography component='h3' variant='h5' fontWeight={600}>
+        Cart Totals
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginY: '20px',
+        }}
+      >
+        <Typography component='p' variant='caption'>
+          Subtotal
+        </Typography>
+        <Typography component='p' variant='caption'>
+          ${total}
+        </Typography>
+      </Box>
+      <Divider />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginY: '20px',
+        }}
+      >
+        <Typography component='p' variant='caption'>
+          Shipping Fee
+        </Typography>
+        <Typography component='p' variant='caption'>
+          {shippingFee === 0 ? 'Free' : `$${shippingFee}`}
+        </Typography>
+      </Box>
+      <Divider />
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginY: '20px',
+        }}
+      >
+        <Typography component='p' variant='body1' fontWeight={600}>
+          Total
+        </Typography>
+        <Typography component='p' variant='body1' fontWeight={600}>
+          ${total + shippingFee}
+        </Typography>
+      </Box>
+      <Button variant='contained' fullWidth>
+        Checkout
+      </Button>
+    </Box>
   );
 }
 

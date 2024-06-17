@@ -25,7 +25,7 @@ function Cart() {
 
   return (
     <>
-      <Box marginBottom={6}>
+      <Box marginBottom={6} component='section'>
         <Typography component='h3' variant='h5' align='center'>
           Shopping Cart
         </Typography>
@@ -33,7 +33,9 @@ function Cart() {
       {/* cart items */}
       <CartItems cartItems={cartItems} />
       {/* cart summary */}
-      <CartSummary shippingFee={shippingFee} total={total} />
+      <Box marginTop={8} maxWidth={500} marginLeft='auto' component='section'>
+        <CartSummary shippingFee={shippingFee} total={total} />
+      </Box>
     </>
   );
 }
