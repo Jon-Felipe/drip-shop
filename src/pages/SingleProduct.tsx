@@ -89,13 +89,23 @@ function SingleProduct() {
           {foundProduct?.brand}
         </Typography>
         {/* product rating */}
-        <Box marginY={1}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'start',
+            columnGap: '5px',
+            marginY: '10px',
+          }}
+        >
           <Rating
             value={foundProduct?.averageRating}
             precision={0.5}
             readOnly
             size='small'
           />
+          <Typography component='p' variant='caption'>
+            (122)
+          </Typography>
         </Box>
         {/* product price */}
         <Typography component='p' variant='h4'>
