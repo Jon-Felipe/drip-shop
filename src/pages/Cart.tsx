@@ -5,7 +5,6 @@ import CartItems from '../components/cart/CartItems';
 import CartSummary from '../components/cart/CartSummary';
 
 // mui components
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -31,16 +30,10 @@ function Cart() {
           Shopping Cart
         </Typography>
       </Box>
-      <Grid container spacing={4}>
-        {/* cart items */}
-        <Grid item xs={12} sm={8} component='section'>
-          <CartItems cartItems={cartItems} />
-        </Grid>
-        {/* cart summary */}
-        <Grid item xs={12} sm={4} component='section'>
-          <CartSummary shippingFee={shippingFee} total={total} />
-        </Grid>
-      </Grid>
+      {/* cart items */}
+      <CartItems cartItems={cartItems} />
+      {/* cart summary */}
+      <CartSummary shippingFee={shippingFee} total={total} />
     </>
   );
 }
