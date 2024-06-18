@@ -1,22 +1,14 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-// mui components
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+// components
+import ProductCard from '../components/ProductCard';
 
 // extras
 import { dummy_departments, dummy_products } from '../utils/constants';
-import ProductCard from '../components/ProductCard';
+import Select from '../components/Select';
 
-type Props = {};
-
-function Department({}: Props) {
+function Department() {
   const [sort, setSort] = useState<string>('');
 
   const { department } = useParams();
@@ -31,73 +23,23 @@ function Department({}: Props) {
 
   return (
     <>
-      <Box component='section'>
-        <Typography
-          component='h3'
-          variant='h5'
-          align='center'
-          fontWeight='bold'
-          textTransform='capitalize'
-        >
+      <section className='text-center mb-10'>
+        <h3 className='text-xl lg:text-3xl font-semibold mb-5'>
           {foundDepartment?.title}
-        </Typography>
-        <Typography
-          component='p'
-          variant='subtitle1'
-          align='center'
-          marginTop={1}
-        >
-          {foundDepartment?.description}
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginTop: '40px',
-        }}
-        component='section'
-      >
-        <Typography component='p' sx={{ fontWeight: 'bold' }}>
-          {foundProducts.length} items found
-        </Typography>
-        <Box sx={{ minWidth: 200 }}>
-          <FormControl fullWidth>
-            <InputLabel id='sort-label'>Sort</InputLabel>
-            <Select
-              labelId='sort-label'
-              id='sort'
-              label='sort'
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <MenuItem value='newest'>Newest</MenuItem>
-              <MenuItem value='top-rated'>Top Rated</MenuItem>
-              <MenuItem value='price-high'>Price Low to High</MenuItem>
-              <MenuItem value='price-low'>Price High to Low</MenuItem>
-              <MenuItem value='discount'>Discount</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </Box>
-      <Grid container spacing={3} marginTop='5px' component='section'>
-        {foundProducts.map((product, index) => {
-          return (
-            <Grid
-              key={index}
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={2}
-              component='article'
-            >
-              <ProductCard product={product} />
-            </Grid>
-          );
-        })}
-      </Grid>
+        </h3>
+        <p className='text-sm lg:text-base'>{foundDepartment?.description}</p>
+      </section>
+      <section className='flex items-center justify-between mb-6'>
+        <p className='font-semibold capitalize text-sm'>
+          {foundProducts.length} products found
+        </p>
+        <Select value={sort} onChange={(e) => setSort(e.target.value)} />
+      </section>
+      <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
+        {foundProducts.map((product, index) => (
+          <ProductCard key={index} product={product} />
+        ))}
+      </section>
     </>
   );
 }
