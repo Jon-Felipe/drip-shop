@@ -1,13 +1,4 @@
-import { Link } from 'react-router-dom';
-
-// mui components
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { MdFavoriteBorder } from 'react-icons/md';
 
 // extras
 import { IProduct } from '../utils/types';
@@ -18,50 +9,17 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   return (
-    <Card
-      elevation={0}
-      component={Link}
-      to={`/products/${product.id}`}
-      sx={{ textDecoration: 'none' }}
-    >
-      <CardMedia
-        sx={{ height: 300 }}
-        image='../images/mens_shirt.jpg'
-        title={product.title}
-      />
-      <CardContent sx={{ padding: '5px' }}>
-        <Typography
-          component='h3'
-          variant='h6'
-          noWrap
-          sx={{ fontWeight: 'bold', fontSize: '14px' }}
-        >
-          {product.title}
-        </Typography>
-        <Typography
-          component='p'
-          variant='body2'
-          sx={{ color: '#888', fontSize: '12px' }}
-        >
-          By {product.brand}
-        </Typography>
-        <Box
-          component='div'
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography component='p' sx={{ fontSize: '16px' }}>
-            ${product.price.toFixed(2)}
-          </Typography>
-          <IconButton>
-            <FavoriteBorderIcon />
-          </IconButton>
-        </Box>
-      </CardContent>
-    </Card>
+    <article>
+      <img src='../images/mens_shirt.jpg' alt={product.title} />
+      <div className='relative mt-2'>
+        <h4 className='truncate text-sm font-semibold'>{product.title}</h4>
+        <p className='text-neutral-400 text-xs'>By {product.brand}</p>
+        <p className='text-lg'>R{product.price}</p>
+        <div className='absolute right-0 bottom-0 cursor-pointer'>
+          <MdFavoriteBorder className='w-5 h-5' />
+        </div>
+      </div>
+    </article>
   );
 }
 
