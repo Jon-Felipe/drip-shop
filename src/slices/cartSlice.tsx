@@ -54,9 +54,27 @@ export const cartSlice = createSlice({
 
       state.shippingFee = state.total > 1000 ? 0 : 100;
     },
+    toggleCartQuantity: (
+      state,
+      action: PayloadAction<{ prodIndex: number; actionValue: string }>
+    ) => {
+      const { prodIndex, actionValue } = action.payload;
+      if (actionValue === 'increase') {
+        state.cartItems[prodIndex].quantity += 1;
+      } else if (actionValue === 'decrease') {
+        if (state.cartItems[prodIndex].quantity <= 1) {
+          state.cartItems = state.cartItems.filter(
+            (item) => item.product.id !== state.cartItems[prodIndex].product.id
+          );
+        } else {
+          state.cartItems[prodIndex].quantity -= 1;
+        }
+      }
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, toggleCartQuantity } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

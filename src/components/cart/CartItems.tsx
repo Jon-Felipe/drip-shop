@@ -1,6 +1,7 @@
 import { MdOutlineRemove, MdAdd } from 'react-icons/md';
 import { removeFromCart } from '../../slices/cartSlice';
 import { useAppDispatch } from '../../hooks/hooks';
+import { toggleCartQuantity } from '../../slices/cartSlice';
 
 // extras
 import { ICart } from '../../utils/types';
@@ -52,20 +53,31 @@ function CartItems({ cartItems }: Props) {
                   <button
                     className='inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200'
                     type='button'
+                    onClick={() =>
+                      dispatch(
+                        toggleCartQuantity({
+                          prodIndex: index,
+                          actionValue: 'decrease',
+                        })
+                      )
+                    }
                   >
                     <MdOutlineRemove />
                   </button>
                   <div>
-                    <input
-                      type='number'
-                      value={cartItem.quantity}
-                      className='bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1'
-                      required
-                    />
+                    <p>{cartItem.quantity}</p>
                   </div>
                   <button
                     className='inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200'
                     type='button'
+                    onClick={() =>
+                      dispatch(
+                        toggleCartQuantity({
+                          prodIndex: index,
+                          actionValue: 'increase',
+                        })
+                      )
+                    }
                   >
                     <MdAdd />
                   </button>
