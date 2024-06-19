@@ -13,11 +13,11 @@ function CartItems({ cartItems }: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+    <div className='relative shadow-md sm:rounded-lg'>
       <table className='w-full text-sm text-left rtl:text-right text-gray-500'>
         <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
           <tr>
-            <th scope='col' className='px-16 py-3'>
+            <th scope='col' className='hidden lg:inline-block px-16 py-3'>
               <span className='sr-only'>Image</span>
             </th>
             <th scope='col' className='px-6 py-3'>
@@ -37,14 +37,14 @@ function CartItems({ cartItems }: Props) {
         <tbody>
           {cartItems.map((cartItem, index) => (
             <tr key={index} className='bg-white border-b hover:bg-gray-50'>
-              <td className='p-4'>
+              <td className='hidden lg:inline-block p-4'>
                 <img
                   src='../images/mens_shirt.jpg'
                   alt={cartItem.product.title}
                   className='w-full max-w-16 object-cover'
                 />
               </td>
-              <td className='px-6 py-4 font-semibold text-gray-900'>
+              <td className='px-6 py-4 font-semibold text-gray-900 truncate'>
                 {cartItem.product.title}
               </td>
               <td className='px-6 py-4'>
