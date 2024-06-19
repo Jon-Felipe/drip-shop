@@ -4,10 +4,6 @@ import { useAppSelector } from '../hooks/hooks';
 import CartItems from '../components/cart/CartItems';
 import CartSummary from '../components/cart/CartSummary';
 
-// mui components
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-
 function Cart() {
   const { cartItems, shippingFee, total } = useAppSelector(
     (store) => store.cart
@@ -15,27 +11,26 @@ function Cart() {
 
   if (cartItems.length === 0) {
     return (
-      <Box marginTop='80px'>
-        <Typography align='center' component='h4' variant='h5'>
-          No items found in your cart.
-        </Typography>
-      </Box>
+      <section className='mt-20'>
+        <h1 className='text-center text-xl lg:text-4xl font-medium'>
+          No items found in your cart
+        </h1>
+      </section>
     );
   }
-
   return (
     <>
-      <Box marginBottom={6} component='section'>
-        <Typography component='h3' variant='h5' align='center'>
-          Shopping Cart
-        </Typography>
-      </Box>
-      {/* cart items */}
-      <CartItems cartItems={cartItems} />
-      {/* cart summary */}
-      <Box marginTop={8} maxWidth={500} marginLeft='auto' component='section'>
-        <CartSummary shippingFee={shippingFee} total={total} />
-      </Box>
+      <section>
+        <h3 className='text-xl lg:text-4xl font-semibold'>Shopping Cart</h3>
+        <div className='grid lg:grid-cols-[1fr_300px] gap-y-8 lg:gap-y-0 lg:gap-x-8'>
+          <section className='mt-8'>
+            <CartItems cartItems={cartItems} />
+          </section>
+          <section>
+            <CartSummary shippingFee={shippingFee} total={total} />
+          </section>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,9 +1,3 @@
-// mui components
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-
 type Props = {
   shippingFee: number;
   total: number;
@@ -11,61 +5,28 @@ type Props = {
 
 function CartSummary({ shippingFee, total }: Props) {
   return (
-    <Box component='article'>
-      <Typography component='h3' variant='h5' fontWeight={600}>
-        Cart Totals
-      </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginY: '20px',
-        }}
-      >
-        <Typography component='p' variant='caption'>
-          Subtotal
-        </Typography>
-        <Typography component='p' variant='caption'>
-          ${total}
-        </Typography>
-      </Box>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginY: '20px',
-        }}
-      >
-        <Typography component='p' variant='caption'>
-          Shipping Fee
-        </Typography>
-        <Typography component='p' variant='caption'>
-          {shippingFee === 0 ? 'Free' : `$${shippingFee}`}
-        </Typography>
-      </Box>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginY: '20px',
-        }}
-      >
-        <Typography component='p' variant='body1' fontWeight={600}>
-          Total
-        </Typography>
-        <Typography component='p' variant='body1' fontWeight={600}>
-          ${total + shippingFee}
-        </Typography>
-      </Box>
-      <Button variant='contained' fullWidth>
-        Checkout
-      </Button>
-    </Box>
+    <article>
+      <h3 className='text-xl lg:text-3xl'>Cart Totals</h3>
+      <div className='flex items-center justify-between my-4'>
+        <p className='text-xs'>Subtotal</p>
+        <p className='text-xs'>R{total}</p>
+      </div>
+      <div className='w-full border'></div>
+      <div className='flex items-center justify-between my-4'>
+        <p className='text-xs'>Shipping Fee</p>
+        <p className='text-xs'>R{shippingFee}</p>
+      </div>
+      <div className='w-full border'></div>
+      <div className='flex items-center justify-between my-4'>
+        <p className='font-bold'>Total</p>
+        <p className='font-bold'>R{total + shippingFee}</p>
+      </div>
+      <div className='mt-8'>
+        <button className='bg-blue-500 text-white w-full p-2 rounded font-semibold'>
+          Checkout
+        </button>
+      </div>
+    </article>
   );
 }
 
