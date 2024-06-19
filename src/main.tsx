@@ -12,6 +12,7 @@ import SingleProduct from './pages/SingleProduct.tsx';
 import Cart from './pages/Cart.tsx';
 import Department from './pages/Department.tsx';
 import Login from './pages/Login.tsx';
+import Register from './pages/Register.tsx';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
       },
     ],
   },

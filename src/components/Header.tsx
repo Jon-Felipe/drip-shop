@@ -33,7 +33,7 @@ function Header() {
             Login
           </Link>
           <Link
-            to='/signup'
+            to='/register'
             className='text-xs font-light lg:font-semibold text-white'
           >
             Sign Up
