@@ -1,20 +1,9 @@
+import { MdOutlineRemove, MdAdd } from 'react-icons/md';
 import { removeFromCart } from '../../slices/cartSlice';
 import { useAppDispatch } from '../../hooks/hooks';
 
 // extras
 import { ICart } from '../../utils/types';
-
-// mui components
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 
 type Props = {
   cartItems: ICart[];
@@ -24,76 +13,80 @@ function CartItems({ cartItems }: Props) {
   const dispatch = useAppDispatch();
 
   return (
-    <TableContainer component='section'>
-      <Table sx={{ minWidth: 650 }} aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ fontWeight: 'bold' }}>Product</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Price</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Quantity</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Total</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Remove</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {cartItems.map((cartItem, index) => {
-            return (
-              <TableRow key={index}>
-                <TableCell component='th' scope='row'>
-                  <Box
-                    sx={{
-                      display: { xs: 'block', sm: 'flex' },
-                      alignItems: 'center',
-                      columnGap: '20px',
-                    }}
+    <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+      <table className='w-full text-sm text-left rtl:text-right text-gray-500'>
+        <thead className='text-xs text-gray-700 uppercase bg-gray-50'>
+          <tr>
+            <th scope='col' className='px-16 py-3'>
+              <span className='sr-only'>Image</span>
+            </th>
+            <th scope='col' className='px-6 py-3'>
+              Product
+            </th>
+            <th scope='col' className='px-6 py-3'>
+              Quantity
+            </th>
+            <th scope='col' className='px-6 py-3'>
+              Price
+            </th>
+            <th scope='col' className='px-6 py-3'>
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems.map((cartItem, index) => (
+            <tr key={index} className='bg-white border-b hover:bg-gray-50'>
+              <td className='p-4'>
+                <img
+                  src='../images/mens_shirt.jpg'
+                  alt={cartItem.product.title}
+                  className='w-full max-w-16 object-cover'
+                />
+              </td>
+              <td className='px-6 py-4 font-semibold text-gray-900'>
+                {cartItem.product.title}
+              </td>
+              <td className='px-6 py-4'>
+                <div className='flex items-center'>
+                  <button
+                    className='inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200'
+                    type='button'
                   >
-                    <Box
-                      component='img'
-                      src='../../images/mens_shirt.jpg'
-                      maxWidth={80}
-                      maxHeight={80}
-                      sx={{
-                        display: { xs: 'none', md: 'inline-block' },
-                        objectFit: 'cover',
-                      }}
+                    <MdOutlineRemove />
+                  </button>
+                  <div>
+                    <input
+                      type='number'
+                      value={cartItem.quantity}
+                      className='bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1'
+                      required
                     />
-                    <Box>
-                      <Typography
-                        component='h4'
-                        sx={{ fontWeight: 'bold', textTransform: 'capitalize' }}
-                      >
-                        {cartItem.product.title} - {cartItem.product.colour}
-                      </Typography>
-                      <Typography
-                        component='p'
-                        variant='subtitle2'
-                        sx={{ textTransform: 'uppercase', color: '#888' }}
-                      >
-                        Size: {cartItem.size}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </TableCell>
-                <TableCell>${cartItem.product.price}</TableCell>
-                <TableCell>{cartItem.quantity}</TableCell>
-                <TableCell>
-                  ${(cartItem.product.price * cartItem.quantity).toFixed(2)}
-                </TableCell>
-                <TableCell>
-                  <IconButton
-                    onClick={() =>
-                      dispatch(removeFromCart(cartItem.product.id))
-                    }
+                  </div>
+                  <button
+                    className='inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200'
+                    type='button'
                   >
-                    <CloseIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                    <MdAdd />
+                  </button>
+                </div>
+              </td>
+              <td className='px-6 py-4 font-semibold text-gray-900'>
+                ${cartItem.product.price}
+              </td>
+              <td className='px-6 py-4'>
+                <button
+                  className='font-medium text-red-600'
+                  onClick={() => dispatch(removeFromCart(cartItem.product.id))}
+                >
+                  Remove
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
