@@ -20,17 +20,15 @@ function Cart() {
   }
   return (
     <>
-      <section>
-        <h3 className='text-xl lg:text-4xl font-semibold'>Shopping Cart</h3>
-        <div className='grid lg:grid-cols-[1fr_300px] gap-y-8 lg:gap-y-0 lg:gap-x-8'>
-          <section className='mt-8 overflow-x-auto'>
-            <CartItems cartItems={cartItems} />
-          </section>
-          <section>
-            <CartSummary shippingFee={shippingFee} total={total} />
-          </section>
-        </div>
-      </section>
+      <h3 className='text-xl lg:text-4xl font-semibold'>Shopping Cart</h3>
+      <div className='grid lg:grid-cols-[1fr_300px] gap-y-8 lg:gap-y-0 lg:gap-x-8'>
+        <section className='mt-8 overflow-x-auto'>
+          <CartItems cartItems={cartItems} />
+        </section>
+        <section>
+          <CartSummary shippingFee={shippingFee} total={total} />
+        </section>
+      </div>
     </>
   );
 }
