@@ -6,14 +6,10 @@ import { ICart } from '../utils/types';
 
 export interface ICartState {
   cartItems: ICart[];
-  total: number;
-  shippingFee: number;
 }
 
 const initialState: ICartState = {
   cartItems: [],
-  total: 0,
-  shippingFee: 100,
 };
 
 export const cartSlice = createSlice({
@@ -36,23 +32,11 @@ export const cartSlice = createSlice({
           }
         });
       }
-
-      state.total = state.cartItems.reduce((acc, curr) => {
-        return acc + curr.product.price * curr.quantity;
-      }, 0);
-
-      state.shippingFee = state.total > 1000 ? 0 : 100;
     },
     removeFromCart: (state, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
         (item) => item.product.id !== action.payload
       );
-
-      state.total = state.cartItems.reduce((acc, curr) => {
-        return acc + curr.product.price * curr.quantity;
-      }, 0);
-
-      state.shippingFee = state.total > 1000 ? 0 : 100;
     },
     toggleCartQuantity: (
       state,

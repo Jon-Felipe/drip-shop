@@ -5,9 +5,7 @@ import CartItems from '../components/cart/CartItems';
 import CartSummary from '../components/cart/CartSummary';
 
 function Cart() {
-  const { cartItems, shippingFee, total } = useAppSelector(
-    (store) => store.cart
-  );
+  const { cartItems } = useAppSelector((store) => store.cart);
 
   if (cartItems.length === 0) {
     return (
@@ -26,7 +24,7 @@ function Cart() {
           <CartItems cartItems={cartItems} />
         </section>
         <section>
-          <CartSummary shippingFee={shippingFee} total={total} />
+          <CartSummary />
         </section>
       </div>
     </>
