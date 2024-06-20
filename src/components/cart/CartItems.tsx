@@ -84,7 +84,7 @@ function CartItems({ cartItems }: Props) {
                 </div>
               </td>
               <td className='px-6 py-4 font-semibold text-gray-900'>
-                ${cartItem.product.price}
+                R{cartItem.product.price}
               </td>
               <td className='px-6 py-4'>
                 <button
