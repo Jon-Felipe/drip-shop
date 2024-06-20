@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/hooks';
 import { setUser } from '../slices/userSlice';
 
@@ -15,6 +16,7 @@ function Register() {
   });
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
@@ -37,6 +39,7 @@ function Register() {
     };
 
     dispatch(setUser(userObj));
+    navigate('/');
   }
 
   return (
