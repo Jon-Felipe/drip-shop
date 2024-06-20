@@ -1,4 +1,44 @@
+import React, { useState } from 'react';
+import { useAppDispatch } from '../hooks/hooks';
+import { setUser } from '../slices/userSlice';
+
+// extras
+import { IUser } from '../utils/types';
+
 function Register() {
+  const [userState, setUserState] = useState<IUser>({
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+
+  const dispatch = useAppDispatch();
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setUserState((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  }
+
+  function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const userObj: IUser = {
+      id: Date.now().toString() || '',
+      firstName: userState.firstName || '',
+      lastName: userState.lastName || '',
+      email: userState.email || '',
+      password: userState.password || '',
+    };
+
+    dispatch(setUser(userObj));
+  }
+
   return (
     <div className='p-4 w-full max-w-xl max-h-full mx-auto'>
       <div className='bg-white rounded-lg border'>
@@ -8,7 +48,7 @@ function Register() {
           </h3>
         </div>
         <div className='p-4 md:p-5'>
-          <form className='space-y-4'>
+          <form onSubmit={handleOnSubmit} className='space-y-4'>
             <div>
               <label
                 htmlFor='email'
@@ -20,6 +60,8 @@ function Register() {
                 type='email'
                 name='email'
                 id='email'
+                value={userState.email}
+                onChange={handleOnChange}
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='name@example.com'
                 required
@@ -36,6 +78,8 @@ function Register() {
                 type='password'
                 name='password'
                 id='password'
+                value={userState.password}
+                onChange={handleOnChange}
                 placeholder='••••••••'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 required
@@ -52,6 +96,8 @@ function Register() {
                 type='firstName'
                 name='firstName'
                 id='firstName'
+                value={userState.firstName}
+                onChange={handleOnChange}
                 placeholder='John'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 required
@@ -68,6 +114,8 @@ function Register() {
                 type='lastName'
                 name='lastName'
                 id='lastName'
+                value={userState.lastName}
+                onChange={handleOnChange}
                 placeholder='Doe'
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 required
