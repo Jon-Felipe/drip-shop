@@ -27,4 +27,5 @@ export interface ICart {
   product: Pick<IProduct, 'id' | 'title' | 'price' | 'image' | 'colour'>;
   size: string;
   quantity: number;
+  countInStock: number;
 }

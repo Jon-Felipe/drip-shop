@@ -43,15 +43,22 @@ export const cartSlice = createSlice({
       action: PayloadAction<{ prodIndex: number; actionValue: string }>
     ) => {
       const { prodIndex, actionValue } = action.payload;
+
+      const cartItem = state.cartItems[prodIndex];
+
       if (actionValue === 'increase') {
-        state.cartItems[prodIndex].quantity += 1;
+        if (cartItem.quantity === cartItem.countInStock) {
+          cartItem.quantity = cartItem.countInStock;
+        } else {
+          cartItem.quantity += 1;
+        }
       } else if (actionValue === 'decrease') {
         if (state.cartItems[prodIndex].quantity <= 1) {
           state.cartItems = state.cartItems.filter(
-            (item) => item.product.id !== state.cartItems[prodIndex].product.id
+            (item) => item.product.id !== cartItem.product.id
           );
         } else {
-          state.cartItems[prodIndex].quantity -= 1;
+          cartItem.quantity -= 1;
         }
       }
     },

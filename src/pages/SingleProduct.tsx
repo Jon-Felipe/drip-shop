@@ -59,6 +59,7 @@ function SingleProduct({}: Props) {
       },
       size: inventory.size,
       quantity,
+      countInStock: inventory.countInStock,
     };
     dispatch(addToCart(cartObj));
     navigate('/cart');
