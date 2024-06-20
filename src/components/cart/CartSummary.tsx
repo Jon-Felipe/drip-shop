@@ -7,7 +7,7 @@ function CartSummary() {
     return acc + curr.product.price * curr.quantity;
   }, 0);
 
-  let shippingFee = subTotal > 1000 ? 0 : 100;
+  const shippingFee = subTotal > 1000 ? 0 : 100;
 
   return (
     <article>
