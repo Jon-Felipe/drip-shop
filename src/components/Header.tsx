@@ -30,7 +30,7 @@ function Header() {
             <span className='hidden xl:inline-block text-xs font-semibold text-white'>
               Wishlist
             </span>
-            <MdFavorite className='w-5 h-5 text-neutral-500' />
+            <MdFavorite className='w-5 h-5 text-neutral-400' />
           </Link>
           {user?.firstName ? (
             <Link to='/profile' className='text-xs font-semibold text-white'>
