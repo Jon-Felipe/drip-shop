@@ -9,6 +9,9 @@ import {
   MdFavorite,
 } from 'react-icons/md';
 
+// components
+import Rating from '../components/Rating';
+
 // extras
 import { dummy_products } from '../utils/constants';
 import { ICart } from '../utils/types';
@@ -81,9 +84,11 @@ function SingleProduct({}: Props) {
         <p className='text-neutral-400 font-light text-lg'>
           {foundProduct?.brand}
         </p>
+        <Rating rating={foundProduct?.averageRating || 0} />
         <div className='mt-6'>
           <p className='text-3xl'>R{foundProduct?.price}</p>
         </div>
+
         {/* size selector */}
         <div className='mt-6'>
           <h6 className='font-semibold uppercase text-sm'>Select a size</h6>
