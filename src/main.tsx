@@ -14,6 +14,7 @@ import Department from './pages/Department.tsx';
 import Login from './pages/Login.tsx';
 import Register from './pages/Register.tsx';
 import Profile from './pages/Profile.tsx';
+import ProfileLayout from './components/profile/ProfileLayout.tsx';
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <Profile />,
+        element: <ProfileLayout />,
+        children: [{ index: true, path: '/profile', element: <Profile /> }],
       },
     ],
   },

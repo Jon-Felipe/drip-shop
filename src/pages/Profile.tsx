@@ -1,8 +1,4 @@
-import React from 'react';
-
-type Props = {};
-
-function Profile({}: Props) {
+function Profile() {
   return <div>Profile</div>;
 }
 
