@@ -13,6 +13,7 @@ import Cart from './pages/Cart.tsx';
 import Department from './pages/Department.tsx';
 import Login from './pages/Login.tsx';
 import Register from './pages/Register.tsx';
+import Profile from './pages/Profile.tsx';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
     ],
   },
