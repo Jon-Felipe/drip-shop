@@ -1,5 +1,8 @@
 import { useAppSelector } from '../hooks/hooks';
 
+// component
+import Input from '../components/Input';
+
 function Profile() {
   const { user } = useAppSelector((store) => store.user);
 
@@ -7,109 +10,48 @@ function Profile() {
     <form>
       <div className='grid gap-6 mb-6 md:grid-cols-2'>
         <div>
-          <label
-            htmlFor='first_name'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            First name
-          </label>
-          <input
+          <Input
+            label='First name'
             type='text'
-            id='first_name'
+            name='firstName'
             value={user?.firstName}
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
             placeholder='John'
-            required
+            required={true}
           />
         </div>
         <div>
-          <label
-            htmlFor='last_name'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            Last name
-          </label>
-          <input
+          <Input
+            label='Last name'
             type='text'
-            id='last_name'
+            name='lastName'
             value={user?.lastName}
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
             placeholder='Doe'
-            required
+            required={true}
           />
         </div>
         <div>
-          <label
-            htmlFor='phone'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            Phone number
-          </label>
-          <input
+          <Input
+            label='Phone number'
             type='tel'
-            id='phone'
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-            placeholder='123-45-6789'
-            required
+            name='phone'
+            value=''
+            placeholder='123-456-789'
+            required={true}
           />
         </div>
         <div>
-          <label
-            htmlFor='dob'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            Date of birth
-          </label>
-          <input
-            type='date'
-            id='dob'
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-            required
-          />
+          <Input label='Date of birth' type='date' name='dob' value='' />
         </div>
       </div>
       <div className='mb-6'>
-        <label
-          htmlFor='address'
-          className='block mb-2 text-sm font-medium text-gray-900'
-        >
-          Address
-        </label>
-        <input
-          type='text'
-          id='address'
-          className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-          required
-        />
+        <Input label='Address' type='text' name='address' value='' />
       </div>
       <div className='grid gap-6 mb-6 md:grid-cols-2'>
         <div>
-          <label
-            htmlFor='text'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            Country
-          </label>
-          <input
-            type='text'
-            id='country'
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-            required
-          />
+          <Input label='Country' type='text' name='country' value='' />
         </div>
         <div>
-          <label
-            htmlFor='city'
-            className='block mb-2 text-sm font-medium text-gray-900'
-          >
-            City
-          </label>
-          <input
-            type='text'
-            id='city'
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-            required
-          />
+          <Input label='City' type='text' name='city' value='' />
         </div>
       </div>
       <button
