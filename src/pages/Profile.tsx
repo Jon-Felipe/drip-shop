@@ -40,6 +40,7 @@ function Profile() {
             onChange={() => console.log('first')}
             placeholder='name@example.com'
             required={true}
+            disabled={true}
           />
         </div>
       </div>
