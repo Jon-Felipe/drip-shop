@@ -15,6 +15,7 @@ function Profile() {
             type='text'
             name='firstName'
             value={user?.firstName}
+            onChange={() => console.log('first')}
             placeholder='John'
             required={true}
           />
@@ -25,6 +26,7 @@ function Profile() {
             type='text'
             name='lastName'
             value={user?.lastName}
+            onChange={() => console.log('first')}
             placeholder='Doe'
             required={true}
           />
@@ -35,23 +37,48 @@ function Profile() {
             type='tel'
             name='phone'
             value=''
+            onChange={() => console.log('first')}
             placeholder='123-456-789'
             required={true}
           />
         </div>
         <div>
-          <Input label='Date of birth' type='date' name='dob' value='' />
+          <Input
+            label='Date of birth'
+            type='date'
+            name='dob'
+            value=''
+            onChange={() => console.log('first')}
+          />
         </div>
       </div>
       <div className='mb-6'>
-        <Input label='Address' type='text' name='address' value='' />
+        <Input
+          label='Address'
+          type='text'
+          name='address'
+          value=''
+          onChange={() => console.log('first')}
+        />
       </div>
       <div className='grid gap-6 mb-6 md:grid-cols-2'>
         <div>
-          <Input label='Country' type='text' name='country' value='' />
+          <Input
+            label='Country'
+            type='text'
+            name='country'
+            value=''
+            onChange={() => console.log('first')}
+          />
         </div>
         <div>
-          <Input label='City' type='text' name='city' value='' />
+          <Input
+            label='City'
+            type='text'
+            name='city'
+            value=''
+            onChange={() => console.log('first')}
+          />
         </div>
       </div>
       <button

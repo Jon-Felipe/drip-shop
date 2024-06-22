@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/hooks';
 import { setUser } from '../slices/userSlice';
 
+// components
+import Input from '../components/Input';
+
 // extras
 import { IUser } from '../utils/types';
 
@@ -53,75 +56,47 @@ function Register() {
         <div className='p-4 md:p-5'>
           <form onSubmit={handleOnSubmit} className='space-y-4'>
             <div>
-              <label
-                htmlFor='email'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Your email
-              </label>
-              <input
+              <Input
+                label='Email'
                 type='email'
                 name='email'
-                id='email'
                 value={userState.email}
                 onChange={handleOnChange}
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 placeholder='name@example.com'
-                required
+                required={true}
               />
             </div>
             <div>
-              <label
-                htmlFor='password'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Your password
-              </label>
-              <input
+              <Input
+                label='Your password'
                 type='password'
                 name='password'
-                id='password'
                 value={userState.password}
                 onChange={handleOnChange}
                 placeholder='••••••••'
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                required
+                required={true}
               />
             </div>
             <div>
-              <label
-                htmlFor='firstName'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                First Name
-              </label>
-              <input
-                type='firstName'
+              <Input
+                label='First Name'
+                type='text'
                 name='firstName'
-                id='firstName'
                 value={userState.firstName}
                 onChange={handleOnChange}
                 placeholder='John'
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                required
+                required={true}
               />
             </div>
             <div>
-              <label
-                htmlFor='lastName'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Last Name
-              </label>
-              <input
-                type='lastName'
+              <Input
+                label='Last Name'
+                type='text'
                 name='lastName'
-                id='lastName'
                 value={userState.lastName}
                 onChange={handleOnChange}
                 placeholder='Doe'
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                required
+                required={true}
               />
             </div>
             <div className='flex items-start'>

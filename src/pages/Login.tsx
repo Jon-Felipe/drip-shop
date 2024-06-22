@@ -1,6 +1,7 @@
-type Props = {};
+// components
+import Input from '../components/Input';
 
-function Login({}: Props) {
+function Login() {
   return (
     <div className='p-4 w-full max-w-xl max-h-full mx-auto'>
       <div className='bg-white rounded-lg border'>
@@ -12,35 +13,25 @@ function Login({}: Props) {
         <div className='p-4 md:p-5'>
           <form className='space-y-4'>
             <div>
-              <label
-                htmlFor='email'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Your email
-              </label>
-              <input
+              <Input
+                label='Email'
                 type='email'
                 name='email'
-                id='email'
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                value={''}
+                onChange={() => console.log('first')}
                 placeholder='name@example.com'
-                required
+                required={true}
               />
             </div>
             <div>
-              <label
-                htmlFor='password'
-                className='block mb-2 text-sm font-medium text-gray-900'
-              >
-                Your password
-              </label>
-              <input
+              <Input
+                label='Your password'
                 type='password'
                 name='password'
-                id='password'
+                value={''}
+                onChange={() => console.log('first')}
                 placeholder='••••••••'
-                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-                required
+                required={true}
               />
             </div>
             <div className='flex justify-between'>
