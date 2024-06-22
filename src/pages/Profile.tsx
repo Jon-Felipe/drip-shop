@@ -8,7 +8,7 @@ function Profile() {
 
   return (
     <form>
-      <div className='grid gap-6 mb-6 md:grid-cols-2'>
+      <div className='grid gap-6 mb-6 md:grid-cols-3'>
         <div>
           <Input
             label='First name'
@@ -31,6 +31,19 @@ function Profile() {
             required={true}
           />
         </div>
+        <div>
+          <Input
+            label='Email'
+            type='email'
+            name='email'
+            value={user?.email}
+            onChange={() => console.log('first')}
+            placeholder='name@example.com'
+            required={true}
+          />
+        </div>
+      </div>
+      <div className='grid gap-6 mb-6 md:grid-cols-2'>
         <div>
           <Input
             label='Phone number'
@@ -62,7 +75,7 @@ function Profile() {
           onChange={() => console.log('first')}
         />
       </div>
-      <div className='grid gap-6 mb-6 md:grid-cols-2'>
+      <div className='grid gap-6 mb-6 md:grid-cols-3'>
         <div>
           <Input
             label='Country'
@@ -83,12 +96,22 @@ function Profile() {
             onChange={() => console.log('first')}
           />
         </div>
+        <div>
+          <Input
+            label='Postal Code'
+            type='text'
+            name='postalcode'
+            value=''
+            placeholder='1234'
+            onChange={() => console.log('first')}
+          />
+        </div>
       </div>
       <button
         type='submit'
         className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
       >
-        Submit
+        Update
       </button>
     </form>
   );
