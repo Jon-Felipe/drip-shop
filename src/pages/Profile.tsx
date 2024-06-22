@@ -58,6 +58,7 @@ function Profile() {
           type='text'
           name='address'
           value=''
+          placeholder='123 example street'
           onChange={() => console.log('first')}
         />
       </div>
@@ -68,6 +69,7 @@ function Profile() {
             type='text'
             name='country'
             value=''
+            placeholder='South Africa'
             onChange={() => console.log('first')}
           />
         </div>
@@ -77,6 +79,7 @@ function Profile() {
             type='text'
             name='city'
             value=''
+            placeholder='Johannesburg'
             onChange={() => console.log('first')}
           />
         </div>
