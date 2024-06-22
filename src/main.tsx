@@ -15,6 +15,7 @@ import Login from './pages/Login.tsx';
 import Register from './pages/Register.tsx';
 import Profile from './pages/Profile.tsx';
 import ProfileLayout from './components/profile/ProfileLayout.tsx';
+import UpdatePassword from './pages/UpdatePassword.tsx';
 
 const router = createBrowserRouter([
   {
@@ -49,7 +50,13 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <ProfileLayout />,
-        children: [{ index: true, path: '/profile', element: <Profile /> }],
+        children: [
+          { index: true, path: '/profile', element: <Profile /> },
+          {
+            path: '/profile/update-password',
+            element: <UpdatePassword />,
+          },
+        ],
       },
     ],
   },

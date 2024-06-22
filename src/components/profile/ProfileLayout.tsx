@@ -24,7 +24,7 @@ function ProfileLayout() {
               <span>Account</span>
             </Link>
             <Link
-              to='/my-password'
+              to='update-password'
               className='flex items-center gap-x-2 py-2 px-4'
             >
               <MdOutlineLock className='w-5 h-5' />
