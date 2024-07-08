@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../hooks/hooks';
-import { setUser } from '../slices/userSlice';
 
 // components
 import Input from '../components/Input';
 
 // extras
+import { useRegisterMutation } from '../slices/apiSlice';
+import { setUser } from '../slices/userSlice';
 import { IUser } from '../utils/types';
 
 function Register() {
@@ -20,6 +21,7 @@ function Register() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [register, { isLoading }] = useRegisterMutation();
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
@@ -30,7 +32,7 @@ function Register() {
     });
   }
 
-  function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const userObj: IUser = {
@@ -41,8 +43,13 @@ function Register() {
       password: userState.password || '',
     };
 
-    dispatch(setUser(userObj));
-    navigate('/');
+    try {
+      await register(userObj).unwrap();
+      dispatch(setUser(userObj));
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -125,9 +132,10 @@ function Register() {
             </div>
             <button
               type='submit'
+              disabled={isLoading}
               className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
             >
-              Register an account
+              {isLoading ? 'Loading...' : 'Register an account'}
             </button>
             <div className='text-sm font-medium text-gray-500'>
               Already registered?{' '}
