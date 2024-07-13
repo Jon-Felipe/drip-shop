@@ -14,7 +14,17 @@ export const dripShopApi = createApi({
         body: userData,
       }),
     }),
+    login: builder.mutation<
+      Omit<IUser, 'password'>,
+      Pick<IUser, 'email' | 'password'>
+    >({
+      query: (userData) => ({
+        url: '/auth/login',
+        method: 'POST',
+        body: userData,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation } = dripShopApi;
+export const { useRegisterMutation, useLoginMutation } = dripShopApi;
