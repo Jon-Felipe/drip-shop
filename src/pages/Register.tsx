@@ -11,8 +11,7 @@ import { setUser } from '../slices/userSlice';
 import { IUser } from '../utils/types';
 
 function Register() {
-  const [userState, setUserState] = useState<IUser>({
-    id: '',
+  const [userState, setUserState] = useState<Omit<IUser, 'id'>>({
     firstName: '',
     lastName: '',
     email: '',
@@ -35,17 +34,9 @@ function Register() {
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const userObj: IUser = {
-      id: Date.now().toString() || '',
-      firstName: userState.firstName || '',
-      lastName: userState.lastName || '',
-      email: userState.email || '',
-      password: userState.password || '',
-    };
-
     try {
-      await register(userObj).unwrap();
-      dispatch(setUser(userObj));
+      const user = await register({ ...userState }).unwrap();
+      dispatch(setUser(user));
       navigate('/');
     } catch (error) {
       console.log(error);

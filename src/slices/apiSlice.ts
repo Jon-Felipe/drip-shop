@@ -7,7 +7,7 @@ export const dripShopApi = createApi({
   reducerPath: 'dripShopApi',
   baseQuery: fetchBaseQuery({ baseUrl: '/api/v1' }),
   endpoints: (builder) => ({
-    register: builder.mutation<string, Partial<IUser>>({
+    register: builder.mutation<Omit<IUser, 'password'>, Omit<IUser, 'id'>>({
       query: (userData) => ({
         url: '/auth/register',
         method: 'POST',
