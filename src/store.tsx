@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from './slices/cartSlice';
-import useReducer from './slices/userSlice';
+import userReducer from './slices/userSlice';
 import { dripShopApi } from './slices/apiSlice';
 
 export const store = configureStore({
   reducer: {
     [dripShopApi.reducerPath]: dripShopApi.reducer,
-    user: useReducer,
+    user: userReducer,
     cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
