@@ -31,11 +31,11 @@ function Login() {
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const user = await login({
+      const { user } = await login({
         email: userInfo.email,
         password: userInfo.password,
       }).unwrap();
-      dispatch(setUser(user));
+      dispatch(setUser({ ...user }));
       navigate('/');
     } catch (error) {
       console.log(error);
