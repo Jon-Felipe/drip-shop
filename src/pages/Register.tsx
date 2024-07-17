@@ -11,7 +11,7 @@ import { setUser } from '../slices/userSlice';
 import { IUser } from '../utils/types';
 
 function Register() {
-  const [userState, setUserState] = useState<Omit<IUser, 'id'>>({
+  const [userState, setUserState] = useState<Partial<IUser>>({
     firstName: '',
     lastName: '',
     email: '',
@@ -35,8 +35,8 @@ function Register() {
     e.preventDefault();
 
     try {
-      const user = await register({ ...userState }).unwrap();
-      dispatch(setUser(user));
+      const { user } = await register({ ...userState }).unwrap();
+      dispatch(setUser({ ...user }));
       navigate('/');
     } catch (error) {
       console.log(error);
