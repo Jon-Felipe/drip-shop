@@ -27,7 +27,15 @@ export const dripShopApi = createApi({
         body: userData,
       }),
     }),
+    updateUser: builder.mutation<{ updatedUser: IUser }, Partial<IUser>>({
+      query: (userData) => ({
+        url: '/user/update-user',
+        method: 'PATCH',
+        body: userData,
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = dripShopApi;
+export const { useRegisterMutation, useLoginMutation, useUpdateUserMutation } =
+  dripShopApi;
