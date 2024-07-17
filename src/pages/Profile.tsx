@@ -1,25 +1,69 @@
-import { useAppSelector } from '../hooks/hooks';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { useUpdateUserMutation } from '../slices/apiSlice';
+import { setUser } from '../slices/userSlice';
 
 // component
 import Input from '../components/Input';
 
+// extras
+import { IUser } from '../utils/types';
+
 function Profile() {
   const { user } = useAppSelector((store) => store.user);
+
+  const [userState, setUserState] = useState<Partial<IUser>>({
+    firstName: user?.firstName || '',
+    lastName: user?.lastName || '',
+    phoneNumber: user?.phoneNumber || undefined,
+    address: {
+      street: user?.address?.street || '',
+      city: user?.address?.city || '',
+      country: user?.address?.country || '',
+      postalcode: user?.address?.postalcode || '',
+    },
+  });
+
+  const dispatch = useAppDispatch();
+  const [updateUser, { isLoading }] = useUpdateUserMutation();
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserState((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  }
+
+  async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      const { updatedUser } = await updateUser({
+        firstName: userState?.firstName,
+        lastName: userState.lastName,
+        phoneNumber: userState.phoneNumber,
+        address: userState.address,
+      }).unwrap();
+      dispatch(setUser({ ...updatedUser }));
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
       <h4 className='text-xl lg:text-2xl font-semibold mb-4'>
         Update your profile
       </h4>
-      <form>
+      <form onSubmit={handleOnSubmit}>
         <div className='grid gap-6 mb-6 md:grid-cols-3'>
           <div>
             <Input
               label='First name'
               type='text'
               name='firstName'
-              value={user?.firstName}
-              onChange={() => console.log('first')}
+              value={userState.firstName}
+              onChange={handleOnChange}
               placeholder='John'
               required={true}
             />
@@ -29,8 +73,8 @@ function Profile() {
               label='Last name'
               type='text'
               name='lastName'
-              value={user?.lastName}
-              onChange={() => console.log('first')}
+              value={userState.lastName}
+              onChange={handleOnChange}
               placeholder='Doe'
               required={true}
             />
@@ -41,7 +85,7 @@ function Profile() {
               type='email'
               name='email'
               value={user?.email}
-              onChange={() => console.log('first')}
+              onChange={handleOnChange}
               placeholder='name@example.com'
               required={true}
               disabled={true}
@@ -53,9 +97,9 @@ function Profile() {
             <Input
               label='Phone number'
               type='tel'
-              name='phone'
-              value=''
-              onChange={() => console.log('first')}
+              name='phoneNumber'
+              value={userState.phoneNumber}
+              onChange={handleOnChange}
               placeholder='123-456-789'
               required={true}
             />
@@ -65,8 +109,8 @@ function Profile() {
               label='Date of birth'
               type='date'
               name='dob'
-              value=''
-              onChange={() => console.log('first')}
+              value={userState.dateOfBirth}
+              onChange={handleOnChange}
             />
           </div>
         </div>
@@ -75,9 +119,9 @@ function Profile() {
             label='Address'
             type='text'
             name='address'
-            value=''
+            value={userState.address?.street}
             placeholder='123 example street'
-            onChange={() => console.log('first')}
+            onChange={handleOnChange}
           />
         </div>
         <div className='grid gap-6 mb-6 md:grid-cols-3'>
@@ -86,9 +130,9 @@ function Profile() {
               label='Country'
               type='text'
               name='country'
-              value=''
+              value={userState.address?.country}
               placeholder='South Africa'
-              onChange={() => console.log('first')}
+              onChange={handleOnChange}
             />
           </div>
           <div>
@@ -96,9 +140,9 @@ function Profile() {
               label='City'
               type='text'
               name='city'
-              value=''
+              value={userState.address?.city}
               placeholder='Johannesburg'
-              onChange={() => console.log('first')}
+              onChange={handleOnChange}
             />
           </div>
           <div>
@@ -106,14 +150,15 @@ function Profile() {
               label='Postal Code'
               type='text'
               name='postalcode'
-              value=''
+              value={userState.address?.postalcode}
               placeholder='1234'
-              onChange={() => console.log('first')}
+              onChange={handleOnChange}
             />
           </div>
         </div>
         <button
           type='submit'
+          disabled={isLoading}
           className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
         >
           Update
