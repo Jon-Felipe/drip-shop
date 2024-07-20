@@ -4,7 +4,12 @@ import App from './App.tsx';
 import './index.css';
 import { store } from './store.tsx';
 import { Provider } from 'react-redux';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom';
 
 // pages
 import Home from './pages/Home.tsx';
@@ -16,51 +21,32 @@ import Register from './pages/Register.tsx';
 import Profile from './pages/Profile.tsx';
 import ProfileLayout from './components/profile/ProfileLayout.tsx';
 import UpdatePassword from './pages/UpdatePassword.tsx';
+import ProtectedRouteLayout from './components/ProtectedRouteLayout.tsx';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        index: true,
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/department/:department',
-        element: <Department />,
-      },
-      {
-        path: '/products/:id',
-        element: <SingleProduct />,
-      },
-      {
-        path: '/cart',
-        element: <Cart />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/register',
-        element: <Register />,
-      },
-      {
-        path: '/profile',
-        element: <ProfileLayout />,
-        children: [
-          { index: true, path: '/profile', element: <Profile /> },
-          {
-            path: '/profile/update-password',
-            element: <UpdatePassword />,
-          },
-        ],
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<App />}>
+      <Route path='' element={<Home />} />
+      <Route path='department/:department' element={<Department />} />
+      <Route path='products/:id' element={<SingleProduct />} />
+      <Route element={<ProtectedRouteLayout />}>
+        <Route
+          path='profile'
+          element={<ProfileLayout />}
+          children={
+            <Route>
+              <Route path='' element={<Profile />} />
+              <Route path='update-password' element={<UpdatePassword />} />
+            </Route>
+          }
+        />
+        <Route path='cart' element={<Cart />} />
+      </Route>
+      <Route path='login' element={<Login />} />
+      <Route path='register' element={<Register />} />
+    </Route>
+  )
+);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
