@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
-import { MdOutlineSearch, MdMenu, MdFavorite } from 'react-icons/md';
+import {
+  MdOutlineSearch,
+  MdMenu,
+  MdFavorite,
+  MdOutlineShoppingCart,
+} from 'react-icons/md';
 import { useAppSelector } from '../hooks/hooks';
 
 function Header() {
@@ -33,9 +38,17 @@ function Header() {
             <MdFavorite className='w-5 h-5 text-neutral-400' />
           </Link>
           {user?.firstName ? (
-            <Link to='/profile' className='text-xs font-semibold text-white'>
-              Profile
-            </Link>
+            <>
+              <Link to='/cart' className='flex items-center gap-x-2 '>
+                <span className='hidden xl:inline-block text-xs font-semibold text-white'>
+                  Cart
+                </span>
+                <MdOutlineShoppingCart className='w-5 h-5 text-white' />
+              </Link>
+              <Link to='/profile' className='text-xs font-semibold text-white'>
+                Profile
+              </Link>
+            </>
           ) : (
             <>
               <Link to='/login' className='text-xs font-semibold text-white'>
