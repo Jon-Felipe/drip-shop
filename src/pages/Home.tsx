@@ -2,20 +2,15 @@
 import DepartmentLinkCard from '../components/home/DepartmentLinkCard';
 
 // extras
-import { dummy_brands } from '../utils/constants';
+import BrandLinkCards from '../components/home/BrandLinkCards';
 
 function Home() {
   return (
     <>
       {/* departments */}
       <DepartmentLinkCard />
-
       {/* brands */}
-      {dummy_brands.map((brand) => (
-        <div key={brand.id}>
-          <p>{brand.title}</p>
-        </div>
-      ))}
+      <BrandLinkCards />
     </>
   );
 }
