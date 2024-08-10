@@ -1,4 +1,4 @@
-import { IDepartment, IProduct } from './types';
+import { IBrand, IDepartment, IProduct } from './types';
 
 export const dummy_products: IProduct[] = [
   {
@@ -245,5 +245,48 @@ export const dummy_departments: IDepartment[] = [
     description:
       'Find yourself saying, “I have nothing to wear,” no longer with our range of women’s tops. Off-the-shoulder, lace, and crop tops are just a few of the styles in our selection of top brands like Missguided and Nike.',
     tag: 'women',
+  },
+];
+
+export const dummy_brands: IBrand[] = [
+  {
+    id: '1',
+    title: 'Mango',
+    image: '',
+  },
+  {
+    id: '2',
+    title: 'G-Star Raw',
+    image: '',
+  },
+  {
+    id: '3',
+    title: 'Nike',
+    image: '',
+  },
+  {
+    id: '4',
+    title: 'Cotton On',
+    image: '',
+  },
+  {
+    id: '5',
+    title: 'Superbalist',
+    image: '',
+  },
+  {
+    id: '6',
+    title: 'H&M',
+    image: '',
+  },
+  {
+    id: '7',
+    title: 'Adidas',
+    image: '',
+  },
+  {
+    id: '8',
+    title: 'Tommy Hilfiger',
+    image: '',
   },
 ];

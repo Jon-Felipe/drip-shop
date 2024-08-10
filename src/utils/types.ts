@@ -45,3 +45,9 @@ export interface ICart {
   quantity: number;
   countInStock: number;
 }
+
+export interface IBrand {
+  id: string;
+  title: string;
+  image: string;
+}
