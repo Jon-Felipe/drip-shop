@@ -252,41 +252,41 @@ export const dummy_brands: IBrand[] = [
   {
     id: '1',
     title: 'Mango',
-    image: '',
+    image: '../brands/mango.jpg',
   },
   {
     id: '2',
     title: 'G-Star Raw',
-    image: '',
+    image: '../brands/g-star-raw.jpg',
   },
   {
     id: '3',
     title: 'Nike',
-    image: '',
+    image: '../brands/nike.jpg',
   },
   {
     id: '4',
     title: 'Cotton On',
-    image: '',
+    image: '../brands/cotton-on.jpg',
   },
   {
     id: '5',
     title: 'Superbalist',
-    image: '',
+    image: '../brands/superbalist.jpg',
   },
   {
     id: '6',
     title: 'H&M',
-    image: '',
+    image: '../brands/h&m.jpg',
   },
   {
     id: '7',
     title: 'Adidas',
-    image: '',
+    image: '../brands/adidas.jpg',
   },
   {
     id: '8',
     title: 'Tommy Hilfiger',
-    image: '',
+    image: '../brands/tommy-hilfiger.jpg',
   },
 ];
