@@ -64,6 +64,11 @@ function SingleProduct({}: Props) {
       quantity,
       countInStock: inventory.countInStock,
     };
+
+    if (!inventory.size) {
+      return alert('Please choose a size');
+    }
+
     dispatch(addToCart(cartObj));
     navigate('/cart');
   }
