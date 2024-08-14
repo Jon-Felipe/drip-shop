@@ -11,7 +11,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-// pages
+// pages & components
 import Home from './pages/Home.tsx';
 import SingleProduct from './pages/SingleProduct.tsx';
 import Cart from './pages/Cart.tsx';
@@ -22,6 +22,7 @@ import Profile from './pages/Profile.tsx';
 import ProfileLayout from './components/profile/ProfileLayout.tsx';
 import UpdatePassword from './pages/UpdatePassword.tsx';
 import ProtectedRouteLayout from './components/ProtectedRouteLayout.tsx';
+import Checkout from './pages/Checkout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
           }
         />
         <Route path='cart' element={<Cart />} />
+        <Route path='checkout' element={<Checkout />} />
       </Route>
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />

@@ -1,7 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
+// extras
 import { useAppSelector } from '../../hooks/hooks';
 
 function CartSummary() {
   const { cartItems } = useAppSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   const subTotal = cartItems.reduce((acc, curr) => {
     return acc + curr.product.price * curr.quantity;
@@ -27,7 +31,10 @@ function CartSummary() {
         <p className='font-bold'>R{subTotal + shippingFee}</p>
       </div>
       <div className='mt-8'>
-        <button className='bg-blue-500 text-white w-full p-2 rounded font-semibold'>
+        <button
+          className='bg-blue-500 text-white w-full p-2 rounded font-semibold'
+          onClick={() => navigate('/checkout')}
+        >
           Checkout
         </button>
       </div>
