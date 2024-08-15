@@ -1,7 +1,11 @@
+import { useAppSelector } from '../hooks/hooks';
+
 // components
 import Input from '../components/Input';
 
 function Checkout() {
+  const { user } = useAppSelector((store) => store.user);
+
   return (
     <div className='block lg:flex lg:gap-x-6'>
       {/* delivery summary */}
@@ -14,7 +18,7 @@ function Checkout() {
                 label='First Name'
                 type='text'
                 name='firstName'
-                value={''}
+                value={user?.firstName}
                 onChange={() => console.log('first name')}
                 placeholder='John'
                 required={true}
@@ -25,7 +29,7 @@ function Checkout() {
                 label='Last Name'
                 type='text'
                 name='lastName'
-                value={''}
+                value={user?.lastName}
                 onChange={() => console.log('last name')}
                 placeholder='Doe'
                 required={true}
@@ -38,7 +42,7 @@ function Checkout() {
                 label='Email'
                 type='email'
                 name='email'
-                value={''}
+                value={user?.email}
                 onChange={() => console.log('email')}
                 placeholder='test@example.com'
                 required={true}
@@ -49,7 +53,7 @@ function Checkout() {
                 label='Mobile Number'
                 type='text'
                 name='mobile'
-                value={''}
+                value={user?.phoneNumber}
                 onChange={() => console.log('mobile')}
                 placeholder='+123456789'
                 required={true}
@@ -61,7 +65,7 @@ function Checkout() {
               label='Address'
               type='text'
               name='address'
-              value={''}
+              value={user?.address?.street}
               onChange={() => console.log('address')}
               placeholder='123 example street'
               required={true}
@@ -73,7 +77,7 @@ function Checkout() {
                 label='Country'
                 type='text'
                 name='country'
-                value={''}
+                value={user?.address?.country}
                 onChange={() => console.log('country')}
                 placeholder='South Africa'
                 required={true}
@@ -84,7 +88,7 @@ function Checkout() {
                 label='City'
                 type='text'
                 name='city'
-                value={''}
+                value={user?.address?.city}
                 onChange={() => console.log('city')}
                 placeholder='Johannesburg'
                 required={true}
@@ -95,7 +99,7 @@ function Checkout() {
                 label='Postal Code'
                 type='text'
                 name='postalcode'
-                value={''}
+                value={user?.address?.postalcode}
                 onChange={() => console.log('postalcode')}
                 placeholder='1234'
                 required={true}
