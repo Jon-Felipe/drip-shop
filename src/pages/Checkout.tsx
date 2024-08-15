@@ -4,7 +4,10 @@ import { useAppSelector } from '../hooks/hooks';
 import Input from '../components/Input';
 
 function Checkout() {
-  const { user } = useAppSelector((store) => store.user);
+  const {
+    user: { user },
+    cart,
+  } = useAppSelector((store) => store);
 
   return (
     <div className='block lg:flex lg:gap-x-6'>
@@ -167,7 +170,53 @@ function Checkout() {
       <section className='w-full basis-2/5'>
         <h4 className='font-medium mb-4'>Order Summary</h4>
         <article className='border rounded p-4'>
-          <p>test</p>
+          {cart.cartItems.map((cartItem) => (
+            <div key={cartItem.product.id} className='mb-4'>
+              <div className='flex gap-x-4'>
+                <img
+                  src='../images/mens_shirt.jpg'
+                  alt={cartItem.product.title}
+                  className='w-16'
+                />
+                <div className='flex flex-col justify-between'>
+                  <div>
+                    <h5 className='block text-sm font-medium'>
+                      {cartItem.product.title}
+                    </h5>
+                    <p className='block text-xs'>
+                      Quantity: {cartItem.quantity}
+                    </p>
+                    <p className='block text-xs uppercase'>
+                      Size: {cartItem.size}
+                    </p>
+                  </div>
+                  <p className='text-sm font-semibold'>
+                    ${(cartItem.product.price * cartItem.quantity).toFixed(2)}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+          <hr />
+          <div className='py-4 space-y-4'>
+            <p className='flex items-center justify-between'>
+              Subtotal <span>$1250.00</span>
+            </p>
+            <p className='flex items-center justify-between'>
+              Shipping <span>$100.00</span>
+            </p>
+          </div>
+          <hr />
+          <div className='py-4'>
+            <p className='flex items-center justify-between'>
+              Total <span>$1350.00</span>
+            </p>
+          </div>
+          <div className='mt-4'>
+            <button className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none'>
+              Confirm Order
+            </button>
+          </div>
         </article>
       </section>
     </div>
