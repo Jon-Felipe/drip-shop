@@ -24,6 +24,7 @@ function Checkout() {
       postalcode: user?.address?.postalcode || '',
     },
   });
+  const [paymentMethod, setPaymentMethod] = useState<string>('online');
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
@@ -31,6 +32,11 @@ function Checkout() {
     setUserDetails((prevState) => {
       return { ...prevState, [name]: value };
     });
+  }
+
+  function handlePaymentOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setPaymentMethod(value);
   }
 
   return (
@@ -143,10 +149,10 @@ function Checkout() {
             <div className='flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 lg:items-center lg:justify-between'>
               <div className='flex items-center'>
                 <input
-                  id='default-radio-1'
                   type='radio'
-                  value=''
-                  name='default-radio'
+                  value='online'
+                  onChange={handlePaymentOnChange}
+                  checked={paymentMethod === 'online'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
@@ -158,10 +164,10 @@ function Checkout() {
               </div>
               <div className='flex items-center'>
                 <input
-                  id='default-radio-1'
                   type='radio'
-                  value=''
-                  name='default-radio'
+                  value='cash'
+                  onChange={handlePaymentOnChange}
+                  checked={paymentMethod === 'cash'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
@@ -173,10 +179,10 @@ function Checkout() {
               </div>
               <div className='flex items-center'>
                 <input
-                  id='default-radio-1'
                   type='radio'
-                  value=''
-                  name='default-radio'
+                  value='pos'
+                  onChange={handlePaymentOnChange}
+                  checked={paymentMethod === 'pos'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
