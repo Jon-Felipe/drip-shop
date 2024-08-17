@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAppDispatch } from '../hooks/hooks';
 import { useLoginMutation } from '../slices/apiSlice';
 import { setUser } from '../slices/userSlice';
@@ -36,8 +37,10 @@ function Login() {
         password: userInfo.password,
       }).unwrap();
       dispatch(setUser({ ...user }));
+      toast.success('Login Successful');
       navigate('/');
     } catch (error) {
+      toast.error('Invalid Credentials');
       console.log(error);
     }
   }

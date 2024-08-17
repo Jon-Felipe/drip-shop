@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import {
   MdOutlinePerson,
   MdOutlineLock,
@@ -43,7 +44,10 @@ function ProfileLayout() {
             </Link>
             <button
               className='flex items-center gap-x-2 py-2 px-4'
-              onClick={() => dispatch(logout())}
+              onClick={() => {
+                dispatch(logout());
+                toast.success('Successfully Logged Out');
+              }}
             >
               <MdLogout className='w-5 h-5' />
               <span>Logout</span>

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { MdOutlineRemove, MdAdd } from 'react-icons/md';
 import { removeFromCart } from '../../slices/cartSlice';
 import { useAppDispatch } from '../../hooks/hooks';
@@ -89,7 +90,10 @@ function CartItems({ cartItems }: Props) {
               <td className='px-6 py-4'>
                 <button
                   className='font-medium text-red-600'
-                  onClick={() => dispatch(removeFromCart(cartItem.product.id))}
+                  onClick={() => {
+                    toast.error('Item Removed From Cart');
+                    dispatch(removeFromCart(cartItem.product.id));
+                  }}
                 >
                   Remove
                 </button>

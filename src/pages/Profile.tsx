@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { useUpdateUserMutation } from '../slices/apiSlice';
 import { setUser } from '../slices/userSlice';
@@ -45,7 +46,9 @@ function Profile() {
         address: userState.address,
       }).unwrap();
       dispatch(setUser({ ...updatedUser }));
+      toast.success('Profile Updated');
     } catch (error) {
+      toast.error('Something Went Wrong');
       console.log(error);
     }
   }

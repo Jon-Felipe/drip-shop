@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAppDispatch } from '../hooks/hooks';
 import { addToCart } from '../slices/cartSlice';
 import {
@@ -66,9 +67,10 @@ function SingleProduct({}: Props) {
     };
 
     if (!inventory.size) {
-      return alert('Please choose a size');
+      return toast.error('Please Choose A Size');
     }
 
+    toast.success('Item Added To Cart');
     dispatch(addToCart(cartObj));
     navigate('/cart');
   }
