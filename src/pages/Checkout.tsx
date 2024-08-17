@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 import { useAppSelector } from '../hooks/hooks';
+import { IUser } from '../utils/types';
 
 // components
 import Input from '../components/Input';
@@ -8,6 +11,27 @@ function Checkout() {
     user: { user },
     cart,
   } = useAppSelector((store) => store);
+
+  const [userDetails, setUserDetails] = useState<Partial<IUser>>({
+    firstName: user?.firstName || '',
+    lastName: user?.lastName || '',
+    email: user?.email || '',
+    phoneNumber: user?.phoneNumber || undefined,
+    address: {
+      street: user?.address?.street || '',
+      city: user?.address?.city || '',
+      country: user?.address?.country || '',
+      postalcode: user?.address?.postalcode || '',
+    },
+  });
+
+  function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const name = e.target.name;
+    const value = e.target.value;
+    setUserDetails((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  }
 
   return (
     <div className='block lg:flex lg:gap-x-6'>
@@ -22,8 +46,8 @@ function Checkout() {
                   label='First Name'
                   type='text'
                   name='firstName'
-                  value={user?.firstName}
-                  onChange={() => console.log('first name')}
+                  value={userDetails?.firstName}
+                  onChange={handleOnChange}
                   placeholder='John'
                   required={true}
                 />
@@ -33,8 +57,8 @@ function Checkout() {
                   label='Last Name'
                   type='text'
                   name='lastName'
-                  value={user?.lastName}
-                  onChange={() => console.log('last name')}
+                  value={userDetails?.lastName}
+                  onChange={handleOnChange}
                   placeholder='Doe'
                   required={true}
                 />
@@ -46,8 +70,8 @@ function Checkout() {
                   label='Email'
                   type='email'
                   name='email'
-                  value={user?.email}
-                  onChange={() => console.log('email')}
+                  value={userDetails?.email}
+                  onChange={handleOnChange}
                   placeholder='test@example.com'
                   required={true}
                 />
@@ -56,9 +80,9 @@ function Checkout() {
                 <Input
                   label='Mobile Number'
                   type='text'
-                  name='mobile'
-                  value={user?.phoneNumber}
-                  onChange={() => console.log('mobile')}
+                  name='phoneNumber'
+                  value={userDetails?.phoneNumber}
+                  onChange={handleOnChange}
                   placeholder='+123456789'
                   required={true}
                 />
@@ -69,8 +93,8 @@ function Checkout() {
                 label='Address'
                 type='text'
                 name='address'
-                value={user?.address?.street}
-                onChange={() => console.log('address')}
+                value={userDetails?.address?.street}
+                onChange={handleOnChange}
                 placeholder='123 example street'
                 required={true}
               />
@@ -81,8 +105,8 @@ function Checkout() {
                   label='Country'
                   type='text'
                   name='country'
-                  value={user?.address?.country}
-                  onChange={() => console.log('country')}
+                  value={userDetails?.address?.country}
+                  onChange={handleOnChange}
                   placeholder='South Africa'
                   required={true}
                 />
@@ -92,8 +116,8 @@ function Checkout() {
                   label='City'
                   type='text'
                   name='city'
-                  value={user?.address?.city}
-                  onChange={() => console.log('city')}
+                  value={userDetails?.address?.city}
+                  onChange={handleOnChange}
                   placeholder='Johannesburg'
                   required={true}
                 />
@@ -103,8 +127,8 @@ function Checkout() {
                   label='Postal Code'
                   type='text'
                   name='postalcode'
-                  value={user?.address?.postalcode}
-                  onChange={() => console.log('postalcode')}
+                  value={userDetails?.address?.postalcode}
+                  onChange={handleOnChange}
                   placeholder='1234'
                   required={true}
                 />
