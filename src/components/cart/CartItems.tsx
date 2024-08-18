@@ -91,8 +91,8 @@ function CartItems({ cartItems }: Props) {
                 <button
                   className='font-medium text-red-600'
                   onClick={() => {
-                    toast.error('Item Removed From Cart');
-                    dispatch(removeFromCart(cartItem.product.id));
+                    toast.success('Item Removed From Cart');
+                    dispatch(removeFromCart({ cartItem, index }));
                   }}
                 >
                   Remove

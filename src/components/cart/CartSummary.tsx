@@ -4,21 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/hooks';
 
 function CartSummary() {
-  const { cartItems } = useAppSelector((state) => state.cart);
+  const { cartTotal } = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
 
-  const subTotal = cartItems.reduce((acc, curr) => {
-    return acc + curr.product.price * curr.quantity;
-  }, 0);
-
-  const shippingFee = subTotal > 1000 ? 0 : 100;
+  const shippingFee = cartTotal > 1000 ? 0 : 100;
 
   return (
     <article>
       <h3 className='text-xl lg:text-3xl'>Cart Totals</h3>
       <div className='flex items-center justify-between my-4'>
         <p className='text-xs'>Subtotal</p>
-        <p className='text-xs'>R{subTotal}</p>
+        <p className='text-xs'>R{cartTotal}</p>
       </div>
       <div className='w-full border'></div>
       <div className='flex items-center justify-between my-4'>
@@ -28,7 +24,7 @@ function CartSummary() {
       <div className='w-full border'></div>
       <div className='flex items-center justify-between my-4'>
         <p className='font-bold'>Total</p>
-        <p className='font-bold'>R{subTotal + shippingFee}</p>
+        <p className='font-bold'>R{cartTotal + shippingFee}</p>
       </div>
       <div className='mt-8'>
         <button

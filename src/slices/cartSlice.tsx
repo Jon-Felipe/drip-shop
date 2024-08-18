@@ -6,10 +6,12 @@ import { ICart } from '../utils/types';
 
 export interface ICartState {
   cartItems: ICart[];
+  cartTotal: number;
 }
 
 const initialState: ICartState = {
   cartItems: [],
+  cartTotal: 0,
 };
 
 export const cartSlice = createSlice({
@@ -32,11 +34,23 @@ export const cartSlice = createSlice({
           }
         });
       }
-    },
-    removeFromCart: (state, action: PayloadAction<string>) => {
-      state.cartItems = state.cartItems.filter(
-        (item) => item.product.id !== action.payload
+
+      state.cartTotal = state.cartItems.reduce(
+        (acc, curr) => acc + curr.product.price * curr.quantity,
+        0
       );
+    },
+    removeFromCart: (
+      state,
+      action: PayloadAction<{ cartItem: ICart; index: number }>
+    ) => {
+      const foundCartItem = state.cartItems[action.payload.index];
+      state.cartItems = state.cartItems.filter(
+        (item) => item.product.id !== foundCartItem?.product.id
+      );
+      state.cartTotal =
+        state.cartTotal -
+        foundCartItem?.product.price! * foundCartItem?.quantity!;
     },
     toggleCartQuantity: (
       state,
