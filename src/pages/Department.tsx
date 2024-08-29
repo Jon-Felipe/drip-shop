@@ -5,6 +5,7 @@ import { useGetDepartmentQuery } from '../slices/apiSlice';
 // components
 import ProductCard from '../components/ProductCard';
 import Select from '../components/Select';
+import Spinner from '../components/Spinner';
 
 function Department() {
   const [sort, setSort] = useState<string>('');
@@ -14,7 +15,11 @@ function Department() {
   const { data, isLoading, isFetching } = useGetDepartmentQuery(department!);
 
   if (isLoading || isFetching) {
-    return <p>Loading</p>;
+    return (
+      <div className='flex items-center justify-center mt-20'>
+        <Spinner />
+      </div>
+    );
   }
 
   if (!data) {
