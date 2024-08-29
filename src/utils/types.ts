@@ -33,10 +33,11 @@ export interface IUser {
 }
 
 export interface IDepartment {
-  id: string;
-  title: string;
+  _id: string;
+  name: string;
+  text: string;
   description: string;
-  tag: string;
+  products: IProduct[];
 }
 
 export interface ICart {

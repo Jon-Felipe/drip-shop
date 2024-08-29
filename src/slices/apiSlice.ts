@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // extras
-import { IUser } from '../utils/types';
+import { IDepartment, IUser } from '../utils/types';
 
 export const dripShopApi = createApi({
   reducerPath: 'dripShopApi',
@@ -31,8 +31,18 @@ export const dripShopApi = createApi({
         body: userData,
       }),
     }),
+    getDepartment: builder.query<{ department: IDepartment }, string>({
+      query: (department) => ({
+        url: `/department/${department}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useUpdateUserMutation } =
-  dripShopApi;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useUpdateUserMutation,
+  useGetDepartmentQuery,
+} = dripShopApi;
