@@ -34,7 +34,7 @@ function Department() {
   return (
     <>
       <section className='text-center mb-10'>
-        <h3 className='text-xl lg:text-3xl font-semibold mb-5'>
+        <h3 className='text-xl lg:text-3xl font-semibold mb-5 capitalize'>
           {foundDepartment.text}
         </h3>
         <p className='text-sm lg:text-base'>{foundDepartment.description}</p>
