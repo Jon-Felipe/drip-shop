@@ -14,7 +14,9 @@ function ProductCard({ product }: Props) {
       <Link to={`/products/${product.id}`}>
         <img src='../images/mens_shirt.jpg' alt={product.title} />
         <div className='relative mt-2'>
-          <h4 className='truncate text-sm font-semibold'>{product.title}</h4>
+          <h4 className='truncate text-sm font-semibold capitalize'>
+            {product.title}
+          </h4>
           <p className='text-neutral-400 text-xs'>By {product.brand}</p>
           <p className='text-lg'>R{product.price}</p>
         </div>
