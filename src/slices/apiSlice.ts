@@ -31,9 +31,12 @@ export const dripShopApi = createApi({
         body: userData,
       }),
     }),
-    getDepartment: builder.query<{ department: IDepartment }, string>({
-      query: (department) => ({
-        url: `/department/${department}`,
+    getDepartment: builder.query<
+      { department: IDepartment },
+      { departmentParam: String; sortValue?: String }
+    >({
+      query: ({ departmentParam, sortValue }) => ({
+        url: `/department/${departmentParam}?sort=${sortValue}`,
         method: 'GET',
       }),
     }),

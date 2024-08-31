@@ -8,11 +8,14 @@ import Select from '../components/Select';
 import Spinner from '../components/Spinner';
 
 function Department() {
-  const [sort, setSort] = useState<string>('');
+  const [sort, setSort] = useState<string>('a-z');
 
   const { department } = useParams();
 
-  const { data, isLoading, isFetching } = useGetDepartmentQuery(department!);
+  const { data, isLoading, isFetching } = useGetDepartmentQuery({
+    departmentParam: department!,
+    sortValue: sort,
+  });
 
   if (isLoading || isFetching) {
     return (
