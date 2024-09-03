@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // extras
-import { IDepartment, IUser } from '../utils/types';
+import { IDepartment, IProduct, IUser } from '../utils/types';
 
 export const dripShopApi = createApi({
   reducerPath: 'dripShopApi',
@@ -40,6 +40,12 @@ export const dripShopApi = createApi({
         method: 'GET',
       }),
     }),
+    getProduct: builder.query<{ product: IProduct }, string>({
+      query: (productId) => ({
+        url: `/products/${productId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -48,4 +54,5 @@ export const {
   useLoginMutation,
   useUpdateUserMutation,
   useGetDepartmentQuery,
+  useGetProductQuery,
 } = dripShopApi;

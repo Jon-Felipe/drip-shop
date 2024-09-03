@@ -14,33 +14,24 @@ import {
 import Rating from '../components/Rating';
 
 // extras
-import { dummy_products } from '../utils/constants';
 import { ICart } from '../utils/types';
+import { useGetProductQuery } from '../slices/apiSlice';
+import Spinner from '../components/Spinner';
 
 type Props = {};
 
 function SingleProduct({}: Props) {
-  const [inventory, setInventory] = useState<{
-    size: string;
-    countInStock: number;
-  }>({ size: '', countInStock: 0 });
+  const [size, setSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const foundProduct = dummy_products.find(
-    (product) => product.id.toString() === id
-  );
+  const { data, isLoading, isFetching } = useGetProductQuery(id!);
 
   function handleOnToggleQuantity(value: string) {
     if (value === 'increase') {
-      if (quantity === inventory.countInStock) {
-        setQuantity(inventory.countInStock);
-      } else {
-        setQuantity(quantity + 1);
-      }
+      setQuantity(quantity + 1);
     } else if (value === 'decrease') {
       setQuantity((prevState) => {
         if (prevState === 1) {
@@ -55,18 +46,17 @@ function SingleProduct({}: Props) {
   function handleAddToCart() {
     const cartObj: ICart = {
       product: {
-        id: foundProduct?.id || '',
-        title: foundProduct?.title || '',
-        image: foundProduct?.image || '',
-        price: foundProduct?.price || 0,
-        colour: foundProduct?.colour || '',
+        _id: data?.product._id || '',
+        title: data?.product.title || '',
+        image: data?.product.image || '',
+        price: data?.product.price || 0,
+        colour: data?.product.colour || '',
       },
-      size: inventory.size,
+      size,
       quantity,
-      countInStock: inventory.countInStock,
     };
 
-    if (!inventory.size) {
+    if (!size) {
       return toast.error('Please Choose A Size');
     }
 
@@ -75,51 +65,59 @@ function SingleProduct({}: Props) {
     navigate('/cart');
   }
 
+  if (isLoading || isFetching) {
+    return <Spinner />;
+  }
+
+  if (!data) {
+    return <p>No department found</p>;
+  }
+
+  const { product } = data;
+
   return (
     <div className='grid lg:grid-cols-2 gap-x-8'>
       {/* image gallery */}
       <section>
         <img
           src='../images/mens_shirt.jpg'
-          alt={foundProduct?.title}
+          alt={product?.title}
           className='w-full object-cover'
         />
       </section>
       {/* product */}
       <section className='mt-4'>
-        <h3 className='text-xl font-semibold'>{foundProduct?.title}</h3>
-        <p className='text-neutral-400 font-light text-lg'>
-          {foundProduct?.brand}
-        </p>
-        <Rating rating={foundProduct?.averageRating || 0} />
+        <h3 className='text-xl font-semibold capitalize'>{product?.title}</h3>
+        <p className='text-neutral-400 font-light text-lg'>{product?.brand}</p>
+        <Rating rating={4} />
         <div className='mt-6'>
-          <p className='text-3xl'>R{foundProduct?.price}</p>
+          <p className='text-3xl'>R{product?.price}</p>
         </div>
 
         {/* size selector */}
         <div className='mt-6'>
           <h6 className='font-semibold uppercase text-sm'>Select a size</h6>
           <div className='flex items-center gap-x-6 mt-4'>
-            {foundProduct?.inventory.sizes.map((s, index) => {
+            {product?.sizes.map((s, index) => {
               return (
                 <div
                   key={index}
                   className={`border ${
-                    inventory.size === s.size ? 'border-2 border-black' : ''
+                    size === s ? 'border-2 border-black' : ''
                   }  rounded-full h-14 min-w-14 box-border inline-flex items-center justify-center shrink-0 px-3 cursor-pointer`}
                   onClick={() => {
-                    setInventory(s);
+                    setSize(s);
                     setQuantity(1);
                   }}
                 >
-                  <p className='uppercase font-semibold'>{s.size}</p>
+                  <p className='uppercase font-semibold'>{s}</p>
                 </div>
               );
             })}
           </div>
         </div>
         {/* quantity selector */}
-        {inventory.size && (
+        {size && (
           <div className='mt-6 flex items-center gap-x-14'>
             <h6 className='font-semibold uppercase text-sm'>Quantity</h6>
             <div className='flex items-center justify-center gap-x-14'>
@@ -150,14 +148,12 @@ function SingleProduct({}: Props) {
         {/* product details */}
         <div className='mt-6'>
           <h6 className='text-neutral-400 font-medium'>Product Details</h6>
-          {foundProduct?.description && (
-            <p className='text-neutral-400 text-sm'>
-              {foundProduct.description}
-            </p>
+          {product?.description && (
+            <p className='text-neutral-400 text-sm'>{product.description}</p>
           )}
-          {foundProduct?.extraInfo && foundProduct?.extraInfo?.length > 0 && (
+          {product?.extraInfo && product?.extraInfo?.length > 0 && (
             <ul className='mt-4 ml-8'>
-              {foundProduct.extraInfo.map((item, index) => (
+              {product.extraInfo.map((item, index) => (
                 <li className='list-disc text-neutral-400' key={index}>
                   {item}
                 </li>
@@ -168,19 +164,19 @@ function SingleProduct({}: Props) {
             <div>
               <h6 className='font-semibold'>Colour</h6>
               <p className='capitalize text-neutral-400 text-sm'>
-                {foundProduct?.colour}
+                {product?.colour}
               </p>
             </div>
             <div>
               <h6 className='font-semibold'>Brand</h6>
               <p className='capitalize text-neutral-400 text-sm'>
-                {foundProduct?.brand}
+                {product?.brand}
               </p>
             </div>
             <div>
               <h6 className='font-semibold'>Material</h6>
               <p className='capitalize text-neutral-400 text-sm'>
-                {foundProduct?.material}
+                {product?.material}
               </p>
             </div>
           </div>
