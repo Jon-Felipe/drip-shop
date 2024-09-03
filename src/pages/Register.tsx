@@ -6,7 +6,7 @@ import { useAppDispatch } from '../hooks/hooks';
 import Input from '../components/Input';
 
 // extras
-import { useRegisterMutation } from '../slices/apiSlice';
+import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setUser } from '../slices/userSlice';
 import { IUser } from '../utils/types';
 

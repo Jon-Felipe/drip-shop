@@ -15,7 +15,7 @@ import Rating from '../components/Rating';
 
 // extras
 import { ICart } from '../utils/types';
-import { useGetProductQuery } from '../slices/apiSlice';
+import { useGetProductQuery } from '../slices/productsApiSlice';
 import Spinner from '../components/Spinner';
 
 type Props = {};

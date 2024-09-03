@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
-import { useUpdateUserMutation } from '../slices/apiSlice';
+import { useUpdateUserMutation } from '../slices/usersApiSlice';
 import { setUser } from '../slices/userSlice';
 
 // component

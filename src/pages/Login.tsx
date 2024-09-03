@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAppDispatch } from '../hooks/hooks';
-import { useLoginMutation } from '../slices/apiSlice';
+import { useLoginMutation } from '../slices/usersApiSlice';
 import { setUser } from '../slices/userSlice';
 
 // components

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetDepartmentQuery } from '../slices/apiSlice';
+import { useGetDepartmentQuery } from '../slices/departmentsApiSlice';
 
 // components
 import ProductCard from '../components/ProductCard';
