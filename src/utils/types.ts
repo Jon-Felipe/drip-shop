@@ -1,19 +1,15 @@
 export interface IProduct {
-  id: string;
+  _id: string;
   title: string;
   description?: string | undefined;
   extraInfo?: string[] | undefined;
   image: string;
   price: number;
   colour: string;
-  brand: string;
+  sizes: string[];
   material: string;
-  reviews?: string[] | undefined;
-  averageRating?: number | undefined;
+  brand: string;
   departmentId: string;
-  inventory: {
-    sizes: { size: string; countInStock: number }[];
-  };
 }
 
 export interface IUser {
@@ -41,10 +37,9 @@ export interface IDepartment {
 }
 
 export interface ICart {
-  product: Pick<IProduct, 'id' | 'title' | 'price' | 'image' | 'colour'>;
+  product: Pick<IProduct, '_id' | 'title' | 'price' | 'image' | 'colour'>;
   size: string;
   quantity: number;
-  countInStock: number;
 }
 
 export interface IBrand {
