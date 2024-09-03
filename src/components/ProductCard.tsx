@@ -11,7 +11,7 @@ type Props = {
 function ProductCard({ product }: Props) {
   return (
     <article className='relative'>
-      <Link to={`/products/${product.id}`}>
+      <Link to={`/products/${product._id}`}>
         <img src='../images/mens_shirt.jpg' alt={product.title} />
         <div className='relative mt-2'>
           <h4 className='truncate text-sm font-semibold capitalize'>
