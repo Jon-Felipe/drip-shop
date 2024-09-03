@@ -20,14 +20,17 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, { payload }: PayloadAction<ICart>) => {
       const itemExists = state.cartItems.find(
-        (item) => item.product.id?.toString() === payload.product.id?.toString()
+        (item) =>
+          item.product._id?.toString() === payload.product._id?.toString()
       );
 
       if (!itemExists) {
         state.cartItems = [...state.cartItems, payload];
       } else {
         state.cartItems = state.cartItems.map((item) => {
-          if (item.product.id?.toString() === payload.product.id?.toString()) {
+          if (
+            item.product._id?.toString() === payload.product._id?.toString()
+          ) {
             return { ...item, quantity: item.quantity + payload.quantity };
           } else {
             return item;
@@ -46,7 +49,7 @@ export const cartSlice = createSlice({
     ) => {
       const foundCartItem = state.cartItems[action.payload.index];
       state.cartItems = state.cartItems.filter(
-        (item) => item.product.id !== foundCartItem?.product.id
+        (item) => item.product._id !== foundCartItem?.product._id
       );
       state.cartTotal =
         state.cartTotal -
@@ -61,15 +64,11 @@ export const cartSlice = createSlice({
       const cartItem = state.cartItems[prodIndex];
 
       if (actionValue === 'increase') {
-        if (cartItem.quantity === cartItem.countInStock) {
-          cartItem.quantity = cartItem.countInStock;
-        } else {
-          cartItem.quantity += 1;
-        }
+        cartItem.quantity += 1;
       } else if (actionValue === 'decrease') {
         if (state.cartItems[prodIndex].quantity <= 1) {
           state.cartItems = state.cartItems.filter(
-            (item) => item.product.id !== cartItem.product.id
+            (item) => item.product._id !== cartItem.product._id
           );
         } else {
           cartItem.quantity -= 1;
