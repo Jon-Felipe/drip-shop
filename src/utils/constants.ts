@@ -1,4 +1,4 @@
-import { IBrand, IDepartment, IProduct } from './types';
+import { IBrand, IDepartment, IProduct, ISelect } from './types';
 
 export const dummy_products: IProduct[] = [
   {
@@ -288,5 +288,46 @@ export const dummy_brands: IBrand[] = [
     id: '8',
     title: 'Tommy Hilfiger',
     image: '../brands/tommy-hilfiger.jpg',
+  },
+];
+
+export const sortOptions: ISelect[] = [
+  {
+    id: '1',
+    text: 'Name: A-Z',
+    value: 'a-z',
+  },
+  {
+    id: '2',
+    text: 'Name: Z-A',
+    value: 'z-a',
+  },
+  {
+    id: '3',
+    text: 'Newest',
+    value: 'newest',
+  },
+  {
+    id: '4',
+    text: 'Oldest',
+    value: 'oldest',
+  },
+];
+
+export const itemsPerPageOptions: ISelect[] = [
+  {
+    id: '1',
+    text: '10',
+    value: 10,
+  },
+  {
+    id: '2',
+    text: '20',
+    value: 20,
+  },
+  {
+    id: '3',
+    text: '30',
+    value: 30,
   },
 ];
