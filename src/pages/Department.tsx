@@ -11,7 +11,7 @@ import Spinner from '../components/Spinner';
 import { itemsPerPageOptions, sortOptions } from '../utils/constants';
 
 function Department() {
-  const [items, setItems] = useState<number>(10);
+  const [limit, setLimit] = useState<number>(10);
   const [sort, setSort] = useState<string>('a-z');
 
   const { department } = useParams();
@@ -19,6 +19,7 @@ function Department() {
   const { data, isLoading, isFetching } = useGetDepartmentQuery({
     departmentParam: department!,
     sortValue: sort,
+    limit,
   });
 
   if (isLoading || isFetching) {
@@ -51,8 +52,8 @@ function Department() {
           <div className='flex items-center justify-between gap-x-4'>
             <p className='uppercase font-semibold text-sm'>Items per page</p>
             <Select
-              value={items}
-              onChange={(e) => setItems(+e.target.value)}
+              value={limit}
+              onChange={(e) => setLimit(+e.target.value)}
               options={itemsPerPageOptions}
             />
           </div>

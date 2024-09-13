@@ -7,10 +7,10 @@ const departmentApi = dripShopApi.injectEndpoints({
   endpoints: (build) => ({
     getDepartment: build.query<
       { department: IDepartment },
-      { departmentParam: String; sortValue?: String }
+      { departmentParam: string; sortValue?: string; limit?: number }
     >({
-      query: ({ departmentParam, sortValue }) => ({
-        url: `/department/${departmentParam}?sort=${sortValue}`,
+      query: ({ departmentParam, sortValue, limit }) => ({
+        url: `/department/${departmentParam}?sort=${sortValue}&limit=${limit}`,
         method: 'GET',
       }),
     }),
