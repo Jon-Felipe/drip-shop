@@ -1,25 +1,25 @@
 import React from 'react';
+import { ISelect } from '../utils/types';
 
 type Props = {
   value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
   onChange: React.SelectHTMLAttributes<HTMLSelectElement>['onChange'];
+  options: ISelect[];
 };
 
-function Select({ value, onChange }: Props) {
+function Select({ value, onChange, options }: Props) {
   return (
     <form>
       <select
         value={value}
         onChange={onChange}
-        className='border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+        className='border border-gray-300 text-gray-900 text-xs rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
       >
-        <option value='a-z'>Name: A-Z</option>
-        <option value='z-a'>Name: Z-A</option>
-        <option value='newest'>Newest</option>
-        <option value='top'>Top Rated</option>
-        <option value='price-low'>Price Low to High</option>
-        <option value='price-high'>Price High to Low</option>
-        <option value='discount'>Discount</option>
+        {options.map((option) => (
+          <option key={option.id} value={option.value}>
+            {option.text}
+          </option>
+        ))}
       </select>
     </form>
   );
