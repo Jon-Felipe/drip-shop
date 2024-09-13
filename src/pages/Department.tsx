@@ -43,7 +43,10 @@ function Department() {
         <p className='font-semibold capitalize text-sm'>
           {foundDepartment.products.length} products found
         </p>
-        <Select value={sort} onChange={(e) => setSort(e.target.value)} />
+        <div className='flex items-center gap-x-4'>
+          <p className='uppercase font-semibold'>Sort by</p>
+          <Select value={sort} onChange={(e) => setSort(e.target.value)} />
+        </div>
       </section>
       <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
         {foundDepartment.products.map((product, index) => (
