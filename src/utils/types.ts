@@ -47,3 +47,9 @@ export interface IBrand {
   title: string;
   image: string;
 }
+
+export interface ISelect {
+  id: string;
+  text: string;
+  value: string | number;
+}
