@@ -1,4 +1,10 @@
-import { IBrand, IDepartment, IProduct, ISelect } from './types';
+import {
+  IBrand,
+  IDropdownOption,
+  IDepartment,
+  IProduct,
+  ISelect,
+} from './types';
 
 export const dummy_products: IProduct[] = [
   {
@@ -329,5 +335,91 @@ export const itemsPerPageOptions: ISelect[] = [
     id: '3',
     text: '30',
     value: 30,
+  },
+];
+
+export const categories: IDropdownOption[] = [
+  {
+    id: 1,
+    text: 'Boots',
+    url: '',
+  },
+  {
+    id: 2,
+    text: 'Jackets + coats',
+    url: '',
+  },
+  {
+    id: 3,
+    text: 'Jeans',
+    url: '',
+  },
+  {
+    id: 4,
+    text: 'Shirts',
+    url: '',
+  },
+  {
+    id: 5,
+    text: 'Shoes',
+    url: '',
+  },
+  {
+    id: 6,
+    text: 'Sport',
+    url: '',
+  },
+  {
+    id: 7,
+    text: 'Sport',
+    url: '',
+  },
+  {
+    id: 8,
+    text: 'Sneakers',
+    url: '',
+  },
+];
+
+export const brands: IDropdownOption[] = [
+  {
+    id: 1,
+    text: 'H&M',
+    url: '',
+  },
+  {
+    id: 2,
+    text: 'Adidas',
+    url: '',
+  },
+  {
+    id: 3,
+    text: "Levi's",
+    url: '',
+  },
+  {
+    id: 4,
+    text: 'Nike',
+    url: '',
+  },
+  {
+    id: 5,
+    text: 'Polo',
+    url: '',
+  },
+  {
+    id: 6,
+    text: 'Reebok',
+    url: '',
+  },
+  {
+    id: 7,
+    text: 'Vans',
+    url: '',
+  },
+  {
+    id: 8,
+    text: 'Puma',
+    url: '',
   },
 ];

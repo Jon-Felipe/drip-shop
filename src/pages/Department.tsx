@@ -8,7 +8,13 @@ import Select from '../components/Select';
 import Spinner from '../components/Spinner';
 
 // extras
-import { itemsPerPageOptions, sortOptions } from '../utils/constants';
+import {
+  brands,
+  categories,
+  itemsPerPageOptions,
+  sortOptions,
+} from '../utils/constants';
+import Dropdown from '../components/Dropdown';
 
 function Department() {
   const [limit, setLimit] = useState<number>(10);
@@ -67,11 +73,21 @@ function Department() {
           </div>
         </div>
       </section>
-      <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
-        {foundDepartment.products.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
-      </section>
+      <div className='grid grid-cols-[200px_1fr] gap-x-4'>
+        {/* filters */}
+        <section>
+          {/* categories */}
+          <Dropdown title='Categories' options={categories} />
+          <br />
+          {/* brans */}
+          <Dropdown title='More brands' options={brands} />
+        </section>
+        <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
+          {foundDepartment.products.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </section>
+      </div>
     </>
   );
 }
