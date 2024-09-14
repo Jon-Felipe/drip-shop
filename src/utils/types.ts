@@ -53,3 +53,9 @@ export interface ISelect {
   text: string;
   value: string | number;
 }
+
+export interface IDropdownOption {
+  id: string | number;
+  text: string;
+  url: string;
+}
