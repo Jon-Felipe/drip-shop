@@ -6,6 +6,8 @@ import { useGetDepartmentQuery } from '../slices/departmentsApiSlice';
 import ProductCard from '../components/ProductCard';
 import Select from '../components/Select';
 import Spinner from '../components/Spinner';
+import Dropdown from '../components/Dropdown';
+import PriceRange from '../components/PriceRange';
 
 // extras
 import {
@@ -14,7 +16,6 @@ import {
   itemsPerPageOptions,
   sortOptions,
 } from '../utils/constants';
-import Dropdown from '../components/Dropdown';
 
 function Department() {
   const [limit, setLimit] = useState<number>(10);
@@ -79,7 +80,10 @@ function Department() {
           {/* categories */}
           <Dropdown title='Categories' options={categories} />
           <br />
-          {/* brans */}
+          {/* price range */}
+          <PriceRange />
+          <br />
+          {/* brands */}
           <Dropdown title='More brands' options={brands} />
         </section>
         <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
