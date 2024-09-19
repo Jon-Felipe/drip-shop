@@ -13,6 +13,7 @@ import {
 
 // pages & components
 import Home from './pages/Home.tsx';
+import Products from './pages/Products.tsx';
 import SingleProduct from './pages/SingleProduct.tsx';
 import Cart from './pages/Cart.tsx';
 import Department from './pages/Department.tsx';
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route path='' element={<Home />} />
       <Route path='department/:department' element={<Department />} />
+      <Route path='products' element={<Products />} />
       <Route path='products/:id' element={<SingleProduct />} />
       <Route element={<ProtectedRouteLayout />}>
         <Route
