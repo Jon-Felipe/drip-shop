@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import { MdOutlineSearch } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
@@ -13,7 +13,11 @@ function Search() {
       toast.error('Please provide a search value');
       return;
     }
-    navigate(`/products?search=${search}`);
+    navigate({
+      pathname: 'products',
+      search: createSearchParams({ search }).toString(),
+    });
+    setSearch('');
   }
 
   return (
