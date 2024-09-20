@@ -11,7 +11,13 @@ const productApi = dripShopApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+    getProducts: build.query<{ products: IProduct[] }, string>({
+      query: (searchQuery) => ({
+        url: `/products?search=${searchQuery}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useGetProductQuery } = productApi;
+export const { useGetProductQuery, useGetProductsQuery } = productApi;
