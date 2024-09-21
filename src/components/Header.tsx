@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import {
   MdOutlineSearch,
   MdMenu,
-  MdFavorite,
+  MdFavoriteBorder,
   MdOutlineShoppingCart,
+  MdOutlineAccountCircle,
 } from 'react-icons/md';
 import { useAppSelector } from '../hooks/hooks';
 
 function Header() {
   const { user } = useAppSelector((store) => store.user);
+  const { cartItems } = useAppSelector((store) => store.cart);
 
   return (
     <header className=' bg-neutral-700'>
@@ -31,21 +33,20 @@ function Header() {
           </Link>
         </nav>
         <nav className='flex items-center justify-between gap-x-4'>
-          <Link to='/login' className='flex items-center gap-x-2 '>
-            <span className='hidden xl:inline-block text-xs font-semibold text-white'>
-              Wishlist
-            </span>
-            <MdFavorite className='w-5 h-5 text-neutral-400' />
+          <Link to='/login'>
+            <MdFavoriteBorder className='w-6 h-6 text-white' />
           </Link>
-          <Link to='/cart' className='flex items-center gap-x-2 '>
-            <span className='hidden xl:inline-block text-xs font-semibold text-white'>
-              Cart
-            </span>
-            <MdOutlineShoppingCart className='w-5 h-5 text-white' />
+          <Link to='/cart'>
+            <div className='relative'>
+              <MdOutlineShoppingCart className='w-6 h-6 text-white' />
+              <div className='absolute -top-1.5 -right-2 bg-red-500 w-4 h-4 rounded-full flex items-center justify-center'>
+                <p className='text-white text-xs'>{cartItems.length}</p>
+              </div>
+            </div>
           </Link>
           {user?.firstName ? (
             <Link to='/profile' className='text-xs font-semibold text-white'>
-              Profile
+              <MdOutlineAccountCircle className='w-6 h-6 text-white' />
             </Link>
           ) : (
             <>
