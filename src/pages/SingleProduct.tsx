@@ -76,7 +76,7 @@ function SingleProduct({}: Props) {
   const { product } = data;
 
   return (
-    <div className='grid lg:grid-cols-2 gap-x-8'>
+    <div className='grid lg:grid-cols-[450px_1fr] gap-x-8'>
       {/* image gallery */}
       <section>
         <img
@@ -87,30 +87,30 @@ function SingleProduct({}: Props) {
       </section>
       {/* product */}
       <section className='mt-4'>
-        <h3 className='text-xl font-semibold capitalize'>{product?.title}</h3>
+        <h3 className='text-3xl font-semibold capitalize'>{product?.title}</h3>
         <p className='text-neutral-400 font-light text-lg'>{product?.brand}</p>
         <Rating rating={4} />
         <div className='mt-6'>
-          <p className='text-3xl'>R{product?.price}</p>
+          <p className='text-3xl'>R{product?.price.toFixed(2)}</p>
         </div>
 
         {/* size selector */}
         <div className='mt-6'>
           <h6 className='font-semibold uppercase text-sm'>Select a size</h6>
-          <div className='flex items-center gap-x-6 mt-4'>
+          <div className='flex items-center gap-x-2 mt-4'>
             {product?.sizes.map((s, index) => {
               return (
                 <div
                   key={index}
                   className={`border ${
                     size === s ? 'border-2 border-black' : ''
-                  }  rounded-full h-14 min-w-14 box-border inline-flex items-center justify-center shrink-0 px-3 cursor-pointer`}
+                  }  rounded-full h-10 w-10 box-border inline-flex items-center justify-center shrink-0 px-3 cursor-pointer`}
                   onClick={() => {
                     setSize(s);
                     setQuantity(1);
                   }}
                 >
-                  <p className='uppercase font-semibold'>{s}</p>
+                  <p className='uppercase font-semibold text-sm'>{s}</p>
                 </div>
               );
             })}
@@ -120,7 +120,7 @@ function SingleProduct({}: Props) {
         {size && (
           <div className='mt-6 flex items-center gap-x-14'>
             <h6 className='font-semibold uppercase text-sm'>Quantity</h6>
-            <div className='flex items-center justify-center gap-x-14'>
+            <div className='flex items-center justify-center gap-x-10'>
               <button onClick={() => handleOnToggleQuantity('decrease')}>
                 <MdOutlineRemove className='w-5 h-5' />
               </button>
@@ -135,19 +135,19 @@ function SingleProduct({}: Props) {
         <div className='mt-6 flex flex-col lg:flex-row lg:items-center gap-y-4 lg:gap-x-4'>
           <button
             onClick={handleAddToCart}
-            className='w-full bg-red-500 text-white font-bold py-2 uppercase flex items-center justify-center gap-x-2'
+            className='w-full bg-red-500 text-white font-bold py-3 uppercase flex items-center justify-center gap-x-2'
           >
             <MdOutlineShoppingCart />
             Add to cart
           </button>
-          <button className='w-full border py-2 font-bold uppercase flex items-center justify-center gap-x-2'>
+          <button className='w-full border py-3 font-bold uppercase flex items-center justify-center gap-x-2'>
             <MdFavorite />
             Add to wishlist
           </button>
         </div>
         {/* product details */}
         <div className='mt-6'>
-          <h6 className='text-neutral-400 font-medium'>Product Details</h6>
+          <h6 className='font-semibold'>Product Details</h6>
           {product?.description && (
             <p className='text-neutral-400 text-sm'>{product.description}</p>
           )}
@@ -160,7 +160,7 @@ function SingleProduct({}: Props) {
               ))}
             </ul>
           )}
-          <div className='mt-8 grid grid-cols-4 md:grid-cols-2 gap-4'>
+          <div className='mt-4 grid grid-cols-4 md:grid-cols-2 gap-4'>
             <div>
               <h6 className='font-semibold'>Colour</h6>
               <p className='capitalize text-neutral-400 text-sm'>
