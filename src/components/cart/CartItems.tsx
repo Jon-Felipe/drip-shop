@@ -46,8 +46,11 @@ function CartItems({ cartItems }: Props) {
                   className='w-full max-w-16 object-cover'
                 />
               </td>
-              <td className='px-6 py-4 font-semibold text-gray-900 truncate'>
+              <td className='px-6 py-4 font-semibold text-gray-900 truncate capitalize'>
                 {cartItem.product.title}
+                <p className='font-normal'>
+                  Size: <span>{cartItem.size}</span>
+                </p>
               </td>
               <td className='px-6 py-4'>
                 <div className='flex items-center'>
