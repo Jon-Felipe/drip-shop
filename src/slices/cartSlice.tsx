@@ -19,23 +19,14 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, { payload }: PayloadAction<ICart>) => {
-      const itemExists = state.cartItems.find(
-        (item) =>
-          item.product._id?.toString() === payload.product._id?.toString()
+      const foundCartItem = state.cartItems.find(
+        (cartItem) => cartItem.cartId === payload.cartId
       );
 
-      if (!itemExists) {
-        state.cartItems = [...state.cartItems, payload];
+      if (!foundCartItem) {
+        state.cartItems.push(payload);
       } else {
-        state.cartItems = state.cartItems.map((item) => {
-          if (
-            item.product._id?.toString() === payload.product._id?.toString()
-          ) {
-            return { ...item, quantity: item.quantity + payload.quantity };
-          } else {
-            return item;
-          }
-        });
+        foundCartItem.quantity += payload.quantity;
       }
 
       state.cartTotal = state.cartItems.reduce(
