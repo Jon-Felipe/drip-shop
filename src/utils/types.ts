@@ -37,6 +37,7 @@ export interface IDepartment {
 }
 
 export interface ICart {
+  cartId: string;
   product: Pick<IProduct, '_id' | 'title' | 'price' | 'image' | 'colour'>;
   size: string;
   quantity: number;

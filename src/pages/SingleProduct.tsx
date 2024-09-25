@@ -45,6 +45,7 @@ function SingleProduct({}: Props) {
 
   function handleAddToCart() {
     const cartObj: ICart = {
+      cartId: data?.product._id + size || '',
       product: {
         _id: data?.product._id || '',
         title: data?.product.title || '',
