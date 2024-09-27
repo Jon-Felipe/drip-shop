@@ -7,10 +7,8 @@ import { IUser } from '../utils/types';
 import Input from '../components/Input';
 
 function Checkout() {
-  const {
-    user: { user },
-    cart,
-  } = useAppSelector((store) => store);
+  const { user } = useAppSelector((store) => store.user);
+  const { cartItems } = useAppSelector((store) => store.cart);
 
   const [userDetails, setUserDetails] = useState<Partial<IUser>>({
     firstName: user?.firstName || '',
@@ -200,8 +198,8 @@ function Checkout() {
       <section className='w-full basis-2/5'>
         <h4 className='font-medium mb-4'>Order Summary</h4>
         <article className='border rounded p-4'>
-          {cart.cartItems.map((cartItem) => (
-            <div key={cartItem.product.id} className='mb-4'>
+          {cartItems.map((cartItem) => (
+            <div key={cartItem.product._id} className='mb-4'>
               <div className='flex gap-x-4'>
                 <img
                   src='../images/mens_shirt.jpg'
