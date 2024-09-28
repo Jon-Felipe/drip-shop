@@ -18,13 +18,13 @@ export interface IUser {
   lastName: string;
   email: string;
   password: string;
-  phoneNumber: number;
-  dateOfBirth: string;
-  address: {
-    street: string;
-    city: string;
-    postalcode: string;
-    country: string;
+  phoneNumber?: number;
+  dateOfBirth?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    postalcode?: string;
+    country?: string;
   };
 }
 
