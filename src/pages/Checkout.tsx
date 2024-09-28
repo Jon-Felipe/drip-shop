@@ -27,8 +27,16 @@ function Checkout() {
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     const value = e.target.value;
+
     setUserDetails((prevState) => {
-      return { ...prevState, [name]: value };
+      if (userDetails.address && userDetails.address.hasOwnProperty(name)) {
+        return {
+          ...prevState,
+          address: { ...prevState.address, [name]: value },
+        };
+      } else {
+        return { ...prevState, [name]: value };
+      }
     });
   }
 
@@ -96,7 +104,7 @@ function Checkout() {
               <Input
                 label='Address'
                 type='text'
-                name='address'
+                name='street'
                 value={userDetails?.address?.street}
                 onChange={handleOnChange}
                 placeholder='123 example street'
@@ -148,13 +156,15 @@ function Checkout() {
               <div className='flex items-center'>
                 <input
                   type='radio'
+                  id='online'
+                  name='online'
                   value='online'
                   onChange={handlePaymentOnChange}
                   checked={paymentMethod === 'online'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
-                  htmlFor='default-radio-1'
+                  htmlFor='online'
                   className='ms-2 text-sm font-medium text-gray-900'
                 >
                   Online Payment
@@ -163,13 +173,15 @@ function Checkout() {
               <div className='flex items-center'>
                 <input
                   type='radio'
+                  id='cash'
+                  name='cash'
                   value='cash'
                   onChange={handlePaymentOnChange}
                   checked={paymentMethod === 'cash'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
-                  htmlFor='default-radio-1'
+                  htmlFor='cash'
                   className='ms-2 text-sm font-medium text-gray-900'
                 >
                   Cash on Delivery
@@ -178,13 +190,15 @@ function Checkout() {
               <div className='flex items-center'>
                 <input
                   type='radio'
+                  id='pos'
+                  name='pos'
                   value='pos'
                   onChange={handlePaymentOnChange}
                   checked={paymentMethod === 'pos'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
                 <label
-                  htmlFor='default-radio-1'
+                  htmlFor='pos'
                   className='ms-2 text-sm font-medium text-gray-900'
                 >
                   POS on Delivery
