@@ -28,13 +28,10 @@ function Checkout() {
     const value = e.target.value;
 
     setDeliveryInfo((prevState) => {
-      if (
-        deliveryInfo.shippingAddress &&
-        deliveryInfo.shippingAddress.hasOwnProperty(name)
-      ) {
+      if (deliveryInfo.shippingAddress.hasOwnProperty(name)) {
         return {
           ...prevState,
-          address: { ...prevState.shippingAddress, [name]: value },
+          shippingAddress: { ...prevState.shippingAddress, [name]: value },
         };
       } else {
         return { ...prevState, [name]: value };
