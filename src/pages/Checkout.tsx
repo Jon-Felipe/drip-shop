@@ -42,11 +42,6 @@ function Checkout() {
     });
   }
 
-  function handlePaymentOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    setPaymentMethod(value);
-  }
-
   return (
     <div className='block lg:flex lg:gap-x-6'>
       <div>
@@ -162,7 +157,7 @@ function Checkout() {
                   id='online'
                   name='online'
                   value='online'
-                  onChange={handlePaymentOnChange}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                   checked={paymentMethod === 'online'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
@@ -179,7 +174,7 @@ function Checkout() {
                   id='cash'
                   name='cash'
                   value='cash'
-                  onChange={handlePaymentOnChange}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                   checked={paymentMethod === 'cash'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
@@ -196,7 +191,7 @@ function Checkout() {
                   id='pos'
                   name='pos'
                   value='pos'
-                  onChange={handlePaymentOnChange}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
                   checked={paymentMethod === 'pos'}
                   className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
                 />
