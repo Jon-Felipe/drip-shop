@@ -1,25 +1,24 @@
 import { useState } from 'react';
 
 import { useAppSelector } from '../hooks/hooks';
-import { IUser } from '../utils/types';
+import { IDeliveryInformation } from '../utils/types';
 
 // components
 import Input from '../components/Input';
 
 function Checkout() {
-  const { user } = useAppSelector((store) => store.user);
   const { cartItems } = useAppSelector((store) => store.cart);
 
-  const [userDetails, setUserDetails] = useState<Partial<IUser>>({
-    firstName: user?.firstName || '',
-    lastName: user?.lastName || '',
-    email: user?.email || '',
-    phoneNumber: user?.phoneNumber || undefined,
-    address: {
-      street: user?.address?.street || '',
-      city: user?.address?.city || '',
-      country: user?.address?.country || '',
-      postalcode: user?.address?.postalcode || '',
+  const [deliveryInfo, setDeliveryInfo] = useState<IDeliveryInformation>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    shippingAddress: {
+      street: '',
+      city: '',
+      country: '',
+      postalcode: '',
     },
   });
   const [paymentMethod, setPaymentMethod] = useState<string>('online');
@@ -28,11 +27,14 @@ function Checkout() {
     const name = e.target.name;
     const value = e.target.value;
 
-    setUserDetails((prevState) => {
-      if (userDetails.address && userDetails.address.hasOwnProperty(name)) {
+    setDeliveryInfo((prevState) => {
+      if (
+        deliveryInfo.shippingAddress &&
+        deliveryInfo.shippingAddress.hasOwnProperty(name)
+      ) {
         return {
           ...prevState,
-          address: { ...prevState.address, [name]: value },
+          address: { ...prevState.shippingAddress, [name]: value },
         };
       } else {
         return { ...prevState, [name]: value };
@@ -58,10 +60,11 @@ function Checkout() {
                   label='First Name'
                   type='text'
                   name='firstName'
-                  value={userDetails?.firstName}
+                  value={deliveryInfo?.firstName}
                   onChange={handleOnChange}
                   placeholder='John'
                   required={true}
+                  disabled
                 />
               </div>
               <div className='w-full'>
@@ -69,7 +72,7 @@ function Checkout() {
                   label='Last Name'
                   type='text'
                   name='lastName'
-                  value={userDetails?.lastName}
+                  value={deliveryInfo?.lastName}
                   onChange={handleOnChange}
                   placeholder='Doe'
                   required={true}
@@ -82,7 +85,7 @@ function Checkout() {
                   label='Email'
                   type='email'
                   name='email'
-                  value={userDetails?.email}
+                  value={deliveryInfo?.email}
                   onChange={handleOnChange}
                   placeholder='test@example.com'
                   required={true}
@@ -93,7 +96,7 @@ function Checkout() {
                   label='Mobile Number'
                   type='text'
                   name='phoneNumber'
-                  value={userDetails?.phoneNumber}
+                  value={deliveryInfo?.phoneNumber}
                   onChange={handleOnChange}
                   placeholder='+123456789'
                   required={true}
@@ -105,7 +108,7 @@ function Checkout() {
                 label='Address'
                 type='text'
                 name='street'
-                value={userDetails?.address?.street}
+                value={deliveryInfo?.shippingAddress?.street}
                 onChange={handleOnChange}
                 placeholder='123 example street'
                 required={true}
@@ -114,23 +117,23 @@ function Checkout() {
             <div className='flex flex-col lg:flex-row lg:gap-x-6 gap-y-4 lg:gap-y-0'>
               <div className='w-full'>
                 <Input
-                  label='Country'
+                  label='City'
                   type='text'
-                  name='country'
-                  value={userDetails?.address?.country}
+                  name='city'
+                  value={deliveryInfo?.shippingAddress?.city}
                   onChange={handleOnChange}
-                  placeholder='South Africa'
+                  placeholder='Johannesburg'
                   required={true}
                 />
               </div>
               <div className='w-full'>
                 <Input
-                  label='City'
+                  label='Country'
                   type='text'
-                  name='city'
-                  value={userDetails?.address?.city}
+                  name='country'
+                  value={deliveryInfo?.shippingAddress?.country}
                   onChange={handleOnChange}
-                  placeholder='Johannesburg'
+                  placeholder='South Africa'
                   required={true}
                 />
               </div>
@@ -139,7 +142,7 @@ function Checkout() {
                   label='Postal Code'
                   type='text'
                   name='postalcode'
-                  value={userDetails?.address?.postalcode}
+                  value={deliveryInfo?.shippingAddress?.postalcode}
                   onChange={handleOnChange}
                   placeholder='1234'
                   required={true}

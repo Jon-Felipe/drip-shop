@@ -60,3 +60,29 @@ export interface IDropdownOption {
   text: string;
   url: string;
 }
+
+export interface IDeliveryInformation {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  shippingAddress: {
+    street: string;
+    city: string;
+    country: string;
+    postalcode: string;
+  };
+}
+
+export interface IOrder {
+  orderItems: Partial<IProduct[]>;
+  shippingAddress: {
+    street: string;
+    city: string;
+    postalcode: string;
+    country: string;
+  };
+  shippingMethod: string;
+  paymentMethod: string;
+  totalPrice: number;
+}
