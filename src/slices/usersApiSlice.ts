@@ -3,13 +3,15 @@ import { dripShopApi } from './apiSlice.ts';
 
 const userApi = dripShopApi.injectEndpoints({
   endpoints: (build) => ({
-    register: build.mutation<Partial<{ user: IUser }>, Partial<IUser>>({
-      query: (userData) => ({
-        url: '/auth/register',
-        method: 'POST',
-        body: userData,
-      }),
-    }),
+    register: build.mutation<Partial<{ user: Partial<IUser> }>, Partial<IUser>>(
+      {
+        query: (userData) => ({
+          url: '/auth/register',
+          method: 'POST',
+          body: userData,
+        }),
+      }
+    ),
     login: build.mutation<
       Partial<{ user: IUser }>,
       Pick<IUser, 'email' | 'password'>
