@@ -12,20 +12,22 @@ export interface IProduct {
   departmentId: string;
 }
 
+export interface IAddress {
+  street: string;
+  city: string;
+  country: string;
+  postalcode: string;
+}
+
 export interface IUser {
   id: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
-  phoneNumber?: number;
+  phoneNumber?: string;
   dateOfBirth?: string;
-  address?: {
-    street?: string;
-    city?: string;
-    postalcode?: string;
-    country?: string;
-  };
+  address?: IAddress;
 }
 
 export interface IDepartment {
@@ -61,28 +63,25 @@ export interface IDropdownOption {
   url: string;
 }
 
+export interface IOrderItems {
+  title: string;
+  price: number;
+  quantity: number;
+  size: string;
+  product: string;
+}
+
 export interface IDeliveryInformation {
   firstName: string;
   lastName: string;
   email: string;
   phoneNumber: string;
-  shippingAddress: {
-    street: string;
-    city: string;
-    country: string;
-    postalcode: string;
-  };
+  shippingAddress: IAddress;
 }
 
 export interface IOrder {
-  orderItems: Partial<IProduct[]>;
-  shippingAddress: {
-    street: string;
-    city: string;
-    postalcode: string;
-    country: string;
-  };
+  orderItems: IOrderItems[];
+  deliveryInformation: IDeliveryInformation;
   shippingMethod: string;
-  paymentMethod: string;
   totalPrice: number;
 }
