@@ -74,7 +74,6 @@ export interface IOrderItems {
 export interface IDeliveryInformation {
   firstName: string;
   lastName: string;
-  email: string;
   phoneNumber: string;
   shippingAddress: IAddress;
 }
@@ -82,6 +81,5 @@ export interface IDeliveryInformation {
 export interface IOrder {
   orderItems: IOrderItems[];
   deliveryInformation: IDeliveryInformation;
-  shippingMethod: string;
   totalPrice: number;
 }

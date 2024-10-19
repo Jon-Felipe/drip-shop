@@ -1,27 +1,33 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { clearCart } from '../slices/cartSlice';
 
-import { useAppSelector } from '../hooks/hooks';
-import { IDeliveryInformation } from '../utils/types';
+// extras
+import { useCreateOrderMutation } from '../slices/orderApiSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { IDeliveryInformation, IOrder } from '../utils/types';
 
 // components
 import Input from '../components/Input';
 
 function Checkout() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((store) => store.user);
   const { cartItems } = useAppSelector((store) => store.cart);
+  const [createOrder, { isLoading }] = useCreateOrderMutation();
 
   const [deliveryInfo, setDeliveryInfo] = useState<IDeliveryInformation>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
+    firstName: user?.firstName || '',
+    lastName: user?.lastName || '',
+    phoneNumber: user?.phoneNumber || '',
     shippingAddress: {
-      street: '',
-      city: '',
-      country: '',
-      postalcode: '',
+      street: user?.address?.street || '',
+      city: user?.address?.city || '',
+      country: user?.address?.country || '',
+      postalcode: user?.address?.postalcode || '',
     },
   });
-  const [paymentMethod, setPaymentMethod] = useState<string>('online');
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
@@ -39,8 +45,32 @@ function Checkout() {
     });
   }
 
+  async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const newOrderPayloadObj: IOrder = {
+      orderItems: cartItems.map((cartItem) => {
+        return {
+          title: cartItem.product.title,
+          price: cartItem.product.price,
+          quantity: cartItem.quantity,
+          size: cartItem.size,
+          product: cartItem.product._id,
+        };
+      }),
+      deliveryInformation: deliveryInfo,
+      totalPrice: 0,
+    };
+    try {
+      await createOrder(newOrderPayloadObj);
+      dispatch(clearCart());
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className='block lg:flex lg:gap-x-6'>
+    <form onSubmit={handleOnSubmit} className='block lg:flex lg:gap-x-6'>
       <div>
         {/* delivery summary */}
         <section className='w-full basis-3/5'>
@@ -56,7 +86,6 @@ function Checkout() {
                   onChange={handleOnChange}
                   placeholder='John'
                   required={true}
-                  disabled
                 />
               </div>
               <div className='w-full'>
@@ -71,29 +100,16 @@ function Checkout() {
                 />
               </div>
             </div>
-            <div className='flex flex-col lg:flex-row lg:gap-x-6 gap-y-4 lg:gap-y-0'>
-              <div className='w-full'>
-                <Input
-                  label='Email'
-                  type='email'
-                  name='email'
-                  value={deliveryInfo?.email}
-                  onChange={handleOnChange}
-                  placeholder='test@example.com'
-                  required={true}
-                />
-              </div>
-              <div className='w-full'>
-                <Input
-                  label='Mobile Number'
-                  type='text'
-                  name='phoneNumber'
-                  value={deliveryInfo?.phoneNumber}
-                  onChange={handleOnChange}
-                  placeholder='+123456789'
-                  required={true}
-                />
-              </div>
+            <div className='w-full'>
+              <Input
+                label='Mobile Number'
+                type='text'
+                name='phoneNumber'
+                value={deliveryInfo?.phoneNumber}
+                onChange={handleOnChange}
+                placeholder='+123456789'
+                required={true}
+              />
             </div>
             <div className='w-full'>
               <Input
@@ -139,65 +155,6 @@ function Checkout() {
                   placeholder='1234'
                   required={true}
                 />
-              </div>
-            </div>
-          </article>
-        </section>
-        {/* payment method */}
-        <section className='mt-4'>
-          <h4 className='font-medium mb-4'>Payment Method</h4>
-          <article className='border rounded p-4'>
-            <div className='flex flex-col lg:flex-row gap-y-4 lg:gap-y-0 lg:items-center lg:justify-between'>
-              <div className='flex items-center'>
-                <input
-                  type='radio'
-                  id='online'
-                  name='online'
-                  value='online'
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  checked={paymentMethod === 'online'}
-                  className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
-                />
-                <label
-                  htmlFor='online'
-                  className='ms-2 text-sm font-medium text-gray-900'
-                >
-                  Online Payment
-                </label>
-              </div>
-              <div className='flex items-center'>
-                <input
-                  type='radio'
-                  id='cash'
-                  name='cash'
-                  value='cash'
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  checked={paymentMethod === 'cash'}
-                  className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
-                />
-                <label
-                  htmlFor='cash'
-                  className='ms-2 text-sm font-medium text-gray-900'
-                >
-                  Cash on Delivery
-                </label>
-              </div>
-              <div className='flex items-center'>
-                <input
-                  type='radio'
-                  id='pos'
-                  name='pos'
-                  value='pos'
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  checked={paymentMethod === 'pos'}
-                  className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300'
-                />
-                <label
-                  htmlFor='pos'
-                  className='ms-2 text-sm font-medium text-gray-900'
-                >
-                  POS on Delivery
-                </label>
               </div>
             </div>
           </article>
@@ -250,13 +207,17 @@ function Checkout() {
             </p>
           </div>
           <div className='mt-4'>
-            <button className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none'>
-              Confirm Order
+            <button
+              type='submit'
+              disabled={isLoading}
+              className='w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none'
+            >
+              {isLoading ? 'Submitting Order' : 'Confirm Order'}
             </button>
           </div>
         </article>
       </section>
-    </div>
+    </form>
   );
 }
 

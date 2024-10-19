@@ -70,10 +70,14 @@ export const cartSlice = createSlice({
         return acc + curr.product.price * curr.quantity;
       }, 0);
     },
+    clearCart: (state) => {
+      state.cartItems = [];
+      state.cartTotal = 0;
+    },
   },
 });
 
-export const { addToCart, removeFromCart, toggleCartQuantity } =
+export const { addToCart, removeFromCart, toggleCartQuantity, clearCart } =
   cartSlice.actions;
 
 export default cartSlice.reducer;
