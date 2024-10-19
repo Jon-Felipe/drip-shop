@@ -12,10 +12,7 @@ const userApi = dripShopApi.injectEndpoints({
         }),
       }
     ),
-    login: build.mutation<
-      Partial<{ user: IUser }>,
-      Pick<IUser, 'email' | 'password'>
-    >({
+    login: build.mutation<{ user: IUser }, Pick<IUser, 'email' | 'password'>>({
       query: (userData) => ({
         url: '/auth/login',
         method: 'POST',
