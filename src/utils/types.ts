@@ -1,16 +1,4 @@
-export interface IProduct {
-  _id: string;
-  title: string;
-  description?: string | undefined;
-  extraInfo?: string[] | undefined;
-  image: string;
-  price: number;
-  colour: string;
-  sizes: string[];
-  material: string;
-  brand: string;
-  departmentId: string;
-}
+import { IProduct } from '../components/ProductCard';
 
 export interface IAddress {
   street: string;

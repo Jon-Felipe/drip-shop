@@ -1,7 +1,7 @@
 import { dripShopApi } from './apiSlice.ts';
 
 // extras
-import { IProduct } from '../utils/types.ts';
+import { IProduct } from '../components/ProductCard.tsx';
 
 const productApi = dripShopApi.injectEndpoints({
   endpoints: (build) => ({

@@ -76,7 +76,7 @@ function Department() {
           </div>
         </div>
       </section>
-      <div className='grid grid-cols-[200px_1fr] gap-x-4'>
+      <div className='grid grid-cols-[200px_1fr] gap-x-12'>
         {/* filters */}
         <section>
           {/* categories */}
@@ -88,7 +88,7 @@ function Department() {
           {/* brands */}
           <Dropdown title='More brands' options={brands} />
         </section>
-        <section className='grid grid-cols-2 auto-rows-min lg:grid-cols-4 gap-6'>
+        <section className='grid grid-cols-2 auto-rows-min lg:grid-cols-4 gap-8'>
           {products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
