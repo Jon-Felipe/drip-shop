@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAppDispatch } from '../hooks/hooks';
-import { useLoginMutation } from '../slices/usersApiSlice';
-import { setUser } from '../slices/userSlice';
+import { Link } from 'react-router-dom';
 
 // components
 import Input from '../components/Input';
 
 // extras
-import { IUser } from '../utils/types';
+import { useAppDispatch } from '../hooks/hooks';
+import { useLoginMutation } from '../slices/usersApiSlice';
+import { setUser } from '../slices/userSlice';
+
+interface ILoginUser {
+  email: string;
+  password: string;
+}
 
 function Login() {
-  const [userInfo, setUserInfo] = useState<Pick<IUser, 'email' | 'password'>>({
+  const [userInfo, setUserInfo] = useState<ILoginUser>({
     email: '',
     password: '',
   });
@@ -85,9 +90,9 @@ function Login() {
             </button>
             <div className='text-sm font-medium text-gray-500'>
               Not registered?{' '}
-              <a href='#' className='text-blue-700 hover:underline'>
+              <Link to='/register' className='text-blue-700 hover:underline'>
                 Create account
-              </a>
+              </Link>
             </div>
           </form>
         </div>
