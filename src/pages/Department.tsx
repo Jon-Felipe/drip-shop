@@ -41,19 +41,21 @@ function Department() {
     return <p>No department found</p>;
   }
 
-  const { department: foundDepartment } = data;
+  const {
+    department: { products, text, description },
+  } = data;
 
   return (
     <>
       <section className='text-center mb-10'>
         <h3 className='text-xl lg:text-3xl font-semibold mb-5 capitalize'>
-          {foundDepartment.text}
+          {text}
         </h3>
-        <p className='text-sm lg:text-base'>{foundDepartment.description}</p>
+        <p className='text-sm lg:text-base'>{description}</p>
       </section>
       <section className='flex flex-col md:flex-row md:justify-between md:items-center mb-6'>
         <p className='font-semibold capitalize text-sm mb-4'>
-          {foundDepartment.products.length} products found
+          {products.length} products found
         </p>
         <div className='w-full max-w-sm flex items-center justify-between gap-x-4'>
           <div className='flex items-center justify-between gap-x-4'>
@@ -87,7 +89,7 @@ function Department() {
           <Dropdown title='More brands' options={brands} />
         </section>
         <section className='grid grid-cols-2 lg:grid-cols-6 gap-6'>
-          {foundDepartment.products.map((product, index) => (
+          {products.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
         </section>
