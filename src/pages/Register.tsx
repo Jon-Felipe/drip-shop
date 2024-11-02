@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../hooks/hooks';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 // components
 import Input from '../components/Input';
 
 // extras
+import { useAppDispatch } from '../hooks/hooks';
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setUser } from '../slices/userSlice';
-import { IUser } from '../utils/types';
+
+interface IRegisterUser {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
 
 function Register() {
-  const [userState, setUserState] = useState<Partial<IUser>>({
-    firstName: '',
-    lastName: '',
+  const [userState, setUserState] = useState<IRegisterUser>({
     email: '',
     password: '',
+    firstName: '',
+    lastName: '',
   });
 
   const dispatch = useAppDispatch();
@@ -25,7 +33,6 @@ function Register() {
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     const value = e.target.value;
-
     setUserState((prevState) => {
       return { ...prevState, [name]: value };
     });
@@ -33,12 +40,13 @@ function Register() {
 
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     try {
       const { user } = await register({ ...userState }).unwrap();
       dispatch(setUser({ ...user }));
+      toast.success('Login Successful');
       navigate('/');
     } catch (error) {
+      toast.error('Something went wrong. Please try again later.');
       console.log(error);
     }
   }
@@ -130,9 +138,9 @@ function Register() {
             </button>
             <div className='text-sm font-medium text-gray-500'>
               Already registered?{' '}
-              <a href='#' className='text-blue-700 hover:underline'>
+              <Link to='/login' className='text-blue-700 hover:underline'>
                 Login
-              </a>
+              </Link>
             </div>
           </form>
         </div>
