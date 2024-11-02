@@ -14,6 +14,7 @@ import { setUser } from '../slices/userSlice';
 interface IRegisterUser {
   email: string;
   password: string;
+  confirmPassword: string;
   firstName: string;
   lastName: string;
 }
@@ -22,6 +23,7 @@ function Register() {
   const [userState, setUserState] = useState<IRegisterUser>({
     email: '',
     password: '',
+    confirmPassword: '',
     firstName: '',
     lastName: '',
   });
@@ -40,8 +42,20 @@ function Register() {
 
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const { email, password, confirmPassword, firstName, lastName } = userState;
+
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
     try {
-      const { user } = await register({ ...userState }).unwrap();
+      const { user } = await register({
+        email,
+        password,
+        firstName,
+        lastName,
+      }).unwrap();
       dispatch(setUser({ ...user }));
       toast.success('Login Successful');
       navigate('/');
@@ -78,6 +92,17 @@ function Register() {
                 type='password'
                 name='password'
                 value={userState.password}
+                onChange={handleOnChange}
+                placeholder='••••••••'
+                required={true}
+              />
+            </div>
+            <div>
+              <Input
+                label='Confirm password'
+                type='password'
+                name='confirmPassword'
+                value={userState.confirmPassword}
                 onChange={handleOnChange}
                 placeholder='••••••••'
                 required={true}
