@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
-import { IDropdownOption } from '../utils/types';
+
+export interface IDropdownOption {
+  id: string | number;
+  text: string;
+  url: string;
+}
 
 type Props = {
   title: string;

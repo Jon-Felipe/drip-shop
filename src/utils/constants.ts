@@ -1,5 +1,6 @@
+import { IDropdownOption } from '../components/Dropdown';
 import { ISelect } from '../components/Select';
-import { IBrand, IDropdownOption, IDepartment, IProduct } from './types';
+import { IBrand, IDepartment, IProduct } from './types';
 
 export const dummy_products: IProduct[] = [
   {
