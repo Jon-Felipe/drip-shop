@@ -57,7 +57,7 @@ function Register() {
         lastName,
       }).unwrap();
       dispatch(setUser({ ...user }));
-      toast.success('Login Successful');
+      toast.success('Register Successful');
       navigate('/');
     } catch (error) {
       toast.error('Something went wrong. Please try again later.');
