@@ -1,5 +1,10 @@
 import React from 'react';
-import { ISelect } from '../utils/types';
+
+export interface ISelect {
+  id: string;
+  text: string;
+  value: string | number;
+}
 
 type Props = {
   value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];

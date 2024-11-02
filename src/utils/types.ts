@@ -51,12 +51,6 @@ export interface IBrand {
   image: string;
 }
 
-export interface ISelect {
-  id: string;
-  text: string;
-  value: string | number;
-}
-
 export interface IDropdownOption {
   id: string | number;
   text: string;
