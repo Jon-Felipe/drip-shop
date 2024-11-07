@@ -51,13 +51,6 @@ const meta: Meta<typeof IconButton> = {
         'Toggle between true or false to enable or disable the icon button on hover ripple effect',
     },
   },
-  decorators: [
-    (Story) => (
-      <div className='flex items-center gap-x-2'>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
