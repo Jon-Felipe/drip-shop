@@ -10,7 +10,7 @@ const colourVariants = {
 const sizeVariants = {
   xs: 'text-xs',
   sm: 'text-sm',
-  base: 'text-base',
+  m: 'text-base',
   lg: 'text-lg',
   xl: 'text-xl',
   '2xl': 'text-2xl',
@@ -33,7 +33,7 @@ type LinkProps = {
   size?:
     | 'xs'
     | 'sm'
-    | 'base'
+    | 'm'
     | 'lg'
     | 'xl'
     | '2xl'
@@ -48,7 +48,7 @@ function Link({
   text,
   path,
   colour = 'primary',
-  size = 'base',
+  size = 'm',
   underline = 'none',
 }: LinkProps) {
   let colourClasses = colourVariants[colour];

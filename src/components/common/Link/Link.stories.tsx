@@ -19,7 +19,7 @@ const meta: Meta<typeof Link> = {
     text: 'This is a link',
     path: '/',
     colour: 'primary',
-    size: 'base',
+    size: 'm',
     underline: 'none',
   },
   decorators: [
@@ -74,7 +74,7 @@ export const SizeLinks: Story = {
   render: (args) => (
     <>
       <Link {...args} text='xs Link' size='xs' />
-      <Link {...args} text='base Link' size='base' />
+      <Link {...args} text='base Link' size='m' />
       <Link {...args} text='3xl Link' size='3xl' />
     </>
   ),
