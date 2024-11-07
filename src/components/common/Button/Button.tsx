@@ -1,5 +1,5 @@
 const colourVariants = {
-  default: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300',
+  blue: 'text-white bg-blue-700 hover:bg-blue-800 focus:ring-blue-300',
   light:
     'text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-100',
   dark: 'text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-300',
@@ -11,13 +11,13 @@ const colourVariants = {
 const sizeVariants = {
   xs: 'px-3 py-2 text-xs',
   s: 'px-3 py-2 text-sm',
-  base: 'px-5 py-2.5 text-sm',
+  m: 'px-5 py-2.5 text-sm',
   l: 'px-5 py-3 text-base',
   xl: 'px-6 py-3.5 text-base',
 };
 
 const disabledVariants = {
-  default: 'text-white bg-blue-400 hover:bg-blue-500',
+  blue: 'text-white bg-blue-400 hover:bg-blue-500',
   light: 'text-gray-400 bg-white border border-gray-300 hover:bg-gray-50',
   dark: 'text-white bg-gray-500 hover:bg-gray-600',
   green: 'text-white bg-green-400 hover:bg-green-500',
@@ -26,8 +26,7 @@ const disabledVariants = {
 };
 
 const outlinedVariants = {
-  default:
-    'text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-blue-300',
+  blue: 'text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-blue-300',
   light:
     'text-gray-700 hover:text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-gray-100',
   dark: 'text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-gray-300',
@@ -40,8 +39,8 @@ const outlinedVariants = {
 
 type ButtonProps = {
   text: string;
-  colour?: 'default' | 'light' | 'dark' | 'green' | 'red' | 'yellow';
-  size?: 'xs' | 's' | 'base' | 'l' | 'xl';
+  colour?: 'blue' | 'light' | 'dark' | 'green' | 'red' | 'yellow';
+  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
   outlined?: boolean;
   pill?: boolean;
   disabled?: boolean;
@@ -50,8 +49,8 @@ type ButtonProps = {
 
 function Button({
   text = 'Button',
-  colour = 'default',
-  size = 'base',
+  colour = 'blue',
+  size = 'm',
   outlined = false,
   pill = false,
   disabled = false,

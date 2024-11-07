@@ -16,8 +16,8 @@ const meta: Meta<typeof Button> = {
   argTypes: {},
   args: {
     text: 'Button',
-    colour: 'default',
-    size: 'base',
+    colour: 'blue',
+    size: 'm',
     pill: false,
     disabled: false,
     loading: false,
@@ -38,7 +38,7 @@ type Story = StoryObj<typeof Button>;
 export const DefaultButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} text='Default' />
+      <Button {...args} text='Blue' />
       <Button {...args} text='Light' colour='light' />
       <Button {...args} text='Dark' colour='dark' />
       <Button {...args} text='Green' colour='green' />
@@ -51,7 +51,7 @@ export const DefaultButton: Story = {
 export const ButtonPills: Story = {
   render: (args) => (
     <>
-      <Button {...args} text='Default' pill />
+      <Button {...args} text='Blue' pill />
       <Button {...args} text='Light' colour='light' pill />
       <Button {...args} text='Dark' colour='dark' pill />
       <Button {...args} text='Green' colour='green' pill />
@@ -66,7 +66,7 @@ export const ButtonSizes: Story = {
     <>
       <Button {...args} text='Extra small' size='xs' />
       <Button {...args} text='Small' size='s' />
-      <Button {...args} text='Base' size='base' />
+      <Button {...args} text='Base' size='m' />
       <Button {...args} text='Large' size='l' />
       <Button {...args} text='Extra large' size='xl' />
     </>
