@@ -24,7 +24,7 @@ function Select({
   onChange,
 }: SelectProps) {
   return (
-    <div>
+    <>
       <label
         htmlFor={name}
         className='block mb-2 text-sm font-medium text-gray-900'
@@ -44,7 +44,7 @@ function Select({
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 }
 
