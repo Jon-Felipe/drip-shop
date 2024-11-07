@@ -121,3 +121,34 @@ export const DisabledSelect: Story = {
     disabled: true,
   },
 };
+
+export const NoLabelSelect: Story = {
+  render: () => {
+    const options: ISelect[] = [
+      { id: 1, text: 'United States', value: 'us' },
+      { id: 2, text: 'Canada', value: 'ca' },
+      { id: 3, text: 'France', value: 'fr' },
+      { id: 4, text: 'Germany', value: 'de' },
+    ];
+
+    const [value, setValue] = useState<string>('');
+
+    function onHandleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+      setValue(e.target.value);
+    }
+
+    return (
+      <>
+        <Select
+          name='countries'
+          defaultLabel='Choose a country'
+          options={options}
+          value={value}
+          onChange={onHandleChange}
+          variant='underline'
+          disabled={false}
+        />
+      </>
+    );
+  },
+};

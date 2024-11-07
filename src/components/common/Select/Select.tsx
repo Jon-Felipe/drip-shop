@@ -14,7 +14,7 @@ export interface ISelect {
 }
 
 export type SelectProps = {
-  label: string;
+  label?: string;
   name: string;
   defaultLabel: string;
   options: ISelect[];
@@ -38,12 +38,14 @@ function Select({
 
   return (
     <div className='w-full'>
-      <label
-        htmlFor={name}
-        className='block mb-2 text-sm font-medium text-gray-900'
-      >
-        {label}
-      </label>
+      {label ?? (
+        <label
+          htmlFor={name}
+          className='block mb-2 text-sm font-medium text-gray-900'
+        >
+          {label}
+        </label>
+      )}
       <select
         id={name}
         value={value}
