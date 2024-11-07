@@ -47,6 +47,10 @@ const meta: Meta<typeof Select> = {
         'A function to handle changing of values from the list of options',
       control: false,
     },
+    disabled: {
+      type: 'boolean',
+      description: 'A boolean value to disable or enable the select component',
+    },
   },
 };
 
@@ -78,6 +82,7 @@ export const DefaultSelect: Story = {
           options={options}
           value={value}
           onChange={onHandleChange}
+          disabled={args?.disabled ?? false}
         />
       </>
     );

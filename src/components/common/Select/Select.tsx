@@ -13,6 +13,7 @@ export type SelectProps = {
   options: ISelect[];
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
 };
 
 function Select({
@@ -22,6 +23,7 @@ function Select({
   options,
   value,
   onChange,
+  disabled = false,
 }: SelectProps) {
   return (
     <>
@@ -35,6 +37,7 @@ function Select({
         id={name}
         value={value}
         onChange={onChange}
+        disabled={disabled}
         className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
       >
         <option disabled>{defaultLabel}</option>
