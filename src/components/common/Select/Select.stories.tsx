@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Select, { ISelect } from './Select';
+import Select, { ISelect, SelectProps } from './Select';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Select> = {
@@ -14,7 +14,40 @@ const meta: Meta<typeof Select> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {},
+  argTypes: {
+    label: {
+      type: 'string',
+      description: 'The label text describing the selectable options',
+      control: 'text',
+    },
+    name: {
+      type: 'string',
+      description:
+        'A string value used to associate the label with the select element',
+      control: 'text',
+    },
+    defaultLabel: {
+      type: 'string',
+      description: 'The default option within the select options',
+      control: 'text',
+    },
+    options: {
+      description:
+        'An array of string values ({id: string, text: string, value: string}) to display as option values',
+      control: false,
+    },
+    value: {
+      type: 'string',
+      description: 'The selected value from the list of options',
+      control: false,
+    },
+    onChange: {
+      type: 'function',
+      description:
+        'A function to handle changing of values from the list of options',
+      control: false,
+    },
+  },
 };
 
 export default meta;
@@ -22,7 +55,7 @@ type Story = StoryObj<typeof Select>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const DefaultSelect: Story = {
-  render: () => {
+  render: (args: SelectProps) => {
     const options: ISelect[] = [
       { id: 1, text: 'United States', value: 'us' },
       { id: 2, text: 'Canada', value: 'ca' },
@@ -39,9 +72,9 @@ export const DefaultSelect: Story = {
     return (
       <>
         <Select
-          label='Select an option'
-          name='countries'
-          defaultLabel='Choose a country'
+          label={args.label ?? 'Select an option'}
+          name={args.name ?? 'countries'}
+          defaultLabel={args.defaultLabel ?? 'Choose a country'}
           options={options}
           value={value}
           onChange={onHandleChange}
