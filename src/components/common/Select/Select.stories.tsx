@@ -47,6 +47,20 @@ const meta: Meta<typeof Select> = {
         'A function to handle changing of values from the list of options',
       control: false,
     },
+    variant: {
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'outline',
+        },
+      },
+      control: 'select',
+      description:
+        "An option between outline and underline to change the select components's appearance",
+      options: ['outline', 'underline'],
+    },
     disabled: {
       type: 'boolean',
       description: 'A boolean value to disable or enable the select component',
@@ -82,6 +96,7 @@ export const DefaultSelect: Story = {
           options={options}
           value={value}
           onChange={onHandleChange}
+          variant={args.variant ?? 'outline'}
           disabled={args?.disabled ?? false}
         />
       </>
