@@ -1,6 +1,7 @@
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Select from './Select';
+import Select, { ISelect } from './Select';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Select> = {
@@ -20,4 +21,32 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultSelect: Story = {};
+export const DefaultSelect: Story = {
+  render: () => {
+    const options: ISelect[] = [
+      { id: 1, text: 'United States', value: 'us' },
+      { id: 2, text: 'Canada', value: 'ca' },
+      { id: 3, text: 'France', value: 'fr' },
+      { id: 4, text: 'Germany', value: 'de' },
+    ];
+
+    const [value, setValue] = useState<string>('');
+
+    function onHandleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+      setValue(e.target.value);
+    }
+
+    return (
+      <>
+        <Select
+          label='Select an option'
+          name='countries'
+          defaultLabel='Choose a country'
+          options={options}
+          value={value}
+          onChange={onHandleChange}
+        />
+      </>
+    );
+  },
+};
