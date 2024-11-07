@@ -71,8 +71,7 @@ const meta: Meta<typeof Select> = {
 export default meta;
 type Story = StoryObj<typeof Select>;
 
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultSelect: Story = {
+const Template: Story = {
   render: (args: SelectProps) => {
     const options: ISelect[] = [
       { id: 1, text: 'United States', value: 'us' },
@@ -101,5 +100,24 @@ export const DefaultSelect: Story = {
         />
       </>
     );
+  },
+};
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const OutlineSelectVariant: Story = {
+  ...Template,
+};
+
+export const UnderlineSelectVariant: Story = {
+  ...Template,
+  args: {
+    variant: 'underline',
+  },
+};
+
+export const DisabledSelect: Story = {
+  ...Template,
+  args: {
+    disabled: true,
   },
 };
