@@ -28,9 +28,16 @@ const meta: Meta<typeof Alert> = {
         },
       },
     },
-    bordered: {
-      type: 'boolean',
-      description: 'Adds a border around the alert component if set to true',
+    border: {
+      control: {
+        type: 'radio',
+      },
+      description: 'Adds a border or accent border around the alert component',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
     },
     message: {
       type: 'string',
@@ -67,7 +74,7 @@ const Template: Story = {
       <>
         <Alert
           variant={args.variant ?? 'info'}
-          bordered={args.bordered ?? false}
+          border={args.border}
           message={`This is the ${args.variant ?? 'info'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -75,7 +82,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'danger'}
-          bordered={args.bordered ?? false}
+          border={args.border}
           message={`This is the ${args.variant ?? 'danger'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -83,7 +90,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'success'}
-          bordered={args.bordered ?? false}
+          border={args.border}
           message={`This is the ${args.variant ?? 'success'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -91,7 +98,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'warning'}
-          bordered={args.bordered ?? false}
+          border={args.border}
           message={`This is the ${args.variant ?? 'warning'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -106,10 +113,17 @@ export const AlertVariants: Story = {
   ...Template,
 };
 
-export const BorderedVariants: Story = {
+export const AlertBordered: Story = {
   ...Template,
   args: {
-    bordered: true,
+    border: 'bordered',
+  },
+};
+
+export const AlertBorderAccent: Story = {
+  ...Template,
+  args: {
+    border: 'borderAccent',
   },
 };
 
