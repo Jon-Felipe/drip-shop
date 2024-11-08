@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { MdInfo } from 'react-icons/md';
 
-import Alert from './Alert';
+import Alert, { AlertProps } from './Alert';
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
@@ -14,9 +15,9 @@ const meta: Meta<typeof Alert> = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     variant: {
-      control: false,
+      control: 'select',
       description:
-        'A list of available string values defining the different alert variants. Available options: <strong>info</strong>,  <strong>danger</strong>,  <strong>success</strong>,  <strong>warning</strong>',
+        'A list of available string values defining the different alert variants.',
       table: {
         defaultValue: {
           summary: 'info',
@@ -31,6 +32,10 @@ const meta: Meta<typeof Alert> = {
       description: 'The message to be displayed within the alert component',
       control: false,
     },
+    icon: {
+      control: false,
+      description: 'The icon to be displayed with the message text',
+    },
   },
   decorators: [
     (Story) => (
@@ -44,13 +49,42 @@ const meta: Meta<typeof Alert> = {
 export default meta;
 type Story = StoryObj<typeof Alert>;
 
+const Template: Story = {
+  render: (args: AlertProps) => {
+    return (
+      <>
+        <Alert
+          variant={args.variant ?? 'info'}
+          message={`This is the ${args.variant ?? 'info'} alert`}
+          icon={args.icon ?? undefined}
+        />
+        <Alert
+          variant={args.variant ?? 'danger'}
+          message={`This is the ${args.variant ?? 'danger'} alert`}
+          icon={args.icon ?? undefined}
+        />
+        <Alert
+          variant={args.variant ?? 'success'}
+          message={`This is the ${args.variant ?? 'success'} alert`}
+          icon={args.icon ?? undefined}
+        />
+        <Alert
+          variant={args.variant ?? 'warning'}
+          message={`This is the ${args.variant ?? 'warning'} alert`}
+          icon={args.icon ?? undefined}
+        />
+      </>
+    );
+  },
+};
+
 export const AlertVariants: Story = {
-  render: (args) => (
-    <>
-      <Alert {...args} variant='info' message='This is an info alert' />
-      <Alert {...args} variant='danger' message='This is a danger alert' />
-      <Alert {...args} variant='success' message='This is a success alert' />
-      <Alert {...args} variant='warning' message='This is a warning alert' />
-    </>
-  ),
+  ...Template,
+};
+
+export const AlertWithIcon: Story = {
+  ...Template,
+  args: {
+    icon: <MdInfo className='flex-shrink-0 inline w-4 h-4 me-3' />,
+  },
 };
