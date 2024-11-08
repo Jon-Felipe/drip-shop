@@ -7,8 +7,16 @@ const alertVariants = {
   warning: 'text-yellow-800 bg-yellow-50',
 };
 
+const borderedVariants = {
+  info: 'border border-blue-300',
+  danger: 'border border-red-300',
+  success: 'border border-green-300',
+  warning: 'border border-yellow-300',
+};
+
 export type AlertProps = {
   variant?: 'info' | 'danger' | 'success' | 'warning';
+  bordered?: boolean;
   message: string;
   icon?: React.ReactNode;
   showAlert: boolean;
@@ -17,16 +25,21 @@ export type AlertProps = {
 
 function Alert({
   variant = 'info',
+  bordered = false,
   message,
   icon,
   showAlert,
   onCloseClick,
 }: AlertProps) {
   const variantClass = alertVariants[variant];
+  const borderedClass = borderedVariants[variant];
+
   return (
     showAlert && (
       <div
-        className={`w-full flex items-center p-4 mb-4 text-sm rounded-lg ${variantClass}`}
+        className={`w-full flex items-center p-4 mb-4 text-sm rounded-lg ${variantClass} ${
+          bordered ? borderedClass : ''
+        }`}
         role='alert'
       >
         {icon && icon}

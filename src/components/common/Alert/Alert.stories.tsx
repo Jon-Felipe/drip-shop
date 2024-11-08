@@ -28,6 +28,10 @@ const meta: Meta<typeof Alert> = {
         },
       },
     },
+    bordered: {
+      type: 'boolean',
+      description: 'Adds a border around the alert component if set to true',
+    },
     message: {
       type: 'string',
       description: 'The message to be displayed within the alert component',
@@ -63,6 +67,7 @@ const Template: Story = {
       <>
         <Alert
           variant={args.variant ?? 'info'}
+          bordered={args.bordered ?? false}
           message={`This is the ${args.variant ?? 'info'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -70,6 +75,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'danger'}
+          bordered={args.bordered ?? false}
           message={`This is the ${args.variant ?? 'danger'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -77,6 +83,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'success'}
+          bordered={args.bordered ?? false}
           message={`This is the ${args.variant ?? 'success'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -84,6 +91,7 @@ const Template: Story = {
         />
         <Alert
           variant={args.variant ?? 'warning'}
+          bordered={args.bordered ?? false}
           message={`This is the ${args.variant ?? 'warning'} alert`}
           icon={args.icon ?? undefined}
           showAlert={showAlert}
@@ -96,6 +104,13 @@ const Template: Story = {
 
 export const AlertVariants: Story = {
   ...Template,
+};
+
+export const BorderedVariants: Story = {
+  ...Template,
+  args: {
+    bordered: true,
+  },
 };
 
 export const AlertWithIcon: Story = {
