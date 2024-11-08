@@ -14,9 +14,9 @@ const meta: Meta<typeof Alert> = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     variant: {
-      control: 'select',
+      control: false,
       description:
-        'A list of available string values defining the different alert variants',
+        'A list of available string values defining the different alert variants. Available options: <strong>info</strong>,  <strong>danger</strong>,  <strong>success</strong>,  <strong>warning</strong>',
       table: {
         defaultValue: {
           summary: 'info',
@@ -25,6 +25,11 @@ const meta: Meta<typeof Alert> = {
           summary: 'string',
         },
       },
+    },
+    message: {
+      type: 'string',
+      description: 'The message to be displayed within the alert component',
+      control: false,
     },
   },
   decorators: [
@@ -42,10 +47,10 @@ type Story = StoryObj<typeof Alert>;
 export const AlertVariants: Story = {
   render: (args) => (
     <>
-      <Alert {...args} variant='info' />
-      <Alert {...args} variant='danger' />
-      <Alert {...args} variant='success' />
-      <Alert {...args} variant='warning' />
+      <Alert {...args} variant='info' message='This is an info alert' />
+      <Alert {...args} variant='danger' message='This is a danger alert' />
+      <Alert {...args} variant='success' message='This is a success alert' />
+      <Alert {...args} variant='warning' message='This is a warning alert' />
     </>
   ),
 };

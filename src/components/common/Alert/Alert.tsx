@@ -7,14 +7,14 @@ const alertVariants = {
 
 type AlertProps = {
   variant?: 'info' | 'danger' | 'success' | 'warning';
+  message: string;
 };
 
-function Alert({ variant = 'info' }: AlertProps) {
+function Alert({ variant = 'info', message }: AlertProps) {
   const variantClass = alertVariants[variant];
   return (
     <div className={`p-4 mb-4 text-sm rounded-lg ${variantClass}`} role='alert'>
-      <span className='font-medium capitalize'>{variant}!</span> Change a few
-      things up and try submitting again.
+      <span className='font-medium capitalize'>{variant}!</span> {message}
     </div>
   );
 }
