@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MdInfo } from 'react-icons/md';
 
@@ -51,27 +52,42 @@ type Story = StoryObj<typeof Alert>;
 
 const Template: Story = {
   render: (args: AlertProps) => {
+    const [showAlert, setShowAlert] = useState<boolean>(true);
+
+    function handleOnClose() {
+      setShowAlert(true);
+      alert('This will close the alert');
+    }
+
     return (
       <>
         <Alert
           variant={args.variant ?? 'info'}
           message={`This is the ${args.variant ?? 'info'} alert`}
           icon={args.icon ?? undefined}
+          showAlert={showAlert}
+          onCloseClick={handleOnClose}
         />
         <Alert
           variant={args.variant ?? 'danger'}
           message={`This is the ${args.variant ?? 'danger'} alert`}
           icon={args.icon ?? undefined}
+          showAlert={showAlert}
+          onCloseClick={handleOnClose}
         />
         <Alert
           variant={args.variant ?? 'success'}
           message={`This is the ${args.variant ?? 'success'} alert`}
           icon={args.icon ?? undefined}
+          showAlert={showAlert}
+          onCloseClick={handleOnClose}
         />
         <Alert
           variant={args.variant ?? 'warning'}
           message={`This is the ${args.variant ?? 'warning'} alert`}
           icon={args.icon ?? undefined}
+          showAlert={showAlert}
+          onCloseClick={handleOnClose}
         />
       </>
     );
