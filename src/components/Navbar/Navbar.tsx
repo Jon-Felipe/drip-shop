@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import {
   MdOutlineFavoriteBorder,
@@ -7,6 +8,7 @@ import {
 
 // components
 import Link from '../common/Link/Link';
+import Search from '../common/Search/Search';
 
 export type NavbarProps = {
   title: string;
@@ -14,15 +16,36 @@ export type NavbarProps = {
 };
 
 function Navbar({ title, submenuLinks }: NavbarProps) {
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  function onHandleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setSearchValue(e.target.value);
+  }
+
+  function onHandleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log('form submitted');
+  }
+
   return (
     <>
       <nav className='bg-stone-800'>
-        <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4'>
+        <div className='flex justify-between items-center gap-x-4 mx-auto max-w-screen-xl p-4'>
           <ReactRouterLink to='/' className='flex items-center space-x-3'>
             <span className='self-center text-white text-2xl font-semibold whitespace-nowrap'>
               {title}
             </span>
           </ReactRouterLink>
+          <div className='hidden lg:block w-full max-w-xl'>
+            <form onSubmit={onHandleSubmit}>
+              <Search
+                placeholder='Search'
+                value={searchValue}
+                onChange={onHandleChange}
+                buttonText='Search'
+              />
+            </form>
+          </div>
           <div className='flex items-center space-x-4'>
             <Link
               path='/favourites'
