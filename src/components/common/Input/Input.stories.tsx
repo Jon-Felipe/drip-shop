@@ -20,4 +20,12 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultInput: Story = {};
+export const DefaultInput: Story = {
+  args: {
+    name: 'firstName',
+    label: 'First Name',
+    type: 'text',
+    placeholder: 'First Name',
+    required: true,
+  },
+};
