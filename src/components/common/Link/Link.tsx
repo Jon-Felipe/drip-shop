@@ -1,67 +1,70 @@
-import { Link as ReactRouterDomLink } from 'react-router-dom';
+import React from 'react';
+import { Link as ReactRouterLink } from 'react-router-dom';
 
-const colourVariants = {
-  primary: 'text-neutral-600',
-  secondary: 'text-blue-600',
-  success: 'text-green-600',
-  error: 'text-red-600',
-};
-
-const sizeVariants = {
+const linkTextSize = {
   xs: 'text-xs',
   sm: 'text-sm',
   m: 'text-base',
   lg: 'text-lg',
   xl: 'text-xl',
   '2xl': 'text-2xl',
-  '3xl': 'text-3xl',
-  '4xl': 'text-4xl',
-  '5xl': 'text-5xl',
-  '6xl': 'text-6xl',
 };
 
-const underlineVariants = {
+const linkTextWeight = {
+  thin: 'font-thin',
+  light: 'font-light',
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+};
+
+const linkUnderlineVariants = {
   always: 'underline',
   hover: 'hover:underline',
   none: 'no-underline',
 };
 
-type LinkProps = {
-  text: string;
+export type LinkProps = {
   path: string;
-  colour?: 'primary' | 'secondary' | 'success' | 'error';
-  size?:
-    | 'xs'
-    | 'sm'
-    | 'm'
-    | 'lg'
-    | 'xl'
-    | '2xl'
-    | '3xl'
-    | '4xl'
-    | '5xl'
-    | '6xl';
+  text: string;
+  size?: 'xs' | 'sm' | 'm' | 'lg' | 'xl' | '2xl';
+  weight?: 'thin' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+  uppercase?: boolean;
   underline?: 'always' | 'hover' | 'none';
+  icon?: React.ReactNode;
 };
 
 function Link({
-  text,
   path,
-  colour = 'primary',
+  text,
   size = 'm',
+  weight = 'normal',
+  uppercase = false,
   underline = 'none',
+  icon,
 }: LinkProps) {
-  let colourClasses = colourVariants[colour];
-  let sizeClasses = sizeVariants[size];
-  let underlineClasses = underlineVariants[underline];
+  const sizeClassName = linkTextSize[size];
+  const weightClassName = linkTextWeight[weight];
+  const underlineClassName = linkUnderlineVariants[underline];
+
+  const linkClassName = icon
+    ? ''
+    : `${sizeClassName} ${weightClassName} text-stone-800 ${
+        uppercase ? 'uppercase' : 'capitalize'
+      } ${underlineClassName}`;
 
   return (
-    <ReactRouterDomLink
-      to={path}
-      className={`font-medium tracking-wide ${colourClasses} ${sizeClasses} ${underlineClasses}`}
-    >
-      {text}
-    </ReactRouterDomLink>
+    <ReactRouterLink to={path} className={linkClassName}>
+      {icon ? (
+        <>
+          <span className='sr-only'>{text}</span>
+          {icon}
+        </>
+      ) : (
+        text
+      )}
+    </ReactRouterLink>
   );
 }
 

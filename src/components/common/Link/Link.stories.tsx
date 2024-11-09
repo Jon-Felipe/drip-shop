@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
+import { MdFavoriteBorder } from 'react-icons/md';
 
 import Link from './Link';
 
@@ -14,13 +15,71 @@ const meta: Meta<typeof Link> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {},
-  args: {
-    text: 'This is a link',
-    path: '/',
-    colour: 'primary',
-    size: 'm',
-    underline: 'none',
+  argTypes: {
+    path: {
+      type: 'string',
+      description:
+        'A string value representing the url path of the link component',
+      control: false,
+    },
+    text: {
+      type: 'string',
+      description: 'The text to be displayed',
+    },
+    size: {
+      control: {
+        type: 'select',
+      },
+      if: { arg: 'icon', truthy: false },
+      description: 'A list of text options to update the font size',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'm',
+        },
+      },
+    },
+    weight: {
+      control: {
+        type: 'select',
+      },
+      description: 'A list of text options to update the font weight',
+      if: { arg: 'icon', truthy: false },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'normal',
+        },
+      },
+    },
+    uppercase: {
+      type: 'boolean',
+      if: { arg: 'icon', truthy: false },
+      description: 'Display the text as uppercase or capitalized(default)',
+    },
+    underline: {
+      control: 'radio',
+      description:
+        'A list of options to handle different underline variants applied to the link text',
+      if: { arg: 'icon', truthy: false },
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'none',
+        },
+      },
+    },
+    icon: {
+      description: 'Display as an icon link without text',
+      if: { arg: 'icon' },
+      control: false,
+    },
   },
   decorators: [
     (Story) => (
@@ -37,66 +96,43 @@ export default meta;
 type Story = StoryObj<typeof Link>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const BasicLinks: Story = {
+export const DefaultLink: Story = {
+  args: {
+    path: '/',
+    text: 'Home',
+  },
+};
+
+export const LinkSizes: Story = {
   render: (args) => (
     <>
-      <Link {...args} text='Default Primary Link' />
-      <Link {...args} text='Success Link' colour='success' />
-      <Link
-        {...args}
-        text='Large Secondary Link'
-        colour='secondary'
-        size='lg'
-      />
-      <Link
-        {...args}
-        text='Underline Error Link'
-        colour='error'
-        size='sm'
-        underline='always'
-      />
+      <Link {...args} size='xs' path='/' text='Link Text' />
+      <Link {...args} size='sm' path='/' text='Link Text' />
+      <Link {...args} path='/' text='Link Text' />
+      <Link {...args} size='lg' path='/' text='Link Text' />
+      <Link {...args} size='xl' path='/' text='Link Text' />
+      <Link {...args} size='2xl' path='/' text='Link Text' />
     </>
   ),
 };
 
-export const ColourLinks: Story = {
+export const LinkWeights: Story = {
   render: (args) => (
     <>
-      <Link {...args} text='Default Primary Link' />
-      <Link {...args} text='Secondary Link' colour='secondary' />
-      <Link {...args} text='Success Link' colour='success' />
-      <Link {...args} text='Error Link' colour='error' />
+      <Link {...args} weight='thin' path='/' text='Link Text' />
+      <Link {...args} weight='light' path='/' text='Link Text' />
+      <Link {...args} path='/' text='Link Text' />
+      <Link {...args} weight='medium' path='/' text='Link Text' />
+      <Link {...args} weight='semibold' path='/' text='Link Text' />
+      <Link {...args} weight='bold' path='/' text='Link Text' />
     </>
   ),
 };
 
-export const SizeLinks: Story = {
-  render: (args) => (
-    <>
-      <Link {...args} text='xs Link' size='xs' />
-      <Link {...args} text='base Link' size='m' />
-      <Link {...args} text='3xl Link' size='3xl' />
-    </>
-  ),
-};
-
-export const UnderlineLinks: Story = {
-  render: (args) => (
-    <>
-      <Link {...args} text='Underline: None' underline='none' />
-      <Link
-        {...args}
-        text='Underline: Hover'
-        colour='success'
-        underline='hover'
-      />
-      <Link
-        {...args}
-        text='Underline: Always'
-        colour='secondary'
-        size='lg'
-        underline='always'
-      />
-    </>
-  ),
+export const IconLinks: Story = {
+  args: {
+    path: '/',
+    text: 'Home',
+    icon: <MdFavoriteBorder className='w-6 h-6' />,
+  },
 };
