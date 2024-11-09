@@ -25,13 +25,13 @@ function Search({ placeholder, value, onChange, buttonText }: SearchProps) {
           id='search'
           value={value}
           onChange={onChange}
-          className='block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
+          className='block w-full p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
           placeholder={placeholder}
           required
         />
         <button
           type='submit'
-          className='text-white absolute end-2.5 bottom-1 bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-4 py-2'
+          className='text-white absolute end-2.5 bottom-1.5 bg-stone-700 hover:bg-stone-800 focus:ring-4 focus:outline-none focus:ring-stone-300 font-medium rounded-lg text-sm px-4 py-1'
         >
           {buttonText}
         </button>
