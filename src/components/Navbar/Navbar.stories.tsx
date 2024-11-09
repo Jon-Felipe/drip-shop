@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import Navbar, { NavbarProps } from './Navbar';
+import Navbar from './Navbar';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Navbar> = {
@@ -16,17 +15,13 @@ const meta: Meta<typeof Navbar> = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    showNavbarLinks: {
-      type: 'boolean',
-      description:
-        'Toggle between showing or hidding the navbar links on small screen sizes',
-      control: false,
+    title: {
+      type: 'string',
+      description: 'The navbar title',
     },
-    setShowNavbarLinks: {
-      type: 'function',
-      description:
-        'Function handler for the hamburger button to show or hide the navbar links',
+    submenuLinks: {
       control: false,
+      description: 'The list of sub menu links',
     },
   },
   decorators: [
@@ -41,37 +36,10 @@ const meta: Meta<typeof Navbar> = {
 export default meta;
 type Story = StoryObj<typeof Navbar>;
 
-const Template: Story = {
-  render: (args: NavbarProps) => {
-    const [showNavbar, setShowNavbar] = useState<boolean>(false);
-
-    function onHandleShowNavbar() {
-      setShowNavbar(!showNavbar);
-    }
-
-    return (
-      <>
-        <Navbar
-          {...args}
-          showNavbarLinks={showNavbar}
-          setShowNavbarLinks={onHandleShowNavbar}
-        />
-      </>
-    );
-  },
-};
-
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const NavbarLargeScreen: Story = {
-  ...Template,
-  parameters: {
-    viewport: { defaultViewport: 'tablet' },
-  },
-};
-
-export const NavbarSmallScreen: Story = {
-  ...Template,
-  parameters: {
-    viewport: { defaultViewport: 'mobile2' },
+export const DefaultNavbar: Story = {
+  args: {
+    title: 'DripShop',
+    submenuLinks: ['women', 'men', 'kids', 'brands'],
   },
 };
