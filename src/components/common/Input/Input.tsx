@@ -6,6 +6,7 @@ export type InputProps = {
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   placeholder?: string;
   required?: boolean;
+  disabled?: boolean;
 };
 
 function Input({
@@ -14,6 +15,7 @@ function Input({
   type,
   placeholder,
   required = false,
+  disabled = false,
 }: InputProps) {
   return (
     <>
@@ -28,9 +30,12 @@ function Input({
       <input
         type={type}
         id={name}
-        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none'
+        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none ${
+          disabled ? 'cursor-not-allowed' : ''
+        }`}
         placeholder={placeholder}
         required={required}
+        disabled={disabled}
       />
     </>
   );

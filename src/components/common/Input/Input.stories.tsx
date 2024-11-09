@@ -34,6 +34,11 @@ const meta: Meta<typeof Input> = {
       type: 'boolean',
       description: 'Used to specify whether an input is required or optional',
     },
+    disabled: {
+      type: 'boolean',
+      description:
+        'Used to specify whether an input should be disabled or enabled',
+    },
   },
 };
 
@@ -47,6 +52,15 @@ export const DefaultInput: Story = {
     label: 'First Name',
     type: 'text',
     placeholder: 'First Name',
-    required: true,
+  },
+};
+
+export const DisabledInput: Story = {
+  args: {
+    name: 'firstName',
+    label: 'First Name',
+    type: 'text',
+    placeholder: 'First Name',
+    disabled: true,
   },
 };
