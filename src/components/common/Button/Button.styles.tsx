@@ -11,6 +11,7 @@ export const ButtonWrapper = styled.button<{
   padding: 10px 20px;
   border-radius: ${(props) => (props.$pill ? '20px' : '8px')};
   font-size: 16px;
+  font-family: 'Funnel Display', sans-serif;
   font-weight: 500;
   color: ${(props) =>
     props.$variant === 'text'
