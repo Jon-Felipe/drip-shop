@@ -18,7 +18,7 @@ function Input({
   disabled = false,
 }: InputProps) {
   return (
-    <>
+    <div className='w-full'>
       {label && (
         <label
           htmlFor={name}
@@ -37,7 +37,7 @@ function Input({
         required={required}
         disabled={disabled}
       />
-    </>
+    </div>
   );
 }
 

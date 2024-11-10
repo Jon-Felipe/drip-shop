@@ -82,7 +82,7 @@ function Button({
   return (
     <button
       type='button'
-      className={`font-medium text-center ${
+      className={`w-full font-medium text-center ${
         pill ? 'rounded-full' : 'rounded-lg'
       } focus:ring-4 focus:outline-none ${colourClasses} ${sizeClasses} ${
         disabled ? 'cursor-not-allowed' : ''
