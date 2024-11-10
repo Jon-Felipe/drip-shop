@@ -168,7 +168,7 @@ export const IconTextButton: Story = {
       <Button
         {...args}
         colour='purple'
-        variant='contained'
+        variant='outlined'
         children='Favourite'
         pill
         icon={<MdFavorite />}
