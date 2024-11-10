@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { MdFavorite } from 'react-icons/md';
 
 import Button from './Button';
+import { StoryButtonWrapper } from './Button.styles';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Button> = {
@@ -13,20 +15,53 @@ const meta: Meta<typeof Button> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {},
-  args: {
-    text: 'Button',
-    colour: 'blue',
-    size: 'm',
-    pill: false,
-    disabled: false,
-    loading: false,
+  argTypes: {
+    variant: {
+      control: 'radio',
+      description: 'The button variant: text, contained and outlined',
+      table: {
+        defaultValue: {
+          summary: 'contained',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    colour: {
+      control: 'select',
+      description: "The button's text, border and background colour",
+      table: {
+        defaultValue: {
+          summary: 'blue',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    children: {
+      type: 'string',
+      description: 'Used to pass in the buttons text value',
+    },
+    pill: {
+      type: 'boolean',
+      description: 'Adds more radius to the button to display as a pill button',
+    },
+    icon: {
+      control: false,
+      description: 'Displays an icon along with the buttons text',
+    },
+    disabled: {
+      type: 'boolean',
+      description: 'Used to set the buttons state to disabled',
+    },
   },
   decorators: [
     (Story) => (
-      <div className='flex items-center gap-x-2'>
+      <StoryButtonWrapper>
         <Story />
-      </div>
+      </StoryButtonWrapper>
     ),
   ],
 };
@@ -35,52 +70,117 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultButton: Story = {
+export const ContainedButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} text='Blue' />
-      <Button {...args} text='Light' colour='light' />
-      <Button {...args} text='Dark' colour='dark' />
-      <Button {...args} text='Green' colour='green' />
-      <Button {...args} text='Red' colour='red' />
-      <Button {...args} text='Yellow' colour='yellow' />
+      <Button {...args} colour='blue' children='button' />
+      <Button {...args} colour='green' children='button' />
+      <Button {...args} colour='red' children='button' />
+      <Button {...args} colour='yellow' children='button' />
+      <Button {...args} colour='purple' children='button' />
     </>
   ),
 };
 
-export const ButtonPills: Story = {
+export const TextButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} text='Blue' pill />
-      <Button {...args} text='Light' colour='light' pill />
-      <Button {...args} text='Dark' colour='dark' pill />
-      <Button {...args} text='Green' colour='green' pill />
-      <Button {...args} text='Red' colour='red' pill />
-      <Button {...args} text='Yellow' colour='yellow' pill />
+      <Button {...args} colour='blue' children='button' variant='text' />
+      <Button {...args} colour='green' children='button' variant='text' />
+      <Button {...args} colour='red' children='button' variant='text' />
+      <Button {...args} colour='yellow' children='button' variant='text' />
+      <Button {...args} colour='purple' children='button' variant='text' />
     </>
   ),
 };
 
-export const ButtonSizes: Story = {
+export const OutlinedButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} text='Extra small' size='xs' />
-      <Button {...args} text='Small' size='s' />
-      <Button {...args} text='Base' size='m' />
-      <Button {...args} text='Large' size='l' />
-      <Button {...args} text='Extra large' size='xl' />
+      <Button {...args} colour='blue' children='button' variant='outlined' />
+      <Button {...args} colour='green' children='button' variant='outlined' />
+      <Button {...args} colour='red' children='button' variant='outlined' />
+      <Button {...args} colour='yellow' children='button' variant='outlined' />
+      <Button {...args} colour='purple' children='button' variant='outlined' />
     </>
   ),
 };
 
-export const LoadingButton: Story = {
-  args: {
-    loading: true,
-  },
+export const PillButton: Story = {
+  render: (args) => (
+    <>
+      <Button
+        {...args}
+        colour='blue'
+        children='button'
+        variant='outlined'
+        pill
+      />
+      <Button
+        {...args}
+        colour='green'
+        children='button'
+        variant='contained'
+        pill
+      />
+      <Button
+        {...args}
+        colour='red'
+        children='button'
+        variant='outlined'
+        pill
+      />
+      <Button
+        {...args}
+        colour='yellow'
+        children='button'
+        variant='contained'
+        pill
+      />
+      <Button
+        {...args}
+        colour='purple'
+        children='button'
+        variant='outlined'
+        pill
+      />
+    </>
+  ),
 };
 
-export const DisabledButton: Story = {
-  args: {
-    disabled: true,
-  },
+export const IconTextButton: Story = {
+  render: (args) => (
+    <>
+      <Button
+        {...args}
+        colour='blue'
+        variant='outlined'
+        children='Favourite'
+        icon={<MdFavorite />}
+      />
+      <Button
+        {...args}
+        colour='green'
+        variant='contained'
+        children='Favourite'
+        icon={<MdFavorite />}
+      />
+      <Button
+        {...args}
+        colour='purple'
+        variant='contained'
+        children='Favourite'
+        pill
+        icon={<MdFavorite />}
+      />
+      <Button
+        {...args}
+        colour='yellow'
+        variant='contained'
+        children='Favourite'
+        pill
+        icon={<MdFavorite />}
+      />
+    </>
+  ),
 };
