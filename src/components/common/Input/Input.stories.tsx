@@ -13,33 +13,29 @@ const meta: Meta<typeof Input> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  // argTypes: {
-  //   name: {
-  //     type: 'string',
-  //     description: 'The name used to identify and link the label to the input',
-  //   },
-  //   label: {
-  //     type: 'string',
-  //     description: 'An optional label for the input component',
-  //   },
-  //   type: {
-  //     type: 'string',
-  //     description: 'The different type attributes for the input element',
-  //   },
-  //   placeholder: {
-  //     type: 'string',
-  //     description: 'The placeholder text for the input component',
-  //   },
-  //   required: {
-  //     type: 'boolean',
-  //     description: 'Used to specify whether an input is required or optional',
-  //   },
-  //   disabled: {
-  //     type: 'boolean',
-  //     description:
-  //       'Used to specify whether an input should be disabled or enabled',
-  //   },
-  // },
+  argTypes: {
+    name: {
+      type: 'string',
+      description: 'The name used to identify and link the label to the input',
+    },
+    label: {
+      type: 'string',
+      description: 'An optional label for the input component',
+    },
+    type: {
+      type: 'string',
+      description: 'The different type attributes for the input element',
+    },
+    placeholder: {
+      type: 'string',
+      description: 'The placeholder text for the input component',
+    },
+    disabled: {
+      type: 'boolean',
+      description:
+        'Used to specify whether an input should be disabled or enabled',
+    },
+  },
 };
 
 export default meta;
