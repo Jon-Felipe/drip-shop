@@ -21,37 +21,47 @@ const meta: Meta<typeof IconButton> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  // argTypes: {
-  //   children: {
-  //     table: {
-  //       disable: true,
-  //     },
-  //   },
-  //   variant: {
-  //     description:
-  //       'A choice between three icon button variants: text, fill or outlined',
-  //     table: {
-  //       type: {
-  //         summary: 'string',
-  //       },
-  //       defaultValue: {
-  //         summary: 'text',
-  //       },
-  //     },
-  //   },
-  //   rounded: {
-  //     description:
-  //       'Toggle between true or false to set the radius of the icon button',
-  //   },
-  //   disabled: {
-  //     description:
-  //       'Toggle between true or false to enable or disable the icon button',
-  //   },
-  //   disableRipple: {
-  //     description:
-  //       'Toggle between true or false to enable or disable the icon button on hover ripple effect',
-  //   },
-  // },
+  argTypes: {
+    icon: {
+      control: false,
+      description: 'The icon to be displayed for the icon button component',
+    },
+    colour: {
+      control: {
+        type: 'select',
+      },
+      description: 'The colour variant of the icon button',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'blue',
+        },
+      },
+    },
+    variant: {
+      description:
+        'A choice between three icon button variants: text, contained or outlined',
+      table: {
+        type: {
+          summary: 'string',
+        },
+        defaultValue: {
+          summary: 'text',
+        },
+      },
+    },
+    rounded: {
+      if: { arg: 'variant', neq: 'text' },
+      description:
+        'Toggle between true or false to set the radius of the icon button',
+    },
+    disabled: {
+      description:
+        'Toggle between true or false to enable or disable the icon button',
+    },
+  },
 };
 
 export default meta;
