@@ -1,44 +1,27 @@
 import React from 'react';
+import { InputWrapper } from './Input.styles';
 
-export type InputProps = {
-  name: string;
+type InputProps = {
   label?: string;
+  name: string;
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   placeholder?: string;
-  required?: boolean;
   disabled?: boolean;
 };
 
-function Input({
-  name,
+const Input = ({
   label,
-  type,
+  name,
+  type = 'text',
   placeholder,
-  required = false,
   disabled = false,
-}: InputProps) {
+}: InputProps) => {
   return (
-    <div className='w-full'>
-      {label && (
-        <label
-          htmlFor={name}
-          className='block mb-2 text-sm font-medium text-gray-900'
-        >
-          {label}
-        </label>
-      )}
-      <input
-        type={type}
-        id={name}
-        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none ${
-          disabled ? 'cursor-not-allowed' : ''
-        }`}
-        placeholder={placeholder}
-        required={required}
-        disabled={disabled}
-      />
-    </div>
+    <InputWrapper $disabled={disabled}>
+      {label && <label htmlFor={name}>{label}</label>}
+      <input type={type} placeholder={placeholder} disabled={disabled} />
+    </InputWrapper>
   );
-}
+};
 
 export default Input;
