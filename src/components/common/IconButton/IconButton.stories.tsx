@@ -7,7 +7,8 @@ import {
   MdOutlineDone,
 } from 'react-icons/md';
 
-import IconButton from './IconButton';
+import IconButton, { IconButtonProps } from './IconButton';
+import { IconButtonStoryWrapper } from './IconButton.styles';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof IconButton> = {
@@ -20,81 +21,124 @@ const meta: Meta<typeof IconButton> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {
-    children: {
-      table: {
-        disable: true,
-      },
-    },
-    variant: {
-      description:
-        'A choice between three icon button variants: text, fill or outlined',
-      table: {
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'text',
-        },
-      },
-    },
-    rounded: {
-      description:
-        'Toggle between true or false to set the radius of the icon button',
-    },
-    disabled: {
-      description:
-        'Toggle between true or false to enable or disable the icon button',
-    },
-    disableRipple: {
-      description:
-        'Toggle between true or false to enable or disable the icon button on hover ripple effect',
-    },
-  },
+  // argTypes: {
+  //   children: {
+  //     table: {
+  //       disable: true,
+  //     },
+  //   },
+  //   variant: {
+  //     description:
+  //       'A choice between three icon button variants: text, fill or outlined',
+  //     table: {
+  //       type: {
+  //         summary: 'string',
+  //       },
+  //       defaultValue: {
+  //         summary: 'text',
+  //       },
+  //     },
+  //   },
+  //   rounded: {
+  //     description:
+  //       'Toggle between true or false to set the radius of the icon button',
+  //   },
+  //   disabled: {
+  //     description:
+  //       'Toggle between true or false to enable or disable the icon button',
+  //   },
+  //   disableRipple: {
+  //     description:
+  //       'Toggle between true or false to enable or disable the icon button on hover ripple effect',
+  //   },
+  // },
 };
 
 export default meta;
 type Story = StoryObj<typeof IconButton>;
 
+const Template: Story = {
+  render: (args: IconButtonProps) => {
+    return <IconButton {...args} icon={<MdShoppingCart />} />;
+  },
+};
+
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const IconButtonDefault: Story = {
-  name: 'Icon Button',
-  args: {
-    children: <MdShoppingCart className='w-5 h-5' />,
-  },
-};
-
 export const IconButtonText: Story = {
-  args: {
-    children: <MdDelete className='w-5 h-5' />,
-    variant: 'text',
-  },
+  ...Template,
 };
 
-export const IconButtonFill: Story = {
+export const IconButtonContained: Story = {
+  ...Template,
   args: {
-    children: <MdFavoriteBorder className='w-5 h-5' />,
-    variant: 'fill',
+    variant: 'contained',
   },
 };
 
 export const IconButtonOutlined: Story = {
+  ...Template,
   args: {
-    children: <MdFavoriteBorder className='w-5 h-5' />,
     variant: 'outlined',
   },
 };
 
 export const IconButtonRounded: Story = {
-  args: {
-    children: <MdOutlineDone className='w-5 h-5' />,
-    rounded: true,
-  },
+  render: (args: IconButtonProps) => (
+    <IconButtonStoryWrapper>
+      <IconButton
+        {...args}
+        variant='contained'
+        icon={<MdFavoriteBorder />}
+        rounded
+      />
+      <IconButton {...args} variant='outlined' icon={<MdDelete />} rounded />
+    </IconButtonStoryWrapper>
+  ),
+};
+
+export const IconButtonColours: Story = {
+  render: (args: IconButtonProps) => (
+    <IconButtonStoryWrapper>
+      <IconButton
+        {...args}
+        variant='text'
+        icon={<MdFavoriteBorder />}
+        colour='blue'
+      />
+      <IconButton
+        {...args}
+        variant='contained'
+        icon={<MdDelete />}
+        colour='green'
+      />
+      <IconButton
+        {...args}
+        variant='outlined'
+        icon={<MdShoppingCart />}
+        colour='red'
+        rounded
+      />
+      <IconButton
+        {...args}
+        variant='contained'
+        icon={<MdAlarm />}
+        colour='yellow'
+      />
+      <IconButton
+        {...args}
+        variant='outlined'
+        icon={<MdOutlineDone />}
+        colour='purple'
+        rounded
+      />
+    </IconButtonStoryWrapper>
+  ),
 };
 
 export const IconButtonDisabled: Story = {
+  ...Template,
   args: {
-    children: <MdAlarm className='w-5 h-5' />,
+    variant: 'text',
     disabled: true,
   },
 };

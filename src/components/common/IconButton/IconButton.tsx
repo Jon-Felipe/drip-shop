@@ -1,47 +1,41 @@
 import React from 'react';
+import { IconButtonWrapper } from './IconButton.styles';
 
-const variants = {
-  text: 'text-blue-700 enabled:hover:bg-blue-50',
-  fill: 'text-white bg-blue-700 enabled:hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300',
-  outlined:
-    'text-blue-700 border border-blue-700 enabled:hover:bg-blue-700 enabled:hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300',
+const buttonColours = {
+  blue: 'rgb(26 86 219)',
+  green: 'rgb(4 108 78)',
+  red: 'rgb(200 30 30)',
+  yellow: 'rgb(227 160 8)',
+  purple: 'rgb(108 43 217)',
 };
 
-const disableRippleVariants = {
-  text: 'text-blue-700',
-  fill: 'text-white bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300',
-  outlined:
-    'text-blue-700 border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300',
-};
-
-type Props = {
-  children: React.ReactNode;
-  variant: 'text' | 'fill' | 'outlined';
+export type IconButtonProps = {
+  icon: React.ReactNode;
+  colour?: 'blue' | 'green' | 'red' | 'yellow' | 'purple';
+  variant?: 'text' | 'contained' | 'outlined';
   rounded?: boolean;
   disabled?: boolean;
-  disableRipple?: boolean;
 };
 
 function IconButton({
-  children,
+  icon,
+  colour = 'blue',
   variant = 'text',
   rounded = false,
   disabled = false,
-  disableRipple = false,
-}: Props) {
-  const iconButtonClass = disableRipple
-    ? disableRippleVariants[variant]
-    : variants[variant];
+}: IconButtonProps) {
+  const colourClass = buttonColours[colour];
 
   return (
-    <button
-      className={`${iconButtonClass} ${
-        rounded ? 'rounded-full' : 'rounded-lg'
-      } p-2.5`}
+    <IconButtonWrapper
       disabled={disabled}
+      $colour={colourClass}
+      $variant={variant}
+      $rounded={rounded}
+      $disabled={disabled}
     >
-      {children}
-    </button>
+      {icon}
+    </IconButtonWrapper>
   );
 }
 
