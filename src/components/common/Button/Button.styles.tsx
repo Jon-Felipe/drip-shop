@@ -24,7 +24,7 @@ export const ButtonWrapper = styled.button<{
     props.$variant === 'contained' ? props.$colour : 'white'};
   border: ${(props) =>
     props.$variant === 'outlined' ? `1px solid ${props.$colour}` : 'none'};
-  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
     ${(props) =>

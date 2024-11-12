@@ -33,6 +33,7 @@ function Button({
       $variant={variant}
       $colour={buttonClass}
       $pill={pill}
+      $disabled={disabled}
       disabled={disabled}
     >
       {icon && variant !== 'text' && <span className='icon'>{icon}</span>}
