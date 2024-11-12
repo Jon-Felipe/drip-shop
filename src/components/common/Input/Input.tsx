@@ -6,6 +6,7 @@ type InputProps = {
   name: string;
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   placeholder?: string;
+  required?: boolean;
   disabled?: boolean;
 };
 
@@ -14,12 +15,18 @@ const Input = ({
   name,
   type = 'text',
   placeholder,
+  required = false,
   disabled = false,
 }: InputProps) => {
   return (
     <InputWrapper $disabled={disabled}>
       {label && <label htmlFor={name}>{label}</label>}
-      <input type={type} placeholder={placeholder} disabled={disabled} />
+      <input
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        disabled={disabled}
+      />
     </InputWrapper>
   );
 };

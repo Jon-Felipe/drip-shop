@@ -30,6 +30,10 @@ const meta: Meta<typeof Input> = {
       type: 'string',
       description: 'The placeholder text for the input component',
     },
+    required: {
+      type: 'boolean',
+      description: 'Used to specify whether an input is required or optional',
+    },
     disabled: {
       type: 'boolean',
       description:
