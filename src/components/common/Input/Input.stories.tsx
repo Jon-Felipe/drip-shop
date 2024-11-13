@@ -18,6 +18,10 @@ const meta: Meta<typeof Input> = {
       type: 'string',
       description: 'The name used to identify and link the label to the input',
     },
+    value: {
+      type: 'string',
+      description: 'The value to be provided to the input',
+    },
     label: {
       type: 'string',
       description: 'An optional label for the input component',

@@ -4,6 +4,7 @@ import { InputWrapper } from './Input.styles';
 type InputProps = {
   label?: string;
   name: string;
+  value: React.InputHTMLAttributes<HTMLInputElement>['value'];
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   placeholder?: string;
   required?: boolean;
@@ -13,6 +14,7 @@ type InputProps = {
 const Input = ({
   label,
   name,
+  value,
   type = 'text',
   placeholder,
   required = false,
@@ -23,6 +25,8 @@ const Input = ({
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
+        name={name}
+        value={value}
         placeholder={placeholder}
         required={required}
         disabled={disabled}
