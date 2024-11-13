@@ -23,11 +23,14 @@ const meta: Meta<typeof Link> = {
       control: false,
     },
     text: {
+      if: { arg: 'icon', exists: false },
       type: 'string',
       description: 'The text to be displayed',
     },
     variant: {
-      type: 'string',
+      control: {
+        type: 'select',
+      },
       description: 'The link component variant: text or contained',
       table: {
         defaultValue: {
@@ -38,7 +41,21 @@ const meta: Meta<typeof Link> = {
         },
       },
     },
+    underlined: {
+      if: { arg: 'icon', exists: false },
+      control: {
+        type: 'radio',
+      },
+      description:
+        'Used to display the link component with the underline text decoration style',
+      table: {
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     icon: {
+      if: { arg: 'icon', eq: true },
       control: false,
       description: 'The link component represented as an icon',
     },

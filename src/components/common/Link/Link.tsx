@@ -5,12 +5,13 @@ type LinkProps = {
   path: string;
   text: string;
   variant: 'text' | 'contained';
+  underlined?: 'always' | 'hover' | 'none';
   icon: React.ReactNode;
 };
 
-function Link({ path, text, variant = 'text', icon }: LinkProps) {
+function Link({ path, text, variant = 'text', underlined, icon }: LinkProps) {
   return (
-    <LinkWrapper to={path} $variant={variant}>
+    <LinkWrapper to={path} $variant={variant} $underlined={underlined}>
       {icon ? icon : text}
     </LinkWrapper>
   );
