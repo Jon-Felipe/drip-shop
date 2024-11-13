@@ -5,6 +5,7 @@ type InputProps = {
   label?: string;
   name: string;
   value: React.InputHTMLAttributes<HTMLInputElement>['value'];
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: React.InputHTMLAttributes<HTMLInputElement>['type'];
   placeholder?: string;
   required?: boolean;
@@ -15,6 +16,7 @@ const Input = ({
   label,
   name,
   value,
+  onChange,
   type = 'text',
   placeholder,
   required = false,
@@ -27,6 +29,7 @@ const Input = ({
         type={type}
         name={name}
         value={value}
+        onChange={onChange}
         placeholder={placeholder}
         required={required}
         disabled={disabled}

@@ -22,6 +22,10 @@ const meta: Meta<typeof Input> = {
       type: 'string',
       description: 'The value to be provided to the input',
     },
+    onChange: {
+      control: false,
+      description: 'A function helper to update the value of the input',
+    },
     label: {
       type: 'string',
       description: 'An optional label for the input component',
