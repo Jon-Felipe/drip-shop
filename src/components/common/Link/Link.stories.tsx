@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
-import { MdFavoriteBorder } from 'react-icons/md';
+import { MdShoppingCart } from 'react-icons/md';
 
 import Link from './Link';
 
@@ -26,59 +26,21 @@ const meta: Meta<typeof Link> = {
       type: 'string',
       description: 'The text to be displayed',
     },
-    size: {
-      control: {
-        type: 'select',
-      },
-      if: { arg: 'icon', truthy: false },
-      description: 'A list of text options to update the font size',
+    variant: {
+      type: 'string',
+      description: 'The link component variant: text or contained',
       table: {
+        defaultValue: {
+          summary: 'text',
+        },
         type: {
           summary: 'string',
-        },
-        defaultValue: {
-          summary: 'm',
-        },
-      },
-    },
-    weight: {
-      control: {
-        type: 'select',
-      },
-      description: 'A list of text options to update the font weight',
-      if: { arg: 'icon', truthy: false },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'normal',
-        },
-      },
-    },
-    uppercase: {
-      type: 'boolean',
-      if: { arg: 'icon', truthy: false },
-      description: 'Display the text as uppercase or capitalized(default)',
-    },
-    underline: {
-      control: 'radio',
-      description:
-        'A list of options to handle different underline variants applied to the link text',
-      if: { arg: 'icon', truthy: false },
-      table: {
-        type: {
-          summary: 'string',
-        },
-        defaultValue: {
-          summary: 'none',
         },
       },
     },
     icon: {
-      description: 'Display as an icon link without text',
-      if: { arg: 'icon' },
       control: false,
+      description: 'The link component represented as an icon',
     },
   },
   decorators: [
@@ -96,43 +58,24 @@ export default meta;
 type Story = StoryObj<typeof Link>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultLink: Story = {
+export const TextLink: Story = {
   args: {
     path: '/',
     text: 'Home',
   },
 };
 
-export const LinkSizes: Story = {
-  render: (args) => (
-    <>
-      <Link {...args} size='xs' path='/' text='Link Text' />
-      <Link {...args} size='sm' path='/' text='Link Text' />
-      <Link {...args} path='/' text='Link Text' />
-      <Link {...args} size='lg' path='/' text='Link Text' />
-      <Link {...args} size='xl' path='/' text='Link Text' />
-      <Link {...args} size='2xl' path='/' text='Link Text' />
-    </>
-  ),
-};
-
-export const LinkWeights: Story = {
-  render: (args) => (
-    <>
-      <Link {...args} weight='thin' path='/' text='Link Text' />
-      <Link {...args} weight='light' path='/' text='Link Text' />
-      <Link {...args} path='/' text='Link Text' />
-      <Link {...args} weight='medium' path='/' text='Link Text' />
-      <Link {...args} weight='semibold' path='/' text='Link Text' />
-      <Link {...args} weight='bold' path='/' text='Link Text' />
-    </>
-  ),
-};
-
-export const IconLinks: Story = {
+export const ContainedLink: Story = {
   args: {
     path: '/',
     text: 'Home',
-    icon: <MdFavoriteBorder className='w-6 h-6' />,
+    variant: 'contained',
+  },
+};
+
+export const IconLink: Story = {
+  args: {
+    path: '/',
+    icon: <MdShoppingCart />,
   },
 };
