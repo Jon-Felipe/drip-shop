@@ -2,7 +2,7 @@ import React from 'react';
 import { ButtonWrapper } from './Button.styles';
 
 const buttonColours = {
-  blue: 'rgb(26 86 219)',
+  default: 'rgb(68 64 60)',
   green: 'rgb(4 108 78)',
   red: 'rgb(200 30 30)',
   yellow: 'rgb(227 160 8)',
@@ -11,7 +11,7 @@ const buttonColours = {
 
 type Props = {
   variant?: 'text' | 'contained' | 'outlined';
-  colour?: 'blue' | 'green' | 'red' | 'yellow' | 'purple';
+  colour?: 'default' | 'green' | 'red' | 'yellow' | 'purple';
   children: React.ReactNode;
   pill?: boolean;
   icon?: React.ReactNode;
@@ -20,7 +20,7 @@ type Props = {
 
 function Button({
   variant = 'contained',
-  colour = 'blue',
+  colour = 'default',
   children,
   pill = false,
   icon,

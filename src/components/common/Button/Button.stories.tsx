@@ -33,7 +33,7 @@ const meta: Meta<typeof Button> = {
       description: "The button's text, border and background colour",
       table: {
         defaultValue: {
-          summary: 'blue',
+          summary: 'default',
         },
         type: {
           summary: 'string',
@@ -73,7 +73,7 @@ type Story = StoryObj<typeof Button>;
 export const ContainedButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} colour='blue' children='button' />
+      <Button {...args} colour='default' children='button' />
       <Button {...args} colour='green' children='button' />
       <Button {...args} colour='red' children='button' />
       <Button {...args} colour='yellow' children='button' />
@@ -85,7 +85,7 @@ export const ContainedButton: Story = {
 export const TextButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} colour='blue' children='button' variant='text' />
+      <Button {...args} colour='default' children='button' variant='text' />
       <Button {...args} colour='green' children='button' variant='text' />
       <Button {...args} colour='red' children='button' variant='text' />
       <Button {...args} colour='yellow' children='button' variant='text' />
@@ -97,7 +97,7 @@ export const TextButton: Story = {
 export const OutlinedButton: Story = {
   render: (args) => (
     <>
-      <Button {...args} colour='blue' children='button' variant='outlined' />
+      <Button {...args} colour='default' children='button' variant='outlined' />
       <Button {...args} colour='green' children='button' variant='outlined' />
       <Button {...args} colour='red' children='button' variant='outlined' />
       <Button {...args} colour='yellow' children='button' variant='outlined' />
@@ -111,7 +111,7 @@ export const PillButton: Story = {
     <>
       <Button
         {...args}
-        colour='blue'
+        colour='default'
         children='button'
         variant='outlined'
         pill
@@ -153,7 +153,7 @@ export const IconTextButton: Story = {
     <>
       <Button
         {...args}
-        colour='blue'
+        colour='default'
         variant='outlined'
         children='Favourite'
         icon={<MdFavorite />}

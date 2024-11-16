@@ -14,32 +14,19 @@ export const ButtonWrapper = styled.button<{
   font-family: 'Funnel Display', sans-serif;
   font-weight: 500;
   color: ${(props) =>
-    props.$variant === 'text'
-      ? props.$colour
-      : props.$variant === 'outlined'
-      ? props.$colour
-      : 'white'};
+    props.$variant === 'contained' ? '#fff' : props.$colour};
   text-transform: capitalize;
   background-color: ${(props) =>
-    props.$variant === 'contained' ? props.$colour : 'white'};
+    props.$variant === 'contained' ? props.$colour : '#fff'};
   border: ${(props) =>
     props.$variant === 'outlined' ? `1px solid ${props.$colour}` : 'none'};
   cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    ${(props) =>
-      props.$variant === 'outlined'
-        ? `
-        background-color: ${props.$colour};
-        color: white;
-    `
-        : ''}
-    ${(props) =>
-      props.$variant === 'contained'
-        ? `
-        opacity: 90%;
-    `
-        : ''}
+    background-color: ${(props) =>
+      props.$variant === 'outlined' ? props.$colour : ''};
+    color: ${(props) => (props.$variant === 'outlined' ? '#fff' : '')};
+    opacity: ${(props) => (props.$variant !== 'outlined' ? '0.9' : '1')};
   }
 
   .icon {
