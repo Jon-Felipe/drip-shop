@@ -11,10 +11,9 @@ export const LinkWrapper = styled(Link)<{
   text-decoration: none;
   font-family: 'Funnel Display', sans-serif;
   letter-spacing: 1px;
-  color: ${(props) =>
-    props.$variant === 'contained' ? 'white' : 'rgb(26 86 219)'};
+  color: ${(props) => (props.$variant === 'contained' ? 'white' : '#44403c')};
   background-color: ${(props) =>
-    props.$variant === 'contained' ? 'rgb(26 86 219)' : 'transparent'};
+    props.$variant === 'contained' ? '#44403c' : 'transparent'};
   padding: ${(props) =>
     props.$variant === 'contained' ? '0.625rem 1.25rem' : '0px'};
   border-radius: ${(props) =>
@@ -31,6 +30,6 @@ export const LinkWrapper = styled(Link)<{
       props.$underlined === 'hover' && props.$variant === 'text'
         ? 'underline'
         : 'none'};
-    opacity: ${(props) => (props.$variant === 'contained' ? 0.8 : 1)};
+    opacity: ${(props) => (props.$variant === 'contained' ? 0.9 : 1)};
   }
 `;
