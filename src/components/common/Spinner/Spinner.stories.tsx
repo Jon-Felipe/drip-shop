@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Spinner from './Spinner';
+import { StorySpinnerWrapper } from './Spinner.styles';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Spinner> = {
@@ -16,7 +17,7 @@ const meta: Meta<typeof Spinner> = {
   argTypes: {
     colour: {
       control: 'select',
-      options: ['blue', 'dark', 'green', 'red', 'yellow'],
+      options: ['default', 'green', 'red', 'yellow', 'purple'],
       description: 'Different spinner colour variants',
       table: {
         type: {
@@ -29,7 +30,7 @@ const meta: Meta<typeof Spinner> = {
     },
     size: {
       control: 'select',
-      options: ['xs', 's', 'm', 'l', 'xl'],
+      options: ['s', 'm', 'l'],
       description: 'Different spinner colour sizes',
       table: {
         type: {
@@ -43,9 +44,9 @@ const meta: Meta<typeof Spinner> = {
   },
   decorators: [
     (Story) => (
-      <div className='flex items-center gap-x-2'>
+      <StorySpinnerWrapper className='flex items-center gap-x-2'>
         <Story />
-      </div>
+      </StorySpinnerWrapper>
     ),
   ],
 };
@@ -58,10 +59,10 @@ export const SpinnerColourVariants: Story = {
   render: (args) => (
     <>
       <Spinner {...args} />
-      <Spinner {...args} colour='dark' />
       <Spinner {...args} colour='green' />
       <Spinner {...args} colour='red' />
       <Spinner {...args} colour='yellow' />
+      <Spinner {...args} colour='purple' />
     </>
   ),
 };
@@ -69,11 +70,9 @@ export const SpinnerColourVariants: Story = {
 export const SpinnerSizeVariants: Story = {
   render: (args) => (
     <>
-      <Spinner {...args} size='xs' />
       <Spinner {...args} size='s' />
       <Spinner {...args} size='m' />
       <Spinner {...args} size='l' />
-      <Spinner {...args} size='xl' />
     </>
   ),
 };
