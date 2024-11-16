@@ -113,7 +113,7 @@ export const IconButtonColours: Story = {
         {...args}
         variant='text'
         icon={<MdFavoriteBorder />}
-        colour='blue'
+        colour='default'
       />
       <IconButton
         {...args}

@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButtonWrapper } from './IconButton.styles';
 
 const buttonColours = {
-  blue: 'rgb(26 86 219)',
+  default: 'rgb(68 64 60)',
   green: 'rgb(4 108 78)',
   red: 'rgb(200 30 30)',
   yellow: 'rgb(227 160 8)',
@@ -11,7 +11,7 @@ const buttonColours = {
 
 export type IconButtonProps = {
   icon: React.ReactNode;
-  colour?: 'blue' | 'green' | 'red' | 'yellow' | 'purple';
+  colour?: 'default' | 'green' | 'red' | 'yellow' | 'purple';
   variant?: 'text' | 'contained' | 'outlined';
   rounded?: boolean;
   disabled?: boolean;
@@ -19,7 +19,7 @@ export type IconButtonProps = {
 
 function IconButton({
   icon,
-  colour = 'blue',
+  colour = 'default',
   variant = 'text',
   rounded = false,
   disabled = false,
