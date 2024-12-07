@@ -1,73 +1,80 @@
-import { MdClose } from 'react-icons/md';
+import {
+  MdClose,
+  MdCheckCircleOutline,
+  MdInfoOutline,
+  MdWarningAmber,
+  MdErrorOutline,
+} from 'react-icons/md';
+import { AlertWrapper } from './Alert.styles';
 
-const alertVariants = {
-  info: 'text-blue-800 bg-blue-50',
-  danger: 'text-red-800 bg-red-50',
-  success: 'text-green-800 bg-green-50',
-  warning: 'text-yellow-800 bg-yellow-50',
+const severityColour = {
+  success: 'rgb(3 84 63)',
+  info: 'rgb(30 66 159)',
+  warning: 'rgb(114 59 19)',
+  danger: 'rgb(155 28 28)',
 };
 
-const borderedVariants = {
-  info: 'border border-blue-300',
-  danger: 'border border-red-300',
-  success: 'border border-green-300',
-  warning: 'border border-yellow-300',
-};
-
-const borderAccentVariants = {
-  info: 'border-t-4 border-blue-300',
-  danger: 'border-t-4 border-red-300',
-  success: 'border-t-4 border-green-300',
-  warning: 'border-t-4 border-yellow-300',
+const severityBackgroundColour = {
+  success: 'rgb(243 250 247)',
+  info: 'rgb(235 245 255)',
+  warning: 'rgb(253 253 234)',
+  danger: 'rgb(253 242 242)',
 };
 
 export type AlertProps = {
-  variant?: 'info' | 'danger' | 'success' | 'warning';
-  border?: 'bordered' | 'borderAccent';
-  message: string;
-  icon?: React.ReactNode;
+  text: string;
+  severity: 'success' | 'info' | 'warning' | 'danger';
+  bordered?: boolean;
   showAlert: boolean;
   onCloseClick: () => void;
 };
 
-function Alert({
-  variant = 'info',
-  border,
-  message,
-  icon,
+const Alert = ({
+  text,
+  severity = 'success',
+  bordered = false,
   showAlert,
   onCloseClick,
-}: AlertProps) {
-  const variantClass = alertVariants[variant];
-  const borderClass =
-    border === 'bordered'
-      ? borderedVariants[variant]
-      : border === 'borderAccent'
-      ? borderAccentVariants[variant]
-      : '';
+}: AlertProps) => {
+  let icon;
+  const severityColourClass = severityColour[severity];
+  const severityBgClass = severityBackgroundColour[severity];
+
+  switch (severity) {
+    case 'success':
+      icon = <MdCheckCircleOutline />;
+      break;
+    case 'info':
+      icon = <MdInfoOutline />;
+      break;
+    case 'warning':
+      icon = <MdWarningAmber />;
+      break;
+    case 'danger':
+      icon = <MdErrorOutline />;
+      break;
+    default:
+      break;
+  }
 
   return (
     showAlert && (
-      <div
-        className={`w-full flex items-center p-4 mb-4 text-sm rounded-lg ${variantClass} ${borderClass}`}
+      <AlertWrapper
         role='alert'
+        $severityColour={severityColourClass}
+        $severityBgClass={severityBgClass}
+        $bordered={bordered}
       >
-        {icon && icon}
-        <div>
-          <span className='font-medium capitalize'>{variant}!</span> {message}
-        </div>
-        <button
-          type='button'
-          onClick={onCloseClick}
-          className='ms-auto -my-1.5 rounded-lg inline-flex items-center justify-end h-8 w-8'
-          aria-label='Close'
-        >
-          <div className='sr-only'>Close</div>
-          <MdClose className='w-4 h-4' />
+        <div className='icon'>{icon}</div>
+        <p className='text'>
+          <span>{severity} alert!</span> {text}
+        </p>
+        <button className='close-btn' onClick={onCloseClick}>
+          <MdClose />
         </button>
-      </div>
+      </AlertWrapper>
     )
   );
-}
+};
 
 export default Alert;

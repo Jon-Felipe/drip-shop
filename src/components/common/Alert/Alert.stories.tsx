@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MdInfo } from 'react-icons/md';
 
 import Alert, { AlertProps } from './Alert';
+import { StoryAlertWrapper } from './Alert.styles';
 
 const meta: Meta<typeof Alert> = {
   title: 'Components/Alert',
@@ -15,45 +15,45 @@ const meta: Meta<typeof Alert> = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    variant: {
+    severity: {
       control: 'select',
       description:
         'A list of available string values defining the different alert variants.',
       table: {
         defaultValue: {
-          summary: 'info',
+          summary: 'success',
         },
         type: {
           summary: 'string',
         },
       },
     },
-    border: {
-      control: {
-        type: 'radio',
-      },
-      description: 'Adds a border or accent border around the alert component',
-      table: {
-        type: {
-          summary: 'string',
-        },
-      },
+    bordered: {
+      type: 'boolean',
+      description: 'Adds a border around the alert component',
     },
-    message: {
+    text: {
       type: 'string',
-      description: 'The message to be displayed within the alert component',
+      description:
+        'The text message to be displayed within the alert component',
+    },
+    showAlert: {
+      type: 'boolean',
+      description:
+        'True or false value to either show or hide the alert component',
       control: false,
     },
-    icon: {
+    onCloseClick: {
+      type: 'function',
+      description: 'A function handler to close the alert component',
       control: false,
-      description: 'The icon to be displayed with the message text',
     },
   },
   decorators: [
     (Story) => (
-      <div className='flex flex-col items-center gap-x-2'>
+      <StoryAlertWrapper>
         <Story />
-      </div>
+      </StoryAlertWrapper>
     ),
   ],
 };
@@ -73,34 +73,30 @@ const Template: Story = {
     return (
       <>
         <Alert
-          variant={args.variant ?? 'info'}
-          border={args.border}
-          message={`This is the ${args.variant ?? 'info'} alert`}
-          icon={args.icon ?? undefined}
+          severity={args.severity ?? 'info'}
+          bordered={args.bordered}
+          text={`This is the ${args.severity ?? 'info'} alert`}
           showAlert={showAlert}
           onCloseClick={handleOnClose}
         />
         <Alert
-          variant={args.variant ?? 'danger'}
-          border={args.border}
-          message={`This is the ${args.variant ?? 'danger'} alert`}
-          icon={args.icon ?? undefined}
+          severity={args.severity ?? 'danger'}
+          bordered={args.bordered}
+          text={`This is the ${args.severity ?? 'danger'} alert`}
           showAlert={showAlert}
           onCloseClick={handleOnClose}
         />
         <Alert
-          variant={args.variant ?? 'success'}
-          border={args.border}
-          message={`This is the ${args.variant ?? 'success'} alert`}
-          icon={args.icon ?? undefined}
+          severity={args.severity ?? 'success'}
+          bordered={args.bordered}
+          text={`This is the ${args.severity ?? 'success'} alert`}
           showAlert={showAlert}
           onCloseClick={handleOnClose}
         />
         <Alert
-          variant={args.variant ?? 'warning'}
-          border={args.border}
-          message={`This is the ${args.variant ?? 'warning'} alert`}
-          icon={args.icon ?? undefined}
+          severity={args.severity ?? 'warning'}
+          bordered={args.bordered}
+          text={`This is the ${args.severity ?? 'warning'} alert`}
           showAlert={showAlert}
           onCloseClick={handleOnClose}
         />
@@ -113,23 +109,7 @@ export const AlertVariants: Story = {
   ...Template,
 };
 
-export const AlertBordered: Story = {
+export const AlertBorderedVariants: Story = {
   ...Template,
-  args: {
-    border: 'bordered',
-  },
-};
-
-export const AlertBorderAccent: Story = {
-  ...Template,
-  args: {
-    border: 'borderAccent',
-  },
-};
-
-export const AlertWithIcon: Story = {
-  ...Template,
-  args: {
-    icon: <MdInfo className='flex-shrink-0 inline w-4 h-4 me-3' />,
-  },
+  args: { bordered: true },
 };
