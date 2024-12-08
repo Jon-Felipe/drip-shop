@@ -29,13 +29,13 @@ export type AlertProps = {
   onCloseClick: () => void;
 };
 
-const Alert = ({
+function Alert({
   text,
   severity = 'success',
   bordered = false,
   showAlert,
   onCloseClick,
-}: AlertProps) => {
+}: AlertProps) {
   let icon;
   const severityColourClass = severityColour[severity];
   const severityBgClass = severityBackgroundColour[severity];
@@ -75,6 +75,6 @@ const Alert = ({
       </AlertWrapper>
     )
   );
-};
+}
 
 export default Alert;
