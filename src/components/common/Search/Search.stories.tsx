@@ -15,9 +15,17 @@ const meta: Meta<typeof Search> = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    label: {
+      type: 'string',
+      description: 'The search label text',
+    },
     placeholder: {
       type: 'string',
       description: 'The search input placeholder text',
+    },
+    name: {
+      type: 'string',
+      description: 'The name attribute used to specify the name of the input',
     },
     value: {
       type: 'string',
@@ -28,7 +36,16 @@ const meta: Meta<typeof Search> = {
       description: 'The function helper to change the text input value',
       control: false,
     },
-    buttonText: {
+    onSubmit: {
+      type: 'function',
+      description: 'The function helper to submit the search form',
+      control: false,
+    },
+    required: {
+      type: 'boolean',
+      description: 'Makes the input required or not required',
+    },
+    btnText: {
       type: 'string',
       description: 'The search input button text',
     },
@@ -53,14 +70,15 @@ const Template: Story = {
     }
 
     return (
-      <form onSubmit={onHandleSubmit}>
-        <Search
-          placeholder={args.placeholder ?? 'Search'}
-          value={searchValue}
-          onChange={onHandleChange}
-          buttonText={args.buttonText ?? 'Search'}
-        />
-      </form>
+      <Search
+        label={args.label ?? ''}
+        placeholder={args.placeholder ?? 'Search'}
+        name={args.name ?? 'search'}
+        value={searchValue}
+        onChange={onHandleChange}
+        onSubmit={onHandleSubmit}
+        btnText={args.btnText ?? 'Search'}
+      />
     );
   },
 };
@@ -68,4 +86,11 @@ const Template: Story = {
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const DefaultSearch: Story = {
   ...Template,
+};
+
+export const LabeledSearch: Story = {
+  ...Template,
+  args: {
+    label: 'Search Label',
+  },
 };
