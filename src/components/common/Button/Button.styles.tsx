@@ -3,14 +3,24 @@ import styled from 'styled-components';
 export const ButtonWrapper = styled.button<{
   $variant?: string;
   $colour?: string;
+  $size?: string;
   $pill?: boolean;
   $disabled?: boolean;
 }>`
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  border-radius: ${(props) => (props.$pill ? '20px' : '8px')};
-  font-size: 16px;
+  padding: ${(props) =>
+    props.$size === 'small'
+      ? '6px'
+      : props.$size === 'medium'
+      ? '8px'
+      : props.$size && '10px'};
+  font-size: ${(props) =>
+    props.$size === 'small'
+      ? '10px'
+      : props.$size === 'medium'
+      ? '14px'
+      : props.$size && '16px'};
   font-family: 'Funnel Display', sans-serif;
   font-weight: 500;
   color: ${(props) =>
@@ -21,6 +31,7 @@ export const ButtonWrapper = styled.button<{
   border: ${(props) =>
     props.$variant === 'outlined' ? `1px solid ${props.$colour}` : 'none'};
   cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'pointer')};
+  border-radius: ${(props) => (props.$pill ? '20px' : '8px')};
 
   &:hover {
     background-color: ${(props) =>

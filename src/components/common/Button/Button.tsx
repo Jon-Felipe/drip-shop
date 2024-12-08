@@ -12,6 +12,7 @@ const buttonColours = {
 type Props = {
   variant?: 'text' | 'contained' | 'outlined';
   colour?: 'default' | 'green' | 'red' | 'yellow' | 'purple';
+  size?: 'small' | 'medium' | 'large';
   children: React.ReactNode;
   pill?: boolean;
   icon?: React.ReactNode;
@@ -21,6 +22,7 @@ type Props = {
 function Button({
   variant = 'contained',
   colour = 'default',
+  size = 'medium',
   children,
   pill = false,
   icon,
@@ -32,6 +34,7 @@ function Button({
     <ButtonWrapper
       $variant={variant}
       $colour={buttonClass}
+      $size={size}
       $pill={pill}
       $disabled={disabled}
       disabled={disabled}

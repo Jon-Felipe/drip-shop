@@ -40,6 +40,17 @@ const meta: Meta<typeof Button> = {
         },
       },
     },
+    size: {
+      description: 'The size of the button component',
+      table: {
+        defaultValue: {
+          summary: 'medium',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
     children: {
       type: 'string',
       description: 'Used to pass in the buttons text value',
