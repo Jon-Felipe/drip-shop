@@ -1,11 +1,6 @@
 import React from 'react';
 
-const selectVariants = {
-  outline:
-    'bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5',
-  underline:
-    'py-2.5 px-0 text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-gray-200 peer',
-};
+import { SelectWrapper } from './Select.styles';
 
 export interface ISelect {
   id: string | number;
@@ -16,51 +11,49 @@ export interface ISelect {
 export type SelectProps = {
   label?: string;
   name: string;
-  defaultLabel: string;
+  defaultOption: string;
   options: ISelect[];
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  variant?: 'outline' | 'underline';
   disabled?: boolean;
+  variant?: 'outline' | 'underline';
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 function Select({
   label,
   name,
-  defaultLabel,
+  defaultOption,
   options,
   value,
-  onChange,
-  variant = 'outline',
   disabled = false,
+  variant = 'outline',
+  onChange,
+  onSubmit,
 }: SelectProps) {
-  let variantClass = selectVariants[variant];
-
   return (
-    <div className='w-full'>
-      {label ?? (
-        <label
-          htmlFor={name}
-          className='block mb-2 text-sm font-medium text-gray-900'
-        >
+    <SelectWrapper onSubmit={onSubmit} $variant={variant}>
+      {label && (
+        <label htmlFor={name} className='label'>
           {label}
         </label>
       )}
       <select
+        name={name}
         id={name}
         value={value}
         onChange={onChange}
         disabled={disabled}
-        className={`block w-full text-sm ${variantClass}`}
+        className='select'
       >
-        <option disabled>{defaultLabel}</option>
+        <option value=''>{defaultOption}</option>
         {options.map((option) => (
           <option key={option.id} value={option.value}>
             {option.text}
           </option>
         ))}
       </select>
-    </div>
+    </SelectWrapper>
   );
 }
 

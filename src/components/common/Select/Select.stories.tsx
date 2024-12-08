@@ -9,7 +9,7 @@ const meta: Meta<typeof Select> = {
   component: Select,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: 'centered',
+    layout: 'padded',
   },
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
@@ -17,7 +17,7 @@ const meta: Meta<typeof Select> = {
   argTypes: {
     label: {
       type: 'string',
-      description: 'The label text describing the selectable options',
+      description: 'The select component label',
       control: 'text',
     },
     name: {
@@ -26,7 +26,7 @@ const meta: Meta<typeof Select> = {
         'A string value used to associate the label with the select element',
       control: 'text',
     },
-    defaultLabel: {
+    defaultOption: {
       type: 'string',
       description: 'The default option within the select options',
       control: 'text',
@@ -41,11 +41,9 @@ const meta: Meta<typeof Select> = {
       description: 'The selected value from the list of options',
       control: false,
     },
-    onChange: {
-      type: 'function',
-      description:
-        'A function to handle changing of values from the list of options',
-      control: false,
+    disabled: {
+      type: 'boolean',
+      description: 'A boolean value to disable or enable the select component',
     },
     variant: {
       table: {
@@ -61,9 +59,16 @@ const meta: Meta<typeof Select> = {
         "An option between outline and underline to change the select components's appearance",
       options: ['outline', 'underline'],
     },
-    disabled: {
-      type: 'boolean',
-      description: 'A boolean value to disable or enable the select component',
+    onChange: {
+      type: 'function',
+      description:
+        'A function to handle changing of values from the list of options',
+      control: false,
+    },
+    onSubmit: {
+      type: 'function',
+      description: 'A function to handle submitting of the select component',
+      control: false,
     },
   },
 };
@@ -86,19 +91,23 @@ const Template: Story = {
       setValue(e.target.value);
     }
 
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+      e.preventDefault();
+      setValue('');
+    }
+
     return (
-      <>
-        <Select
-          label={args.label ?? 'Select an option'}
-          name={args.name ?? 'countries'}
-          defaultLabel={args.defaultLabel ?? 'Choose a country'}
-          options={options}
-          value={value}
-          onChange={onHandleChange}
-          variant={args.variant ?? 'outline'}
-          disabled={args?.disabled ?? false}
-        />
-      </>
+      <Select
+        label={args.label ?? 'Select an option'}
+        name={args.name ?? 'countries'}
+        defaultOption={args.defaultOption ?? 'Choose a country'}
+        options={options}
+        value={value}
+        variant={args.variant ?? 'outline'}
+        disabled={args?.disabled ?? false}
+        onChange={onHandleChange}
+        onSubmit={onSubmit}
+      />
     );
   },
 };
@@ -123,32 +132,8 @@ export const DisabledSelect: Story = {
 };
 
 export const NoLabelSelect: Story = {
-  render: () => {
-    const options: ISelect[] = [
-      { id: 1, text: 'United States', value: 'us' },
-      { id: 2, text: 'Canada', value: 'ca' },
-      { id: 3, text: 'France', value: 'fr' },
-      { id: 4, text: 'Germany', value: 'de' },
-    ];
-
-    const [value, setValue] = useState<string>('');
-
-    function onHandleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-      setValue(e.target.value);
-    }
-
-    return (
-      <>
-        <Select
-          name='countries'
-          defaultLabel='Choose a country'
-          options={options}
-          value={value}
-          onChange={onHandleChange}
-          variant='underline'
-          disabled={false}
-        />
-      </>
-    );
+  ...Template,
+  args: {
+    label: '',
   },
 };
