@@ -23,7 +23,6 @@ export const InputWrapper = styled.div<{ $disabled?: boolean }>`
     letter-spacing: 1px;
     border: 1px solid rgb(209 213 219);
     border-radius: 0.5rem;
-    width: 100%;
     cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'initial')};
   }
 
