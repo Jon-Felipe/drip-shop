@@ -10,6 +10,7 @@ const buttonColours = {
 };
 
 type Props = {
+  type: 'button' | 'submit' | 'reset';
   variant?: 'text' | 'contained' | 'outlined';
   colour?: 'default' | 'green' | 'red' | 'yellow' | 'purple';
   size?: 'small' | 'medium' | 'large';
@@ -20,6 +21,7 @@ type Props = {
 };
 
 function Button({
+  type = 'button',
   variant = 'contained',
   colour = 'default',
   size = 'medium',
@@ -32,12 +34,14 @@ function Button({
 
   return (
     <ButtonWrapper
+      type={type}
+      disabled={disabled}
       $variant={variant}
       $colour={buttonClass}
       $size={size}
       $pill={pill}
+      $icon={icon}
       $disabled={disabled}
-      disabled={disabled}
     >
       {icon && variant !== 'text' && <span className='icon'>{icon}</span>}
       {children}

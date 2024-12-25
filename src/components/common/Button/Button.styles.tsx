@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 export const ButtonWrapper = styled.button<{
@@ -5,27 +6,30 @@ export const ButtonWrapper = styled.button<{
   $colour?: string;
   $size?: string;
   $pill?: boolean;
+  $icon?: React.ReactNode;
   $disabled?: boolean;
 }>`
-  display: flex;
+  display: ${(props) => (props.$icon ? 'flex' : 'inline-block')};
   align-items: center;
+  text-align: center;
+  width: 100%;
   padding: ${(props) =>
     props.$size === 'small'
-      ? '6px'
+      ? '10px 12px'
       : props.$size === 'medium'
-      ? '8px'
-      : props.$size && '10px'};
+      ? '12px 14px'
+      : props.$size === 'large' && '14px 16px'};
   font-size: ${(props) =>
     props.$size === 'small'
-      ? '10px'
+      ? '12px'
       : props.$size === 'medium'
       ? '14px'
-      : props.$size && '16px'};
+      : props.$size === 'large' && '16px'};
   font-family: 'Funnel Display', sans-serif;
   font-weight: 500;
+  text-transform: capitalize;
   color: ${(props) =>
     props.$variant === 'contained' ? '#fff' : props.$colour};
-  text-transform: capitalize;
   background-color: ${(props) =>
     props.$variant === 'contained' ? props.$colour : '#fff'};
   border: ${(props) =>
