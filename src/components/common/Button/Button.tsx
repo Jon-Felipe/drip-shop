@@ -30,14 +30,14 @@ function Button({
   icon,
   disabled = false,
 }: Props) {
-  const buttonClass = buttonColours[colour];
+  const buttonColourClass = buttonColours[colour];
 
   return (
     <ButtonWrapper
       type={type}
       disabled={disabled}
       $variant={variant}
-      $colour={buttonClass}
+      $colour={buttonColourClass}
       $size={size}
       $pill={pill}
       $icon={icon}
