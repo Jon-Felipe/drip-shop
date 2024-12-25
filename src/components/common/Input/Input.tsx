@@ -12,7 +12,7 @@ type InputProps = {
   disabled?: boolean;
 };
 
-const Input = ({
+function Input({
   label,
   name,
   value,
@@ -21,7 +21,7 @@ const Input = ({
   placeholder,
   required = false,
   disabled = false,
-}: InputProps) => {
+}: InputProps) {
   return (
     <InputWrapper $disabled={disabled}>
       {label && <label htmlFor={name}>{label}</label>}
@@ -36,6 +36,6 @@ const Input = ({
       />
     </InputWrapper>
   );
-};
+}
 
 export default Input;
