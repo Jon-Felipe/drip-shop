@@ -4,6 +4,7 @@ export const InputWrapper = styled.div<{ $disabled?: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 8px;
+  width: 100%;
 
   label {
     font-family: 'Funnel Display', sans-serif;
