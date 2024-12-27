@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import Login from './Login';
+import Login, { LoginProps } from './Login';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta: Meta<typeof Login> = {
@@ -24,8 +25,42 @@ const meta: Meta<typeof Login> = {
   ],
 };
 
+const Template: Story = {
+  render: (args: LoginProps) => {
+    const [userDetails, setUserDetails] = useState<{
+      email: string;
+      password: string;
+    }>({ email: '', password: '' });
+
+    function onHandleChange(e: React.ChangeEvent<HTMLInputElement>) {
+      const name = e.target.name;
+      const value = e.target.value;
+
+      setUserDetails((prevState) => {
+        return { ...prevState, [name]: value };
+      });
+    }
+
+    function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+      e.preventDefault();
+      console.log('form submitted');
+    }
+
+    return (
+      <Login
+        emailValue={args.emailValue ?? userDetails.email}
+        passwordValue={args.passwordValue ?? userDetails.password}
+        onChange={onHandleChange}
+        onSubmit={onSubmit}
+      />
+    );
+  },
+};
+
 export default meta;
 type Story = StoryObj<typeof Login>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const DefaultLogin: Story = {};
+export const DefaultLogin: Story = {
+  ...Template,
+};

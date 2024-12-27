@@ -1,3 +1,4 @@
+import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaApple } from 'react-icons/fa';
 
@@ -8,11 +9,16 @@ import Button from '../common/Button/Button';
 // extras
 import { FormWrapper, SocialButtonWrapper } from './Login.styles';
 
-type Props = {};
+export type LoginProps = {
+  emailValue: string;
+  passwordValue: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+};
 
-function Login({}: Props) {
+function Login({ emailValue, passwordValue, onChange, onSubmit }: LoginProps) {
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={onSubmit}>
       <h3 className='title'>Welcome back</h3>
       <p className='sub-text'>
         Browse all the latest fashion and trends. Don't have an account?{' '}
@@ -23,8 +29,8 @@ function Login({}: Props) {
           label='Email'
           type='text'
           name='email'
-          value=''
-          onChange={() => {}}
+          value={emailValue}
+          onChange={onChange}
           placeholder='name@email.com'
           required
         />
@@ -32,8 +38,8 @@ function Login({}: Props) {
           label='Password'
           type='password'
           name='password'
-          value=''
-          onChange={() => {}}
+          value={passwordValue}
+          onChange={onChange}
           placeholder='••••••••'
           required
         />
