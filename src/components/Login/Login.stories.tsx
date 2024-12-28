@@ -15,7 +15,28 @@ const meta: Meta<typeof Login> = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
-  argTypes: {},
+  argTypes: {
+    emailValue: {
+      type: 'string',
+      description: 'The text value for the email input.',
+    },
+    passwordValue: {
+      type: 'string',
+      description: 'The text value for the password input.',
+    },
+    onChange: {
+      type: 'function',
+      description:
+        'A function helper to handle on change events for the inputs.',
+      control: false,
+    },
+    onSubmit: {
+      type: 'function',
+      description:
+        'A function helper to handle the submit event for the login form.',
+      control: false,
+    },
+  },
   decorators: [
     (Story) => (
       <MemoryRouter initialEntries={['/login']}>
