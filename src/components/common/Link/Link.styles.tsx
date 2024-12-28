@@ -27,9 +27,7 @@ export const LinkWrapper = styled(Link)<{
 
   &:hover {
     text-decoration: ${(props) =>
-      props.$underlined === 'hover' && props.$variant === 'text'
-        ? 'underline'
-        : 'none'};
+      props.$underlined === 'none' ? 'none' : 'underline'};
     opacity: ${(props) => (props.$variant === 'contained' ? 0.9 : 1)};
   }
 `;
