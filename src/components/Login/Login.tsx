@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaApple } from 'react-icons/fa';
 
 // components
+import Link from '../common/Link/Link';
 import Input from '../common/Input/Input';
 import Button from '../common/Button/Button';
 
@@ -22,7 +23,7 @@ function Login({ emailValue, passwordValue, onChange, onSubmit }: LoginProps) {
       <h3 className='title'>Welcome back</h3>
       <p className='sub-text'>
         Browse all the latest fashion and trends. Don't have an account?{' '}
-        <span>Sign up</span>
+        <Link path='/register' text='Sign up' underlined='always' />
       </p>
       <div className='form-inputs'>
         <Input
