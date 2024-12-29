@@ -22,8 +22,12 @@ export const LinkWrapper = styled(Link)<{
     props.$underlined === 'always' && props.$variant === 'text'
       ? 'underline'
       : 'none'};
-
   cursor: pointer;
+
+  .icon svg {
+    width: 20px;
+    height: 20px;
+  }
 
   &:hover {
     text-decoration: ${(props) =>

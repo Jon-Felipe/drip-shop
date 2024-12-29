@@ -63,9 +63,7 @@ const meta: Meta<typeof Link> = {
   decorators: [
     (Story) => (
       <MemoryRouter initialEntries={['/']}>
-        <div className='flex items-center gap-x-4'>
-          <Story />
-        </div>
+        <Story />
       </MemoryRouter>
     ),
   ],
@@ -91,8 +89,5 @@ export const ContainedLink: Story = {
 };
 
 export const IconLink: Story = {
-  args: {
-    path: '/',
-    icon: <MdShoppingCart />,
-  },
+  render: () => <Link path='/' icon={<MdShoppingCart />} />,
 };

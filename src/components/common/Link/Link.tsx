@@ -3,7 +3,7 @@ import { LinkWrapper } from './Link.styles';
 
 type LinkProps = {
   path: string;
-  text: string;
+  text?: string;
   variant?: 'text' | 'contained';
   underlined?: 'always' | 'hover' | 'none';
   icon?: React.ReactNode;
@@ -18,7 +18,7 @@ function Link({
 }: LinkProps) {
   return (
     <LinkWrapper to={path} $variant={variant} $underlined={underlined}>
-      {icon ? icon : text}
+      {icon ? <span className='icon'>{icon}</span> : text}
     </LinkWrapper>
   );
 }
