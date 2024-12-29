@@ -11,7 +11,7 @@ export type SearchProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   required?: boolean;
-  btnText: string;
+  btnText?: string;
 };
 
 function Search({
@@ -43,7 +43,7 @@ function Search({
           className='input'
         />
         <div className='search-btn'>
-          <Button>{btnText ?? 'Search'}</Button>
+          <Button type='submit'>{btnText ?? 'Search'}</Button>
         </div>
       </div>
     </SearchWrapper>
