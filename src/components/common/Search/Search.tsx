@@ -43,7 +43,9 @@ function Search({
           className='input'
         />
         <div className='search-btn'>
-          <Button type='submit'>{btnText ?? 'Search'}</Button>
+          <Button type='submit' size='small'>
+            {btnText ?? 'Search'}
+          </Button>
         </div>
       </div>
     </SearchWrapper>

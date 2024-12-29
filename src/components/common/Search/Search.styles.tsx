@@ -19,7 +19,7 @@ export const SearchWrapper = styled.form`
 
   .input {
     display: block;
-    padding: 1rem;
+    padding: 13px;
     background-color: rgb(249 250 251);
     border: 1px solid rgb(209 213 219);
     border-radius: 8px;
@@ -32,7 +32,7 @@ export const SearchWrapper = styled.form`
 
   .search-btn {
     position: absolute;
-    bottom: 0.45rem;
-    inset-inline-end: 0.45rem;
+    bottom: 0.25rem;
+    inset-inline-end: 0.4rem;
   }
 `;
