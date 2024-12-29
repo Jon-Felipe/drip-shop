@@ -25,8 +25,8 @@ export const LinkWrapper = styled(Link)<{
   cursor: pointer;
 
   .icon svg {
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
   }
 
   &:hover {
