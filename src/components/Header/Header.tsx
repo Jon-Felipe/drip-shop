@@ -47,10 +47,12 @@ function Header({ searchValue, searchOnChange, searchOnSubmit }: HeaderProps) {
         </div>
       </div>
       <nav className='navbar-links'>
-        <Link path='/women' text='Women' underlined='hover' />
-        <Link path='/men' text='Men' underlined='hover' />
-        <Link path='/kids' text='Kids' underlined='hover' />
-        <Link path='/brands' text='Brands' underlined='hover' />
+        <div className='links'>
+          <Link path='/women' text='Women' />
+          <Link path='/men' text='Men' />
+          <Link path='/kids' text='Kids' />
+          <Link path='/brands' text='Brands' />
+        </div>
       </nav>
     </HeaderWrapper>
   );
