@@ -15,6 +15,7 @@ export type IconButtonProps = {
   variant?: 'text' | 'contained' | 'outlined';
   rounded?: boolean;
   disabled?: boolean;
+  onClick: () => void;
 };
 
 function IconButton({
@@ -23,6 +24,7 @@ function IconButton({
   variant = 'text',
   rounded = false,
   disabled = false,
+  onClick,
 }: IconButtonProps) {
   const colourClass = buttonColours[colour];
 
@@ -33,6 +35,7 @@ function IconButton({
       $variant={variant}
       $rounded={rounded}
       $disabled={disabled}
+      onClick={onClick}
     >
       {icon}
     </IconButtonWrapper>

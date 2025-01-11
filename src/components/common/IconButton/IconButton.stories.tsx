@@ -61,6 +61,11 @@ const meta: Meta<typeof IconButton> = {
       description:
         'Toggle between true or false to enable or disable the icon button',
     },
+    onClick: {
+      type: 'function',
+      description: 'Icon button on click function handler',
+      control: false,
+    },
   },
 };
 
