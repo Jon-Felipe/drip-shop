@@ -9,7 +9,7 @@ export const IconButtonWrapper = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: ${(props) => (props.$variant !== 'text' ? '12px' : 0)};
   background: ${(props) =>
     props.$variant === 'contained' ? props.$colour : 'unset'};
   color: ${(props) =>
@@ -33,8 +33,8 @@ export const IconButtonWrapper = styled.button<{
   }
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 23px;
+    height: 23px;
   }
 `;
 
