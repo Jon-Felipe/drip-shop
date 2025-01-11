@@ -1,16 +1,29 @@
-import { Outlet } from 'react-router-dom';
+import React, { useState } from 'react';
+
+// import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // components
-import Navbar from './components/Navbar/Navbar';
+import Header from './components/Header/Header.tsx';
 
 function App() {
+  const [search, setSearch] = useState<string>('');
+
+  function handleOnSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    alert('search');
+  }
+
   return (
     <>
-      <Navbar title='DripShop' submenuLinks={['women', 'men', 'kids']} />
-      <main className='max-w-screen-xl mx-auto mt-10 px-4 lg:px-6'>
-        <Outlet />
+      <Header
+        searchValue={search}
+        searchOnChange={(e) => setSearch(e.target.value)}
+        searchOnSubmit={handleOnSubmit}
+      />
+      <main>
+        {/* <Outlet /> */}
         <ToastContainer />
       </main>
     </>
