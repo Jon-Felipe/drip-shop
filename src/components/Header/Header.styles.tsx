@@ -28,7 +28,6 @@ export const HeaderWrapper = styled.header`
   }
 
   .navbar-links {
-    padding: 15px;
     margin-top: 5px;
     background-color: rgb(243 244 244);
 
@@ -37,6 +36,7 @@ export const HeaderWrapper = styled.header`
       align-items: center;
       column-gap: 20px;
       max-width: 1170px;
+      padding: 15px;
       margin: 0 auto;
     }
   }
