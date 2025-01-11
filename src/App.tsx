@@ -10,7 +10,7 @@ import Header from './components/Header/Header.tsx';
 function App() {
   const [search, setSearch] = useState<string>('');
 
-  function handleOnSubmit(e: React.FormEvent) {
+  function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     alert('search');
   }
