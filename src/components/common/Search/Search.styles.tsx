@@ -24,6 +24,8 @@ export const SearchWrapper = styled.form`
     border: 1px solid rgb(209 213 219);
     border-radius: 8px;
     width: 100%;
+    font-size: 18px;
+    letter-spacing: 0.5px;
 
     &::placeholder {
       font-size: 16px;
@@ -32,7 +34,7 @@ export const SearchWrapper = styled.form`
 
   .search-btn {
     position: absolute;
-    bottom: 0.25rem;
+    bottom: 0.5rem;
     inset-inline-end: 0.4rem;
   }
 `;
