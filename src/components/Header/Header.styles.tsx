@@ -22,8 +22,8 @@ export const HeaderWrapper = styled.header`
 
     .user-links {
       display: flex;
-      align-items: center;
-      column-gap: 14px;
+      align-items: flex-start;
+      column-gap: 10px;
     }
   }
 
