@@ -43,7 +43,7 @@ function Header({ searchValue, searchOnChange, searchOnSubmit }: HeaderProps) {
             icon={<MdOutlineFavoriteBorder />}
           />
           <Link path='/cart' text='cart' icon={<MdOutlineShoppingBag />} />
-          <Link path='/profile' text='profile' icon={<MdOutlinePerson />} />
+          <Link path='/login' icon={<MdOutlinePerson />} />
         </div>
       </div>
       <nav className='navbar-links'>
