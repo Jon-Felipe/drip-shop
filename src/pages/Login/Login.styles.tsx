@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FormWrapper = styled.div`
+export const LoginWrapper = styled.div`
   display: block;
   margin-top: 150px;
   padding: 0 20px;

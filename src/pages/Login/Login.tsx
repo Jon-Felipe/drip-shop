@@ -8,7 +8,7 @@ import Input from '../../components/common/Input/Input';
 import Button from '../../components/common/Button/Button';
 
 // extras
-import { FormWrapper, SocialButtonWrapper } from './Login.styles';
+import { LoginWrapper, SocialButtonWrapper } from './Login.styles';
 import LoginImage from '../../../public/images/login_img.svg';
 
 interface ILogin {
@@ -34,7 +34,7 @@ function Login() {
   }
 
   return (
-    <FormWrapper>
+    <LoginWrapper>
       <section className='form-section'>
         <form onSubmit={handleOnSubmit}>
           <h3 className='title'>Welcome back</h3>
@@ -97,7 +97,7 @@ function Login() {
       <section className='image-section'>
         <img src={LoginImage} alt='login' />
       </section>
-    </FormWrapper>
+    </LoginWrapper>
   );
 }
 
