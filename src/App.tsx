@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -23,7 +23,7 @@ function App() {
         searchOnSubmit={handleOnSubmit}
       />
       <main>
-        {/* <Outlet /> */}
+        <Outlet />
         <ToastContainer />
       </main>
     </>

@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 
 // pages & components
-import Home from './pages/Home.tsx';
+import Home from './pages//Home/Home.tsx';
 import Products from './pages/Products.tsx';
 import SingleProduct from './pages/SingleProduct.tsx';
 import Cart from './pages/Cart.tsx';
