@@ -16,7 +16,7 @@ import Home from './pages//Home/Home.tsx';
 import Products from './pages/Products.tsx';
 import SingleProduct from './pages/SingleProduct.tsx';
 import Cart from './pages/Cart.tsx';
-import Department from './pages/Department.tsx';
+import Department from './pages/Department/Department.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
 import Profile from './pages/Profile.tsx';
