@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DropdownWrapper = styled.div`
   display: block;
   width: 100%;
-  max-width: 200px;
+  max-width: 250px;
   .dropdown-btn {
     display: flex;
     align-items: center;
