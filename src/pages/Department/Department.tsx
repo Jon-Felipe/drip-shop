@@ -5,6 +5,7 @@ import Dropdown, {
   IDropdownList,
 } from '../../components/common/Dropdown/Dropdown';
 import CardLink from '../../components/CardLink/CardLink';
+import Divider from '../../components/common/Divider/Divider';
 
 // extras
 import {
@@ -45,6 +46,9 @@ function Department({}: DepartmentProps) {
           isOpen={isCategoryOpen}
           setIsOpen={() => setIsCategoryOpen(!isCategoryOpen)}
         />
+        <br />
+        <Divider />
+        <br />
         {/* categories dropdown */}
         <Dropdown
           title='Brands'
