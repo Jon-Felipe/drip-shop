@@ -56,6 +56,30 @@ function Department({}: DepartmentProps) {
           isOpen={isBrandsOpen}
           setIsOpen={() => setIsBrandsOpen(!isBrandsOpen)}
         />
+        <br />
+        <Divider />
+        <br />
+        {/* deparment into text */}
+        <article className='department__intro'>
+          <h3>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+            autem.
+          </h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga quos
+            ab illum nisi inventore error consequatur iusto aut est vitae et
+            tempore ipsa harum veritatis eius soluta, reiciendis aliquid
+            nesciunt odio, culpa iure cupiditate quod, nostrum voluptates!
+            Cumque dolorum cum labore natus laborum reprehenderit alias
+            laboriosam quam temporibus non. Debitis sequi ex aperiam officiis
+            modi fugit quidem illo dignissimos et, magni eveniet at nulla odio
+            esse ullam neque ut explicabo voluptates saepe dolore perferendis.
+            Itaque non reiciendis cumque molestiae. Quae laudantium officiis
+            quia cum molestiae, accusantium aperiam voluptatibus deserunt a
+            mollitia quidem minima suscipit eius cumque perspiciatis! Aliquid,
+            veritatis eius?
+          </p>
+        </article>
       </FilterWrapper>
       {/* content */}
       <ContentWrapper>

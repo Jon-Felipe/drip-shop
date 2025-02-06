@@ -9,6 +9,20 @@ export const DepartmentWrapper = styled.div`
   display: grid;
   column-gap: 20px;
 
+  .department__intro {
+    h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      line-height: 25px;
+    }
+    p {
+      font-size: 14px;
+      letter-spacing: 1px;
+      line-height: 20px;
+    }
+  }
+
   @media only screen and (min-width: 1024px) {
     grid-template-columns: 300px 1fr;
   }
