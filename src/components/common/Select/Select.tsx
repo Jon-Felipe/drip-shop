@@ -45,6 +45,7 @@ function Select({
         onChange={onChange}
         disabled={disabled}
         className='select'
+        data-testid='selectEl'
       >
         <option value=''>{defaultOption}</option>
         {options.map((option) => (
