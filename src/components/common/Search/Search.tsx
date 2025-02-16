@@ -25,7 +25,7 @@ function Search({
   btnText,
 }: SearchProps) {
   return (
-    <SearchWrapper onSubmit={onSubmit}>
+    <SearchWrapper onSubmit={onSubmit} data-testid='searchEl'>
       {label && (
         <label htmlFor={name} className='label'>
           {label}
@@ -41,6 +41,7 @@ function Search({
           placeholder={placeholder}
           required={required}
           className='input'
+          data-testid='inputEl'
         />
         <div className='search-btn'>
           <Button type='submit' size='small'>
