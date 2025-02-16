@@ -39,11 +39,11 @@ function MockSearchComponent() {
   );
 }
 
-beforeEach(() => {
-  render(<MockSearchComponent />);
-});
-
 describe('Search Component', () => {
+  beforeEach(() => {
+    render(<MockSearchComponent />);
+  });
+
   it('should render the search component', () => {
     const searchEl = screen.getByTestId(/searchel/i);
     const searchPlaceholder = screen.getByPlaceholderText(/search/i);
