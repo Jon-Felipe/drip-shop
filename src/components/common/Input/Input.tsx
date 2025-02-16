@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputWrapper } from './Input.styles';
 
-type InputProps = {
+export type InputProps = {
   label?: string;
   name: string;
   value: React.InputHTMLAttributes<HTMLInputElement>['value'];
@@ -23,10 +23,11 @@ function Input({
   disabled = false,
 }: InputProps) {
   return (
-    <InputWrapper $disabled={disabled}>
+    <InputWrapper $disabled={disabled} data-testid='inputEl'>
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
+        id={name}
         name={name}
         value={value}
         onChange={onChange}
