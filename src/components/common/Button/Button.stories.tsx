@@ -67,6 +67,11 @@ const meta: Meta<typeof Button> = {
       type: 'boolean',
       description: 'Used to set the buttons state to disabled',
     },
+    onClick: {
+      control: false,
+      type: 'function',
+      description: 'On click function handler',
+    },
   },
   decorators: [
     (Story) => (
