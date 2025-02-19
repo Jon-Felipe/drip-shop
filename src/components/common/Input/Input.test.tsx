@@ -52,7 +52,7 @@ describe('Input Component', () => {
 });
 
 describe('Input Component props check', () => {
-  it('should disabled input if disabled prop is true', () => {
+  it('should disable input if disabled prop is true', () => {
     const { getByRole } = render(<Input {...inputProps} disabled={true} />);
     const inputTextBox = getByRole('textbox', { name: 'First Name' });
 
