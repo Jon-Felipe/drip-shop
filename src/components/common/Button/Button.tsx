@@ -9,7 +9,7 @@ const buttonColours = {
   purple: 'rgb(108 43 217)',
 };
 
-type Props = {
+export type ButtonProps = {
   type: 'button' | 'submit' | 'reset';
   variant?: 'text' | 'contained' | 'outlined';
   colour?: 'default' | 'green' | 'red' | 'yellow' | 'purple';
@@ -18,6 +18,7 @@ type Props = {
   pill?: boolean;
   icon?: React.ReactNode;
   disabled?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 function Button({
@@ -29,7 +30,8 @@ function Button({
   pill = false,
   icon,
   disabled = false,
-}: Props) {
+  onClick,
+}: ButtonProps) {
   const buttonColourClass = buttonColours[colour];
 
   return (
@@ -42,6 +44,7 @@ function Button({
       $pill={pill}
       $icon={icon}
       $disabled={disabled}
+      onClick={onClick}
     >
       {icon && variant !== 'text' && <span className='icon'>{icon}</span>}
       {children}
