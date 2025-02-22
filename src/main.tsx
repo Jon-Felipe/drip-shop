@@ -19,11 +19,8 @@ import Cart from './pages/Cart.tsx';
 import Department from './pages/Department/Department.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
-import Profile from './pages/Profile.tsx';
 import ProfileLayout from './components/profile/ProfileLayout.tsx';
-import UpdatePassword from './pages/UpdatePassword.tsx';
 import ProtectedRouteLayout from './components/ProtectedRouteLayout.tsx';
-import Checkout from './pages/Checkout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,17 +31,11 @@ const router = createBrowserRouter(
         <Route path='products' element={<Products />} />
         <Route path='products/:id' element={<SingleProduct />} />
         <Route path='cart' element={<Cart />} />
-        <Route path='checkout' element={<Checkout />} />
         <Route element={<ProtectedRouteLayout />}>
           <Route
             path='profile'
             element={<ProfileLayout />}
-            children={
-              <Route>
-                <Route path='' element={<Profile />} />
-                <Route path='update-password' element={<UpdatePassword />} />
-              </Route>
-            }
+            children={<Route></Route>}
           />
         </Route>
       </Route>
