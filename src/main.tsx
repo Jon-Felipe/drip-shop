@@ -13,9 +13,6 @@ import {
 
 // pages & components
 import Home from './pages//Home/Home.tsx';
-import Products from './pages/Products.tsx';
-import SingleProduct from './pages/SingleProduct.tsx';
-import Cart from './pages/Cart.tsx';
 import Department from './pages/Department/Department.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
@@ -28,9 +25,6 @@ const router = createBrowserRouter(
       <Route path='/' element={<App />}>
         <Route path='' element={<Home />} />
         <Route path='department/:department' element={<Department />} />
-        <Route path='products' element={<Products />} />
-        <Route path='products/:id' element={<SingleProduct />} />
-        <Route path='cart' element={<Cart />} />
         <Route element={<ProtectedRouteLayout />}>
           <Route
             path='profile'
