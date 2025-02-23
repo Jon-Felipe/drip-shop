@@ -13,6 +13,7 @@ import menImg from '../../../public/departments/men.jpg';
 import womenImg from '../../../public/departments/women.jpg';
 import kidsImg from '../../../public/departments/kids.jpg';
 import beautyImg from '../../../public/departments/beauty.jpg';
+import { brands } from '../../utils/constants';
 
 function Home() {
   return (
@@ -31,7 +32,7 @@ function Home() {
           <h3>Our Brands</h3>
           <Divider />
         </div>
-        <Carousel />
+        <Carousel carouselItems={brands} />
       </BrandWrapper>
     </HomeWrapper>
   );
