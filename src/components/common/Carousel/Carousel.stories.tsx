@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+// extras
+import { brands } from '../../../utils/constants';
+
 import Carousel from './Carousel';
 
 const meta: Meta<typeof Carousel> = {
@@ -14,4 +17,8 @@ const meta: Meta<typeof Carousel> = {
 export default meta;
 type Story = StoryObj<typeof Carousel>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    carouselItems: brands,
+  },
+};
